@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<HTML>
+<head>
+	<title></title>
+</head>
+<body>
+	<form>
+		<label for="fname">First name:</label>
+		<input type="text" name="fname" id="fname" required="required">
+		<br>
+		
+		<label for="lname">Last name:</label>
+		<input type="text" name="lname" id="lname" required="required">
+		<br>
+		
+		<fieldset>
+			<legend>Gender</legend>
+			<input type="radio" name="gender" id="male" value="male">
+			<label for="male">male</label>
+			<input type="radio" name="gender" id="female" value="female">
+			<label for="female">female</label>
+			<input type="radio" name="gender" id="other" value="other">
+			<label for="other">other</label>
+		</fieldset>
+		<br>
+		
+		<label for="dob">Date of birth</label>
+		<input type="text" name="dob" id="dob" required="required" placeholder="dd/mm/yyyy">
+		<br>
+		
+		<label for="str_address">Street address</label>
+		<input type="text" name="str_address" id="str_address" required="required">
+		
+		<label for="town">Suburb/Town</label>
+		<input type="text" name="town" id="town" required="required">
+		
+		<select>
+			<option value="" disabled selected hidden>State</option>
+			<option value="VIC">VIC</option>
+			<option value="NSW">NSW</option>
+			<option value="QLD">QLD</option>
+			<option value="NT">NT</option>
+			<option value="WA">WA</option>
+			<option value="SA">SA</option>
+			<option value="TAS">TAS</option>
+			<option value="ACT">ACT</option>
+		</select>
+		<br>
+		
+		<label for="postcode">Postcode:</label>
+		<input type="text" name="postcode" id="postcode" required="required" placeholder="xxxx">
+		<br>
+		
+		<label for="email">Email:</label>
+		<input type="text" name="email" id="email" required="required">
+		<br>
+		
+		<label for="phone">phone number:</label>
+		<input type="text" name="phone" id="phone" required="required">
+		<br>
+		
+		<label for="other">other skill:</label><br>
+		<textarea name="other" id="other" placeholder="What skill do you have?"></textarea>
+	</form>
+</body>
+</HTML>
