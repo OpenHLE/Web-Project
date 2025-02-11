@@ -1,0 +1,264 @@
+/*pseudo-class for <html> tag*/
+:root {
+    --dark-blue: #1A1A2E;
+    --navy-blue: #16213E;
+    --medium-blue: #0F3460;
+    --accent-red: #E94560;
+    --light-gray: #F9F9F9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Calibri, sans-serif, Arial;
+}
+
+body {
+    background-color: var(--dark-blue);
+    color: var(--light-gray);
+    line-height: 1.6;
+   
+}
+/*--------------------HEADER----------------------*/
+header {
+    background-color: var(--navy-blue);
+    padding: 10px 20px;
+    max-width: 2000px;
+    position: fixed;
+    
+    width: 100%;
+    margin: 0 auto;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar{
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+   
+    background-color: var(--navy-blue);
+    
+}
+
+.logo{
+    height: 50px;
+    width: auto;
+}
+
+.brand{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header h1 {
+    color: var(--light-gray);
+    font-size: 28px;
+
+}
+nav {
+    position: relative;
+}
+nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 0;
+}
+nav ul li {
+    margin: 0 15px;
+    display: inline-block;
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--light-gray);
+    font-size: 18px;
+    padding: 10px 15px;
+    position: relative;
+    transition: color 0.3s;
+    z-index: 2;
+}
+
+.nav-highlight{
+    position: absolute;
+    top: 0;
+    left: 8px;
+    width: 85px;
+    height: 100%;
+    background-color: var(--accent-red);
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    z-index: 1;
+}
+
+nav ul li:nth-child(1):hover ~ .nav-highlight {
+    transform: translateX(0px);
+    width: 85px; /* Adjust based on link width */
+}
+nav ul li:nth-child(2):hover ~ .nav-highlight {
+    transform: translateX(107px);
+    width: 85px;
+}
+nav ul li:nth-child(3):hover ~ .nav-highlight {
+    transform: translateX(220px);
+    width: 110px;
+}
+
+nav ul li:nth-child(4):hover ~ .nav-highlight {
+    transform: translateX(360px);
+    width: 80px;
+}
+
+/* Initial position for the active page */
+nav ul li .active ~ .nav-highlight {
+    transform: translateX(0px);
+    width: 80px;
+}
+
+/*------------------------HERO----------------------*/
+.hero {
+    height: 100vh; /* Full-screen height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+   
+    color: var(--light-gray);
+    padding: 50px 20px;
+    position: relative;
+}
+.herobg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(10, 10, 40, 0.7), rgba(0, 0, 0, 0.8)), 
+                url("media/hero-bg.jpg") center/cover no-repeat;
+    
+    animation-name: fadein;
+    animation-duration: 1.5s;
+}
+.herocontent{
+    position: relative;
+   
+   
+}
+.herocontent h1 {
+    font-size: 48px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--accent-red);
+    opacity: 0;
+    animation: fadein2 1s ease forwards;
+}
+
+.herocontent h2 {
+    font-size: 24px;
+    margin-top: 10px;
+    opacity: 0;
+    animation-delay: 1;
+    animation: fadein2 2s ease forwards;
+}
+
+.herocontent p {
+    font-size: 18px;
+    max-width: 600px;
+    margin-top: 15px;
+    opacity: 0;
+    animation: fadein2 3s ease forwards;
+}
+
+#scroll {
+    position: absolute;
+    bottom: 30px;
+    text-align: center;
+}
+
+#scroll img {
+    width: 40px;
+    height: auto;
+    color: #F9F9F9;
+    animation: bounce 1.5s infinite;
+}
+
+/* Bounce Animation for Scroll Down Arrow */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+/*-------------------description-----------------------*/
+.container{
+    display: flex ;
+    max-width: 800px;
+    flex-wrap: wrap;
+    align-content:flex-start ;
+    justify-content: space-between;
+    justify-self: center;
+}
+
+.box{
+    background-color: var(--medium-blue);
+    padding: 20px;
+    margin: 15px;
+    border-radius: 15px;
+    text-align: center; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.box:hover {
+    transform: scale(1.10); /* Scale up by 5% */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 6); /* Add shadow */
+}
+.box h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#introbox{
+    display: block;
+    max-width: 1000px;
+    min-width: 600px;
+}
+
+#missionbox, #featuresbox{
+    max-width: 440px;
+    min-width: 250px;
+}
+
+#featuresbox ul {
+    list-style-type: none; /* Removes default bullet points */
+    padding: 0; /* Removes default padding */
+}
+
+#featuresbox li {
+    background: var(--navy-blue); /* Creates a separate box for each item */
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+/*--------------------------ANIMATIONS----------------------*/
+
+@keyframes fadein{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+@keyframes fadein2{
+    0%{
+        transform: translateY(500%);
+        opacity: 0;
+    }
+    50%{
+        transform: translateY(250%);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}

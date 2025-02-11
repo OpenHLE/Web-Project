@@ -7,66 +7,73 @@
     <meta name="author" content="hehe"  />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!--responsive website-->
     <title>Tech Company IDK</title>
-    <link href="styles/Style.css" rel="stylesheet"/>
+    <link href="style/style.css" rel="stylesheet"/>
 </head>
 
 <body>
     <header>
-        <h1>LOGO&COMP NAME</h1>
-        <nav>
-            <ul>
-                <li><a href="jobs.html">Available Positions</a></li>
-                <li><a href="apply.html">Application</a></li>
-                <li><a href="about.html">About us</a></li>
-            </ul>
-        </nav>
+        <div class="navbar">
+            <div class="brand">
+                <img class="logo" src="media/logo.png">
+                <h1>COMP NAME</h1>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="jobs.html">Career</a></li>
+                    <li><a href="apply.html">Application</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <span class="nav-highlight"></span>
+                </ul>
+                
+            </nav>
+        </div>
     </header>
 <!--------------------------------------------------------------------->
-    <section id="hero">
-        <h1>*company name</h1>
-        <h2>The best tool for self-education</h2>
-        <p>You want certifications to brighten up your CV? We can provide the best courses to assist your jouney!</p>
-
+    <section class="hero">
+        <div class="herobg"></div>
+        <div class="herocontent">
+            <h1>*company name</h1>
+            <h2>The best tool for self-education</h2>
+            <p>You want certifications to brighten up your CV? We can provide the best courses to assist your jouney!</p>
+        </div>
         <div id="scroll">
             <p>Scroll down for more info</p>
-            <img src="ArrowDown.png" alt="Pls scroll down">
+            <img src="media/ArrowDown.png" alt="Pls scroll down">
         </div>
     </section>
 <!--------------------------------------------------------------------->
-    <section>
-        <article class="introbox">
-            <h3>Introduction</h3>
-            <p>With professional Lecturer and Course Designers, we are proud to be one of the best education website on the internet.
-                No matter where your starting point is, hard work will be paid off. Start your Learning Journey with us right now!</p>
+    <div class="container">
+        <section>
+            <article class="box" id="introbox">
+                <h3>Introduction</h3>
+                <p>With professional Lecturer and Course Designers, we are proud to be one of the best education website on the internet.
+                    No matter where your starting point is, hard work will be paid off. Start your Learning Journey with us right now!</p>
 
+                </article>
+        </section>
+        <section>
+            <article class="box" id="missionbox">
+                <h3>Our Mission</h3>
+                <p>We aim to develop the IT job market, create promising future for CS students. And big things can not happen without dedicated learners</p>
             </article>
-    </section>
-    <section>
-        <article class="missionbox">
-            <h3>Our Mission</h3>
-            <p>We aim to develop the IT job market, create promising future for CS students. And big things can not happen without dedicated learners</p>
-        </article>
-    </section>
-    <section class="featuresbox">
-        
-            <h3>Features</h3>
-            <ul>
-                <li>Professional course designs.</li>
-                <li>Real-life experience from seniors.</li>
-                <li>Hands-on coding project.</li>
-                <li>Practice tests for every certification.</li>
-            </ul>
-        
-    </section>
+        </section>
+        <section class="box" id="featuresbox">
+
+                <h3>Features</h3>
+                <ul>
+                    <li>Professional course designs.</li>
+                    <li>Real-life experience from seniors.</li>
+                    <li>Hands-on coding project.</li>
+                    <li>Practice tests for every certification.</li>
+                </ul>
+            
+        </section>
+    </div>
     <!--------------------------------------------------------------------->
     <footer>
-        <p>Contact us:</p>
-            <ul>
-                <li><a href="mailto:yourstudentemail@swin.edu.au">mail1@swin.edu.au</a></li>
-                <li><a href="mailto:yourstudentemail@swin.edu.au">mail2@swin.edu.au</a></li>
-                <li><a href="mailto:yourstudentemail@swin.edu.au">mail3@swin.edu.au</a></li>
-                <li><a href="mailto:yourstudentemail@swin.edu.au">mail4@swin.edu.au</a></li>
-            </ul>
+        
         
         <p>&copy; 2025 Our Education Company. All rights reserved.</p>
     </footer>
