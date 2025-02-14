@@ -3,41 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style4.css">
     <title>About Us</title>
 </head>
 <body>
     <header>
-        <h1>About Us</h1>
+        <div class="navbar">
+            <div class="brand">
+                <img class="logo" src="media/logo.png">
+                <h1>COMP NAME</h1>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.htm">Home</a></li>
+                    <li><a href="jobs.html">Career</a></li>
+                    <li><a href="apply.html">Application</a></li>
+                    <li><a href="#">About</a></li>
+                    <span class="nav-highlight"></span>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
         <!-- Group Information Section -->
-        <section>
-            <h2>Group Information</h2>
-            <dl>
-                <dt>Group Name:</dt>
-                <dd>Group 20</dd>
+        <section class="group-info">
+            <h2>About Us</h2>
+            <h3>Group Information</h3>
+            <div class="info-list">
+                <div>
+                    <dt>Group Name:</dt>
+                    <dd>Group 20</dd>
+                    <figcaption>(We don't have a group name)</figcaption>
+                </div>
 
-                <dt>Group ID:</dt>
-                <dd>Group 20</dd>
+                <div>
+                    <dt>Group ID:</dt>
+                    <dd>Group 20</dd>
+                </div>
 
-                <dt>Tutor's Name:</dt>
-                <dd>Mr. Vu Ngoc Binh</dd>
-            </dl>
+                <div>
+                    <dt>Tutor's Name:</dt>
+                    <dd>Mr. Vu Ngoc Binh</dd>
+                </div>
+            </div>
         </section>
 
         <!-- Group Photo Section -->
-        <section>
+        <section class="team-photo">
             <h2>Our Team</h2>
             <figure>
                 <img src="media/logo.png" alt="placeholder" width="600">
-                <figcaption>insert photo here</figcaption>
+                <figcaption></figcaption>
             </figure>
         </section>
 
         <!-- Members Contribution Section -->
-        <section>
+        <section class="members">
             <h2>Members Contribution</h2>
             <dl>
                 <dt>Trần Minh Hải :</dt>
@@ -55,7 +78,7 @@
         </section>
 
         <!-- Timetable Section -->
-        <section>
+        <section class="timetable">
             <h2>Project Timetable</h2>
             <table border="1">
                 <thead>
@@ -113,17 +136,13 @@
                     </tr>
                 </tbody>
             </table>
-        </section>
-
-        <!-- Contact Section -->
-        <section>
-            <h2>Contact Us</h2>
-            <p>Email us at: <a href="105550542@student.swin.edu.au">105550542@student.swin.edu.au</a></p>
+            <figcaption>Yes we are very hard-working.</figcaption>
         </section>
     </main>
 
     <footer>
-        <p>footer</p>
+        <h2>Contact Us</h2>
+        <p>Email us at: <a href="105550542@student.swin.edu.au">105550542@student.swin.edu.au</a></p>
     </footer>
 </body>
 </html>
