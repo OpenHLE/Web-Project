@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Job Description" />
+    <meta name="keywords" content="HTML, tags, CSS, Javascript, PHP" />
+    <meta name="author" content="TranMinhHai"  />
+    <title>Tech Company IDK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!--responsive website-->
+    <link href="style/jobs.css" rel="stylesheet"/>
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="brand">
+                <img class="logo" src="media/logo.png">
+                <h1>COMP NAME</h1>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="apply.html">Application</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <span class="nav-highlight"></span>
+                </ul>
+                
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+        <section class="careers">
+            <h2>CAREERS</h2>
+          
+            <div class="jobslist">
+            
+            <input type="checkbox" id="toggle-filters" />
+            <label for="toggle-filters" class="filter-icon">
+                <img src="media/filter-icon.png" alt="Filter Icon" />
+            </label>
+              
+           
+            <input type="checkbox" id="filter-frontend" checked />
+            <label for="filter-frontend">Frontend</label>
+          
+            <input type="checkbox" id="filter-backend" checked />
+            <label for="filter-backend">Backend</label>
+          
+            <input type="checkbox" id="filter-data" checked />
+            <label for="filter-data">Data</label>
+          
+            <input type="checkbox" id="filter-support" checked />
+            <label for="filter-support">Support</label>
+          
+            <!-- Job Listings Table -->
+            <table class="jobs-table">
+                <thead>
+                    <tr>
+                        <th>Available</th>
+                        <th>Location</th>
+                        <th>Info</th>
+                        <th>Apply</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr class="frontend" data-info="ID: 000001">
+                        <td>Frontend Developer</td>
+                        <td>Hanoi</td>
+                        <td><a href="#">Info</a></td>
+                        <td><a href="#">Apply</a></td>
+                    </tr>
+
+                    <tr class="backend" data-info="ID: 000002">
+                        <td>Backend Developer</td>
+                        <td>Hanoi</td>
+                        <td><a href="#">Info</a></td>
+                        <td><a href="#">Apply</a></td>
+                    </tr>
+                
+                    <tr class="data" data-info="ID: 000003">
+                        <td>Database Administrator</td>
+                        <td>Hanoi</td>
+                        <td><a href="#">Info</a></td>
+                        <td><a href="#">Apply</a></td>
+                    </tr>
+
+                    <tr class="support" data-info="ID: 000004">
+                        <td>IT Support</td>
+                        <td>Hanoi</td>
+                        <td><a href="#">Info</a></td>
+                        <td><a href="#">Apply</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <hr>
+        <td>&#169;</td>
+        <td> 2025 Our Education Company. All rights reserved.</td>
+    </footer>
+</body>
+
+
+
