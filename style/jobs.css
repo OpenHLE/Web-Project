@@ -1,0 +1,275 @@
+/*pseudo-class for <html> tag*/
+:root {
+    --dark-blue: #1A1A2E;
+    --navy-blue: #16213E;
+    --medium-blue: #0F3460;
+    --accent-red: #E94560;
+    --light-gray: #F9F9F9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Calibri, sans-serif, Arial;
+}
+body {
+    background-color: var(--dark-blue);
+    color: var(--light-gray);
+    line-height: 1.6;
+}
+
+/*--------------------HEADER----------------------*/
+header {
+    background-color: var(--navy-blue);
+    padding: 10px 20px;
+    
+    position: relative;
+    
+    width: 100%;
+    margin: 0 auto;
+    top: 0;
+    z-index: 1000;
+    animation-name: fadein;
+    animation-duration: 0.5s;
+}
+.logo{
+    height: 50px;
+    width: auto;
+}
+.brand{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.navbar{
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+   
+    background-color: var(--navy-blue);
+    
+}
+header h1 {
+    color: var(--light-gray);
+    font-size: 28px;}
+    nav {
+        position: relative;
+    }
+    nav ul{
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        padding: 0;
+    }
+    nav ul li {
+        margin: 0 15px;
+        display: inline-block;
+        position: relative;
+    }
+    
+    nav ul li a {
+        text-decoration: none;
+        color: var(--light-gray);
+        font-size: 18px;
+        padding: 10px 15px;
+        position: relative;
+        transition: color 0.3s;
+        z-index: 2;
+    }
+    
+    .nav-highlight{
+        position: absolute;
+        top: 0;
+        left: 9px;
+        width: 85px;
+        height: 100%;
+        background-color: var(--accent-red);
+        border-radius: 8px;
+        transition: 0.3s ease-in-out;
+        z-index: 1;
+    }
+    
+    nav ul li:nth-child(1):hover ~ .nav-highlight {
+        transform: translateX(0px);
+        width: 85px; 
+    }
+    nav ul li:nth-child(2):hover ~ .nav-highlight {
+        transform: translateX(107px);
+        width: 85px;
+    }
+    nav ul li:nth-child(3):hover ~ .nav-highlight {
+        transform: translateX(220px);
+        width: 110px;
+    }
+    
+    nav ul li:nth-child(4):hover ~ .nav-highlight {
+        transform: translateX(360px);
+        width: 80px;
+    }
+    
+/* Initial position for the active page */
+    nav ul li  ~ .nav-highlight {
+        transform: translateX(107px);
+        width: 85px;
+    }
+
+/*--------------------------CARREERS----------------------------*/
+
+.careers {
+    margin: 10px auto 0 auto; 
+    max-width: 1200px;
+    padding: 20px;
+    text-align: center;
+}
+  
+.careers h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: var(--light-gray);
+}
+
+/*-----------------------------Filter icon----------------------*/
+.filter-toggle {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+  
+#toggle-filters {
+    display: none;
+}
+
+.filter-icon img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    
+    transition: transform 0.2s ease;
+}
+  
+.filter-icon img:hover {
+    transform: scale(1.2);
+}
+  
+#filter-frontend, label[for="filter-frontend"],
+#filter-backend, label[for="filter-backend"],
+#filter-data, label[for="filter-data"],
+#filter-support, label[for="filter-support"] {
+    display: none;  /* Hidden initially */
+    margin: 0;
+}
+
+#toggle-filters:checked ~ #filter-frontend,
+#toggle-filters:checked ~ label[for="filter-frontend"],
+#toggle-filters:checked ~ #filter-backend,
+#toggle-filters:checked ~ label[for="filter-backend"],
+#toggle-filters:checked ~ #filter-data,
+#toggle-filters:checked ~ label[for="filter-data"],
+#toggle-filters:checked ~ #filter-support,
+#toggle-filters:checked ~ label[for="filter-support"] {
+    display: inline-block; 
+    
+}
+
+/**** Category Filter Logic (Checkbox Hack) ****/
+/*With the help of chatGPT*/
+/* If #filter-frontend is NOT checked, hide .frontend rows */
+#filter-frontend:not(:checked) ~ .jobs-table .frontend {
+    display: none;
+}
+  
+  /* If #filter-backend is NOT checked, hide .backend rows */
+#filter-backend:not(:checked) ~ .jobs-table .backend {
+    display: none;
+}
+  
+  /* If #filter-data is NOT checked, hide .data rows */
+#filter-data:not(:checked) ~ .jobs-table .data {
+    display: none;
+}
+#filter-support:not(:checked) ~ .jobs-table .support {
+    display: none;
+}
+
+.jobslist{
+    padding-right: 10%;
+    padding-left: 10%;
+    /*border: 2px solid ;*/
+    justify-items: flex-start;
+    align-content: center;
+}
+
+.jobs-table {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+  
+.jobs-table thead tr {
+    background-color: var(--navy-blue);
+}
+  
+.jobs-table th {
+    color: var(--light-gray);
+    text-transform: uppercase;
+    padding: 12px;
+    border: 1px solid var(--dark-blue);
+}
+  
+.jobs-table td {
+    padding: 12px;
+    border: 1px solid var(--dark-blue);
+    color: var(--light-gray);
+}
+  
+.jobs-table td a {
+    color: var(--accent-red);
+    text-decoration: none;
+}
+  
+.jobs-table td a:hover {
+    text-decoration: underline;
+}
+
+/*--row animations--*/
+
+.jobs-table tbody tr{
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+}
+
+.jobs-table tbody tr:hover{
+    transform: scale(1.15);
+    box-shadow: 0px 4px 10px rgba(135, 124, 240, 0.2);
+    background-color: rgba(206, 230, 235, 0);
+}
+
+.jobs-table tbody tr::after{
+    content: attr(data-info);   /* Uses data-info attribute from HTML */
+    display: block;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 12px;
+    padding: 5px;
+    position: absolute;
+    bottom: 50px;
+    left: 103%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease, bottom 0.2s ease;
+    pointer-events: none;
+}
+
+.jobs-table tbody tr:hover::after{
+    opacity: 1;
+    bottom: 10px;
+}
+
+.jobs-table tbody:hover > tr:not(:hover){
+    filter: blur(0.8px);
+    transform: scale(0.9);
+}
