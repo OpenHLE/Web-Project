@@ -1,0 +1,563 @@
+/* CSS Variables */
+:root {
+    --dark-blue: #1A1A2E;
+    --navy-blue: #16213E;
+    --medium-blue: #0F3460;
+    --accent-red: #E94560;
+    --light-gray: #F9F9F9;
+}
+
+/* Main Layout */
+main {
+    max-width: 1200px;
+    min-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Calibri, sans-serif, Arial;
+}
+
+/* Background + styling */
+body {
+    background-image: url('../media/ultra-hd.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+    color: var(--light-gray);
+    line-height: 1.6;
+}
+
+/* Semi-transparent dark overlay on top of the background image */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 26, 46, 0.85);
+    z-index: -1;
+}
+
+/* Group Info Section */
+.group-info {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.group-info h2 {
+    color: var(--accent-red);
+    font-size: 50px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in forwards; 
+}
+
+.group-info h3 {
+    color: var(--accent-red);
+    font-size: 25px;
+    margin-top: 50px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in forwards; 
+    animation-delay: 0.8s; 
+}
+
+/* Info List Layout */
+.info-list {
+    display: flex;
+    gap: 50px;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    max-width: 1000px;
+    min-width: 600px;
+}
+
+.info-list > div {
+    margin: 15px;
+    min-width: 250px;
+}
+
+.info-list dt {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 25px;
+    opacity: 0;
+    animation: slideDown 1s ease-out forwards;
+
+}
+
+.info-list dd {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    opacity: 0;
+    animation: slideDown 1s ease-out forwards;
+
+}
+
+.info-list figcaption {
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in forwards;
+    animation-delay: 2.2s;
+}
+
+/* Team Photo and Members Layout */
+.team-photo, .members {
+    display: inline-block;
+    vertical-align: top;
+    margin: 15px;
+    min-width: 400px;
+    max-width: 45%;
+    margin-top: 0px;
+}
+
+.team-photo {
+    margin-right: 5%;
+    text-align: center;
+    color: var(--accent-red);
+    margin-top: 1px;
+}
+
+.team-photo img {
+    max-width: 75%;
+    height: auto;
+    animation: slideFromUnder 2s ease-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-delay: 4s;
+    margin-top: 30px;
+}
+
+.team-photo h2 {
+    color: var(--accent-red);
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in forwards;
+    animation-delay: 3s;
+}
+
+/* Members Section */
+.members h2 {
+    text-align: center;
+    color: var(--accent-red);
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in forwards;
+    animation-delay: 4.5s;
+}
+
+.members {
+    width: 45%;
+}
+
+.member-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5px;    
+    row-gap: 10px;       
+    width: 80%;
+    margin-top: -10px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.member-flip-card {
+    background-color: transparent;
+    width: 100%;
+    aspect-ratio: 1/1;
+    height: auto;
+    perspective: 1000px;
+    max-width: 200px; 
+    opacity: 0;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+.member-flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.member-flip-card:hover .member-flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.member-flip-card-front, .member-flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+}
+
+.member-flip-card-front {
+    background-color: var(--navy-blue);
+}
+
+.member-flip-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.member-flip-card-back {
+    background-color: var(--navy-blue);
+    color: var(--light-gray);
+    transform: rotateY(180deg);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.member-flip-card-back h3 {
+    color: var(--accent-red);
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.member-flip-card-back p {
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+/* Remove the original members dl styles */
+.members dl {
+    display: none;
+}
+
+/* Timetable Section */
+.timetable {
+    clear: both;
+    margin-top: 70px;
+}
+
+.timetable h2 {
+    color: var(--accent-red);
+    margin-bottom: 20px;
+}
+
+.timetable figcaption {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: #E3F2FD;
+    color: black;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th {
+    background-color: var(--accent-red);
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-size: 1.2em;
+    font-weight: normal;
+}
+
+td {
+    padding: 15px;
+    text-align: left;
+    border: none;
+}
+
+/* Remove existing border styles */
+th, td {
+    border: none;
+}
+
+/* Alternating row colors */
+tr:nth-child(odd) {
+    background-color: #BBDEFB; 
+}
+
+tr:nth-child(even) {
+    background-color: #90CAF9;  
+}
+
+/* Make sure the cells fill the entire row width */
+tr {
+    width: 100%;
+    display: table-row;
+}
+
+td, th {
+    display: table-cell;
+}
+
+/* Spacing between columns */
+th:not(:last-child),
+td:not(:last-child) {
+    padding-right: 30px;
+}
+
+/* Contact Section */
+.contact {
+    margin-top: 30px;
+}
+
+/* Footer Section */
+footer {
+    margin-top: 30px;
+    padding: 5px;
+    background-color: var(--navy-blue);
+    text-align: right;
+}
+
+footer h2 {
+    margin: 0;
+    color: var(--light-gray);
+}
+
+/* Header and Navigation */
+header {
+    background-color: var(--navy-blue);
+    padding: 10px 20px;
+    max-width: 2000px;
+    position: fixed;
+    width: 100%;
+    margin: 0 auto;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Navbar Styles */
+.navbar {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    background-color: var(--navy-blue);
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header h1 {
+    color: var(--light-gray);
+    font-size: 28px;
+}
+
+/* Navigation Menu */
+nav {
+    position: relative;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+    display: inline-block;
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--light-gray);
+    font-size: 18px;
+    padding: 10px 15px;
+    position: relative;
+    transition: color 0.3s;
+    z-index: 2;
+}
+
+/* Navigation Highlight Effect */
+.nav-highlight {
+    position: absolute;
+    top: 0;
+    left: 8px;
+    width: 85px;
+    height: 100%;
+    background-color: var(--accent-red);
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    z-index: 1;
+}
+
+nav ul li:nth-child(1):hover ~ .nav-highlight {
+    transform: translateX(0px);
+    width: 85px;
+}
+
+nav ul li:nth-child(2):hover ~ .nav-highlight {
+    transform: translateX(107px);
+    width: 85px;
+}
+
+nav ul li:nth-child(3):hover ~ .nav-highlight {
+    transform: translateX(220px);
+    width: 110px;
+}
+
+nav ul li:nth-child(4):hover ~ .nav-highlight {
+    transform: translateX(360px);
+    width: 80px;
+}
+
+nav ul li .active ~ .nav-highlight {
+    transform: translateX(0px);
+    width: 80px;
+}
+
+/* Animation for elements sliding in from the left side */
+@keyframes slideFromLeft {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animation for elements sliding in from the right side */
+@keyframes slideFromRight {
+    0% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Sequential animation timing for info list items */
+.info-list > div:nth-child(1) dt { animation-delay: 1.6s; }
+.info-list > div:nth-child(1) dd { animation-delay: 1.7s; }
+.info-list > div:nth-child(2) dt { animation-delay: 1.8s; }
+.info-list > div:nth-child(2) dd { animation-delay: 1.9s; }
+.info-list > div:nth-child(3) dt { animation-delay: 2.0s; }
+.info-list > div:nth-child(3) dd { animation-delay: 2.1s; }
+
+/* Animation for elements appearing from below */
+@keyframes slideFromUnder {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Simple fade in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Animation for elements dropping down from above */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Defines animation for elements sliding in from the right side */
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Defines animation for elements sliding in from the left side */
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Defines animation for elements sliding up from bottom */
+@keyframes slideUp {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* flip-card animation */
+/* Upper left card - slide from left */
+.member-cards > .member-flip-card:nth-child(1) {
+    animation-name: slideInLeft;
+    animation-delay: 5s;
+}
+
+/* Upper right card - slide down */
+.member-cards > .member-flip-card:nth-child(2) {
+    animation-name: slideDown;
+    animation-delay: 5.2s;
+}
+
+/* Lower right card - slide from right */
+.member-cards > .member-flip-card:nth-child(4) {
+    animation-name: slideInRight;
+    animation-delay: 5.4s;
+}
+
+/* Lower left card - slide up */
+.member-cards > .member-flip-card:nth-child(3) {
+    animation-name: slideUp;
+    animation-delay: 5.6s;
+}
+
