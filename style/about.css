@@ -64,10 +64,10 @@ body::before {
 .group-info h3 {
     color: var(--accent-red);
     font-size: 25px;
-    margin-top: 50px;
+    margin-top: 20px;
     opacity: 0;
     animation: fadeIn 0.8s ease-in forwards; 
-    animation-delay: 0.8s; 
+    animation-delay: -0.2s;
 }
 
 /* Info List Layout */
@@ -107,7 +107,7 @@ body::before {
 .info-list figcaption {
     opacity: 0;
     animation: fadeIn 1.5s ease-in forwards;
-    animation-delay: 2.2s;
+    animation-delay: 1.2s;
 }
 
 /* Team Photo and Members Layout */
@@ -133,7 +133,7 @@ body::before {
     animation: slideFromUnder 2s ease-out;
     opacity: 0;
     animation-fill-mode: forwards;
-    animation-delay: 4s;
+    animation-delay: 3s;
     margin-top: 30px;
 }
 
@@ -141,7 +141,7 @@ body::before {
     color: var(--accent-red);
     opacity: 0;
     animation: fadeIn 0.8s ease-in forwards;
-    animation-delay: 3s;
+    animation-delay: 2s;
 }
 
 /* Members Section */
@@ -151,7 +151,7 @@ body::before {
     margin-bottom: 30px;
     opacity: 0;
     animation: fadeIn 0.8s ease-in forwards;
-    animation-delay: 4.5s;
+    animation-delay: 3.5s;
 }
 
 .members {
@@ -459,12 +459,12 @@ nav ul li .active ~ .nav-highlight {
 }
 
 /* Sequential animation timing for info list items */
-.info-list > div:nth-child(1) dt { animation-delay: 1.6s; }
-.info-list > div:nth-child(1) dd { animation-delay: 1.7s; }
-.info-list > div:nth-child(2) dt { animation-delay: 1.8s; }
-.info-list > div:nth-child(2) dd { animation-delay: 1.9s; }
-.info-list > div:nth-child(3) dt { animation-delay: 2.0s; }
-.info-list > div:nth-child(3) dd { animation-delay: 2.1s; }
+.info-list > div:nth-child(1) dt { animation-delay: 0.6s; }
+.info-list > div:nth-child(1) dd { animation-delay: 0.7s; }
+.info-list > div:nth-child(2) dt { animation-delay: 0.8s; }
+.info-list > div:nth-child(2) dd { animation-delay: 0.9s; }
+.info-list > div:nth-child(3) dt { animation-delay: 1.0s; }
+.info-list > div:nth-child(3) dd { animation-delay: 1.1s; }
 
 /* Animation for elements appearing from below */
 @keyframes slideFromUnder {
@@ -540,24 +540,24 @@ nav ul li .active ~ .nav-highlight {
 /* Upper left card - slide from left */
 .member-cards > .member-flip-card:nth-child(1) {
     animation-name: slideInLeft;
-    animation-delay: 5s;
+    animation-delay: 4s;
 }
 
 /* Upper right card - slide down */
 .member-cards > .member-flip-card:nth-child(2) {
     animation-name: slideDown;
-    animation-delay: 5.2s;
+    animation-delay: 4.2s;
 }
 
 /* Lower right card - slide from right */
 .member-cards > .member-flip-card:nth-child(4) {
     animation-name: slideInRight;
-    animation-delay: 5.4s;
+    animation-delay: 4.4s;
 }
 
 /* Lower left card - slide up */
 .member-cards > .member-flip-card:nth-child(3) {
     animation-name: slideUp;
-    animation-delay: 5.6s;
+    animation-delay: 4.6s;
 }
 
