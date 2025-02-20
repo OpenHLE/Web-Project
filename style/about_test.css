@@ -111,8 +111,52 @@ body::before {
 }
 
 /* Team Photo and Members Layout */
+.team-photo, .members {
+    margin: 15px auto;
+    min-width: 400px;
+    max-width: 100%;
+    margin-top: 0px;
+}
+
 .team-photo {
-    display: none;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--accent-red);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-photo img {
+    max-width: 40%;
+    height: auto;
+    animation: slideFromUnder 2s ease-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-delay: 3s;
+    margin-top: -20px;
+}
+
+.team-photo h2 {
+    color: var(--accent-red);
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in forwards;
+    animation-delay: 2s;
+}
+
+/* Add margin to the second h2 in team-photo */
+.team-photo h2:nth-of-type(2) {
+    margin-top: 50px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in forwards;
+    animation-delay: 2.5s;
+}
+
+.team-photo .flip-card {
+    width: 75%;
+    margin: 30px auto;
 }
 
 /* Members Section */
@@ -130,13 +174,15 @@ body::before {
     margin: 0 auto;
 }
 
+/* Update member cards grid for the new layout */
 .member-cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     width: 100%;
-    margin: 20px auto;
-    justify-items: center;
+    max-width: 900px;
+    margin: 40px auto;
+    justify-content: center;
 }
 
 .member-flip-card {
@@ -508,7 +554,7 @@ nav ul li .active ~ .nav-highlight {
 }
 
 /* flip-card animation */
-/* Left to right animation sequence */
+/* slide down animation sequence */
 .member-cards > .member-flip-card:nth-child(1) {
     animation-name: slideDown;
     animation-delay: 3s;
