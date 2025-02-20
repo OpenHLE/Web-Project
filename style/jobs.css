@@ -1,84 +1,5 @@
-/*pseudo-class for <html> tag*/
-:root {
-    --dark-blue: #1A1A2E;
-    --navy-blue: #16213E;
-    --medium-blue: #0F3460;
-    --accent-red: #E94560;
-    --light-gray: #F9F9F9;
-}
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Calibri, sans-serif, Arial;
-}
-body {
-    background-color: var(--dark-blue);
-    color: var(--light-gray);
-    line-height: 1.6;
-}
-
-/*--------------------HEADER----------------------*/
-header {
-    background-color: var(--navy-blue);
-    padding: 10px 20px;
-    
-    position: relative;
-    
-    width: 100%;
-    margin: 0 auto;
-    top: 0;
-    z-index: 1000;
-    animation-name: fadein;
-    animation-duration: 0.5s;
-}
-.logo{
-    height: 50px;
-    width: auto;
-}
-.brand{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.navbar{
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-   
-    background-color: var(--navy-blue);
-    
-}
-header h1 {
-    color: var(--light-gray);
-    font-size: 28px;}
-    nav {
-        position: relative;
-    }
-    nav ul{
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        position: relative;
-        padding: 0;
-    }
-    nav ul li {
-        margin: 0 15px;
-        display: inline-block;
-        position: relative;
-    }
-    
-    nav ul li a {
-        text-decoration: none;
-        color: var(--light-gray);
-        font-size: 18px;
-        padding: 10px 15px;
-        position: relative;
-        transition: color 0.3s;
-        z-index: 2;
-    }
-    
+/*-----------------------------NAVBAR---------------------------------*/
     .nav-highlight{
         position: absolute;
         top: 0;
@@ -100,15 +21,20 @@ header h1 {
         width: 85px;
     }
     nav ul li:nth-child(3):hover ~ .nav-highlight {
-        transform: translateX(220px);
-        width: 110px;
+        transform: translateX(210px);
+        width: 85px;
     }
     
     nav ul li:nth-child(4):hover ~ .nav-highlight {
-        transform: translateX(360px);
+        transform: translateX(317px);
         width: 80px;
     }
     
+    nav ul li:nth-child(5):hover ~ .nav-highlight {
+        transform: translateX(427px);
+        width: 85px;
+    }
+
 /* Initial position for the active page */
     nav ul li  ~ .nav-highlight {
         transform: translateX(107px);
@@ -116,6 +42,10 @@ header h1 {
     }
 
 /*--------------------------CARREERS----------------------------*/
+
+body{padding-top: 120px;}
+
+
 
 .careers {
     margin: 10px auto 0 auto; 
