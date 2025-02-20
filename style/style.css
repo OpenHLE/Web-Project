@@ -15,9 +15,12 @@
 }
 
 body {
+    height: 100%;
+    
     background-color: var(--dark-blue);
     color: var(--light-gray);
     line-height: 1.6;
+    flex-direction: column;
    
 }
 /*--------------------HEADER----------------------*/
@@ -104,39 +107,49 @@ nav ul li a {
 
 footer {
     background-color: var(--navy-blue);
-    padding: 20px;
-    max-width: 2000px;
+    padding: 20px, 5%;
+    max-width: 20000px;
     width: 100%;
-    margin: 0 auto;
+    margin: 0px;
     display: flex;
-   
+    
     align-items: center;
     flex-wrap: wrap;
-    text-align: center;
+    justify-content: space-evenly;
+    position: relative;
     color: white;
 }
 
-
-
-
-
 .copyright{
-   
-    align-self: flex-end;
+    
     position: absolute;
-    padding-bottom: 0px;
-    margin-bottom: 0px;
+    bottom: 10px;
+    left: 10px;
+    font-size: 14px;
+    opacity: 0.8;
 }
 
+.brandfooter{
+    /*width: 26%;*/
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+}
 
+.brandfooter img{
+    height: 40px;
+    width: auto;
+}
 
-
+.brandfooter h1{
+    font-size: 25px;
+}
 
 .contact{
-    
-    width: 50%;
-    justify-content: center;
-   
+    width: 30%;
+    text-align: center;
     
 }
 
@@ -151,12 +164,23 @@ footer {
 }
 
 .location{
+    width: 30%;
     display: flex;
     align-content: center;
-    gap: 15px;
+    justify-content: center;
+    flex-grow: 1;
+    
+    
+}
+
+.location p{
+    margin-right: 10px;
+    /*padding-bottom: 10%;*/
+    align-content: center;
 }
 
 .location iframe{
+    margin-left: 0px;
     max-width: 200px;
     height: 150px;
     border-radius: 8px;
