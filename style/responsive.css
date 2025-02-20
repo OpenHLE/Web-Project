@@ -1,0 +1,74 @@
+/* Large Screens (above 1200px) */
+@media screen and (min-width: 1201px) {
+    main {
+        max-width: 1200px;
+        min-width: 800px;
+    }
+
+    .member-cards {
+        justify-items: center;
+    }
+}
+
+/* Medium Screens (between 768px and 1200px) */
+@media screen and (max-width: 1200px) {
+    .member-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 20px; /* First value is row gap, second is column gap */
+        justify-items: center;
+        width: 90%;
+        margin: 40px auto;
+        padding: 0 200px;
+    }
+
+    .info-list {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    main {
+        min-width: auto;
+        padding: 15px;
+    }
+}
+
+/* Small Screens (below 768px) */
+@media screen and (max-width: 768px) {
+    .member-cards {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .team-photo img {
+        max-width: 80%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar {
+        flex-direction: column;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* Extra Small Screens (below 480px) */
+@media screen and (max-width: 480px) {
+    .group-info h2 {
+        font-size: 32px;
+    }
+
+    .group-info h3 {
+        font-size: 20px;
+    }
+
+    .info-list {
+        min-width: auto;
+    }
+}
