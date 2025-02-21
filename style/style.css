@@ -362,7 +362,7 @@ footer {
 
     footer {
         flex-direction: column;
-        padding: 20px 10px 40px 10px; /* Added more padding at bottom for copyright */
+        padding: 20px 10px 40px 10px;
         gap: 30px;
     }
 
