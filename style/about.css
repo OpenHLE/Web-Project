@@ -115,18 +115,19 @@ body::before {
     margin: 15px auto;
     min-width: 400px;
     max-width: 100%;
-    margin-top: 0px;
+    margin-top: 10px;
 }
 
 .team-photo {
     width: 100%;
     max-width: 1000px;
-    margin: 0 auto;
+    margin-top: -20px;
     text-align: center;
     color: var(--accent-red);
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 200px; /* space between team photo and flipcards */
 }
 
 .team-photo img {
@@ -166,12 +167,12 @@ body::before {
     margin-bottom: 30px;
     opacity: 0;
     animation: fadeIn 0.8s ease-in forwards;
-    animation-delay: 2.5s;
+    animation-delay: 3.5s;
 }
 
 .members {
     width: 100%;
-    margin: 0 auto;
+    margin-top: 80px; /* Adjust this value to increase/decrease space */
 }
 
 /* Update member cards grid for the new layout */
@@ -261,7 +262,7 @@ body::before {
 /* Timetable Section */
 .timetable {
     clear: both;
-    margin-top: 130px;
+    margin-top: 10px; /* Space between flipcards and timetable */
 }
 
 .timetable h2 {
@@ -557,21 +558,21 @@ nav ul li .active ~ .nav-highlight {
 /* slide down animation sequence */
 .member-cards > .member-flip-card:nth-child(1) {
     animation-name: slideDown;
-    animation-delay: 3s;
+    animation-delay: 4s;
 }
 
 .member-cards > .member-flip-card:nth-child(2) {
     animation-name: slideDown;
-    animation-delay: 3.2s;
+    animation-delay: 4.2s;
 }
 
 .member-cards > .member-flip-card:nth-child(3) {
     animation-name: slideDown;
-    animation-delay: 3.4s;
+    animation-delay: 4.4s;
 }
 
 .member-cards > .member-flip-card:nth-child(4) {
     animation-name: slideDown;
-    animation-delay: 3.6s;
+    animation-delay: 4.6s;
 }
 
