@@ -160,6 +160,36 @@ body::before {
     margin: 30px auto;
 }
 
+/* Scrolling arrow styling + animation */
+.scroll-arrow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -150px; /* position the arrow relative to team photo */
+}
+
+.scroll-arrow #scroll {
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+    animation-delay: 4s;
+}
+
+.scroll-arrow #scroll p {
+    color: var(--light-gray);
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.scroll-arrow #scroll img {
+    width: 50px;
+    height: auto;
+    animation: bounce 1.5s infinite;
+}
+
 /* Members Section */
 .members h2 {
     text-align: center;
@@ -172,7 +202,7 @@ body::before {
 
 .members {
     width: 100%;
-    margin-top: 80px; /* Adjust this value to increase/decrease space */
+    margin-top: 80px; /* increase/decrease space */
 }
 
 /* Update member cards grid for the new layout */
@@ -254,15 +284,22 @@ body::before {
     line-height: 1.4;
 }
 
-/* Remove the original members dl styles */
+/* Remove the original members dl styles (kept just in case) */
 .members dl {
     display: none;
+}
+
+.members figcaption {
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in forwards;
+    animation-delay: 4.5s;    
 }
 
 /* Timetable Section */
 .timetable {
     clear: both;
-    margin-top: 10px; /* Space between flipcards and timetable */
+    margin-top: 20px; /* Space between flipcards and timetable */
 }
 
 .timetable h2 {
@@ -301,7 +338,7 @@ td {
     border: none;
 }
 
-/* Remove existing border styles */
+/* Remove existing border styles (old design, kept just in case) */
 th, td {
     border: none;
 }
@@ -577,4 +614,12 @@ nav ul li .active ~ .nav-highlight {
     animation-name: slideDown;
     animation-delay: 4.6s;
 }
+
+/* Arrow animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+
 
