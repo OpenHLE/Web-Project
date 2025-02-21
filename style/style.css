@@ -224,51 +224,37 @@ footer {
     /* Index Page */
     .container {
         display: flex;
+        flex-direction: column;
+        align-items: center;
         max-width: 800px;
-        flex-wrap: wrap;
-        align-content: flex-start;
-        justify-content: center;
         margin: 0 auto;
-        justify-self: center;
         padding: 0 15px;
     }
 
     .box {
         background-color: var(--medium-blue);
         padding: 20px;
-        margin: 10px;
+        margin: 10px 0;
         border-radius: 15px;
         text-align: center; 
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        width: calc(100% - 20px);
-        max-width: 400px;
-    }
-
-    .box:hover {
-        transform: scale(1.05);
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 6);
-    }
-    
-    .box h3 {
-        font-size: 24px;
-        margin-bottom: 10px;
+        width: 100%;
+        max-width: 600px;
     }
 
     #introbox {
-        display: block;
-        max-width: 800px;
-        min-width: auto;
         width: 100%;
+        max-width: 800px;
     }
 
     #missionbox {
+        width: 100%;
         max-width: 600px;
-        min-width: auto;
     }
 
     #featuresbox {
-        max-width: 350px;
-        min-width: auto;
+        width: 80%;  
+        max-width: 400px; 
     }
 
     #featuresbox ul {
@@ -437,4 +423,3 @@ footer {
         height: 120px;
     }
 }
-
