@@ -104,7 +104,7 @@ body{padding-top: 120px;}
 }
 
 /**** Category Filter Logic (Checkbox Hack) ****/
-/*With the help of chatGPT*/
+
 /* If #filter-frontend is NOT checked, hide .frontend rows */
 #filter-frontend:not(:checked) ~ .jobs-table .frontend {
     display: none;
