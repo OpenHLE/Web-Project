@@ -16,6 +16,8 @@
 
 body {
     height: 100%;
+    margin: 0;
+    padding: 0;
     
     background-color: var(--dark-blue);
     color: var(--light-gray);
@@ -108,7 +110,7 @@ nav ul li a {
 
 footer {
     background-color: var(--navy-blue);
-    padding: 20px, 5%;
+    padding: 20px 5%;
     max-width: 20000px;
     width: 100%;
     margin: 0px;
@@ -270,17 +272,11 @@ footer {
     }
 
     /* Navigation adjustments */
-    .navbar {
-        padding: 10px;
-    }
-
-    nav ul {
-        gap: 10px;
-    }
+    
 
     nav ul li a {
         font-size: 16px;
-        padding: 8px 12px;
+        padding: 5px 17.6px;
     }
 
     .logo {
@@ -319,7 +315,7 @@ footer {
 
     nav ul li a {
         display: block;
-        padding: 10px;
+        padding: 0px 5px;
         width: 100%;
     }
 
@@ -405,6 +401,8 @@ footer {
     header h1 {
         font-size: 20px;
     }
+
+
 
     .logo {
         height: 35px;
