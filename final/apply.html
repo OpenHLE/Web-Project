@@ -13,7 +13,7 @@
 <body>
 	<header class="navbar">   
         <div class="brand">
-            <img class="logo" src="media/logo.png">
+            <img class="logo" src="media/logo.png" alt="logo">
             <h1>COMPNAME</h1>            
         </div>
             
@@ -25,26 +25,26 @@
                     <li id="apply"><a href="apply.html">Apply</a></li>
                     <li id="abt"><a href="about.html">About</a></li>
                     <li id="enhancement"><a href="enhancement.html">Enhance</a></li>
-                    <span class="nav-highlight"></span>   <!--responsive  -> display:none-->
+                    <li class="nav-highlight"></li>   <!--responsive  -> display:none-->
                 </ul>
                 
         </nav>   
     </header>
 	<section class="apply">
 		<h1>Job Application</h1>
-		<form method="POST">
+		<form action="https://mercury.swin.edu.au/it000000/formtest.php" method="POST">
 			<table>
 				<tr>
 					<td class="title"><label for="job_mun">Job reference number:</label></td>
-					<td class="inputarea"><input type="text" name="job_num" id="job_mun" required="required"></td>
+					<td class="inputarea"><input type="text" name="job_num" id="job_mun" pattern="[A-Z0-9]{5}" required="required"></td>
 				</tr>
 				<tr>
 					<td class="title"><label for="fname">First name:</label></td>
-					<td class="inputarea"><input type="text" name="fname" id="fname" required="required"></td>
+					<td class="inputarea"><input type="text" name="fname" id="fname" pattern="[a-zA-z]{2,20}" required="required"></td>
 				</tr>
 				<tr>
 					<td class="title"><label for="lname">Last name:</label></td>
-					<td class="inputarea"><input type="text" name="lname" id="lname" required="required"></td>
+					<td class="inputarea"><input type="text" name="lname" id="lname" pattern="[a-zA-z]{2,20}" required="required"></td>
 				</tr>
 			</table>
 			
@@ -68,18 +68,18 @@
 			<table>
 				<tr>
 					<td class="title"><label for="dob">Date of birth:</label></td>
-					<td class="inputarea"><input type="text" name="dob" id="dob" required="required" placeholder="dd/mm/yyyy"></td>
+					<td class="inputarea"><input type="date" name="dob" id="dob" required="required" placeholder="dd/mm/yyyy"></td>
 				</tr>
 				<tr>
 					<td class="title"><label for="str_address">Street address:</label></td>
-					<td class="inputarea"><input type="text" name="str_address" id="str_address" required="required"></td>
+					<td class="inputarea"><input type="text" name="str_address" id="str_address" pattern="[a-zA-Z0-9,]{1,40}" required="required"></td>
 				</tr>
 				<tr>
 					<td class="title"><label for="town">Suburb/Town:</label></td>
 					<td class="inputarea">
 						<div class="townname">
-						<input type="text" name="town" id="town" class="townname_input" required="required">
-						<select class="townname_select">
+						<input type="text" name="town" id="town" pattern="[a-zA-Z0-9,]{1,40}" class="townname_input" required="required">
+						<select class="state_select">
 							<option value="" disabled selected hidden>State</option>
 							<option value="VIC">VIC</option>
 							<option value="NSW">NSW</option>
@@ -95,15 +95,15 @@
 				</tr>
 				<tr>
 					<td class="title"><label for="postcode">Postcode:</label></td>
-					<td class="inputarea"><input type="text" name="postcode" id="postcode" required="required" placeholder="xxxx"></td>
+					<td class="inputarea"><input type="text" name="postcode" id="postcode" pattern="\d{4}" required="required" placeholder="xxxx"></td>
 				</tr>
 				<tr>
 					<td class="title"><label for="email">Email:</label></td>
-					<td class="inputarea"><input type="text" name="email" id="email" required="required"></td>
+					<td class="inputarea"><input type="text" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}" required="required"></td>
 				</tr>
 				<tr>
 					<td class="title"><label for="phone">Phone number:</label></td>
-					<td class="inputarea"><input type="text" name="phone" id="phone" required="required"></td>
+					<td class="inputarea"><input type="text" name="phone" id="phone" pattern="/s/d{8,12}" required="required"></td>
 				</tr>
 			</table>
 
@@ -182,15 +182,15 @@
 
 	<footer>
 		<div class="brandfooter">
-		   <img class="logo" src="media/logo.png">
+		   <img class="logo" src="media/logo.png" alt="logo">
 		   <h1>COMPNAME</h1>            
 	   </div>
 	   
 	   <p class="contact">Contact us:
-		   <br>
-		   <a href="https://youtube.com/"><img src=media/youtube-logo.png></a>
-		   <a href="https://github.com/OpenHLE/Web-Project"><img src=media/github-logo.png></a>
-		   <a href="mailto:105550542@student.swin.edu.au"><img src=media/mail-logo.png></a>
+		   	<br>
+		   	<a href="https://youtube.com/"><img src=media/youtube-logo.png alt="ytb logo"></a>
+       		<a href="https://github.com/OpenHLE/Web-Project"><img src=media/github-logo.png alt="github logo"></a>
+       		<a href="mailto:105550542@student.swin.edu.au"><img src=media/mail-logo.png alt="mail logo"></a>
 	   </p>
 	   <div class="location">
 		   <p>Our location:</p>
