@@ -155,7 +155,7 @@ footer {
 }
 
 .contact img{
-    filter: invert(80%);
+    filter: invert(10%);
     margin: 2px;
     transition: transform 0.3s;
 }
