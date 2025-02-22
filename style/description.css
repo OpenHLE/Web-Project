@@ -146,12 +146,7 @@ nav ul li:nth-child(5):hover ~ .nav-highlight {
 
 
 
-.mainbar{
-   width: calc(100%-30%)
-    
 
-  
-    }
 #m1{margin-left:30%; margin-right:15%; }
 #m2{margin-left:45%; ;}
 #m3{margin-left:30%; margin-right:15%; }
