@@ -8,11 +8,11 @@
 }
 
 
- #e2, #e3, #e4, #e4, #e5{padding-left: 1%;}
+ #e2, #e3, #e4, #e4, #e5, #e6, #e7{padding-left: 1%;}
 #e1{padding-top: 9%; text-align: center; }
 
-#gl1, #gl2, #gl3, #gl4 {
-    margin: 5px auto;  /* Centers the boxes horizontally */
+#gl1, #gl2, #gl3, #gl4, #gl5, #gl6 {
+    margin: 5px auto;  
     background-color: #E94560;
     padding: 6px 20px;
     border: 2px solid black;
@@ -26,24 +26,26 @@
     
 }
 
-#gl1 a,#gl2 a, #gl3 a, #gl4 a{display: inline-block; text-decoration: none;color:#F9F9F9}
+#gl1 a,#gl2 a, #gl3 a, #gl4 a, #gl5 a, #gl6 a{display: inline-block; text-decoration: none;color:#F9F9F9}
+
+#gl1, #gl2, #gl3, #gl4, #gl5, #gl6 {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    }
+    
 #gl1:hover, #gl2:hover, #gl3:hover, #gl4:hover {
    
     filter: none;
     
 }
-#gl1, #gl2, #gl3, #gl4 {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: relative;
-    }
-    
-#gl1:hover, #gl2:hover, #gl3:hover, #gl4:hover{
+
+#gl1:hover, #gl2:hover, #gl3:hover, #gl4:hover,  #gl5:hover, #gl6:hover{
    
     box-shadow: 0px 4px 10px rgba(135, 124, 240, 0.2);
     background-color:#0F3460;
     }
     
-#gl1 ::after, #gl2 ::after, #gl3 ::after, #gl4 ::after{
+#gl1 ::after, #gl2 ::after, #gl3 ::after, #gl4 ::after, #gl5 ::after, #gl6 ::after{
     content: attr(data-info);   /* Uses data-info attribute from HTML */
     display: block;
     background-color: rgba(0, 0, 0, 0.8);
@@ -61,19 +63,19 @@
     pointer-events: none;
     }
     
-#gl1 tr:hover::after, #gl2 tr:hover::after, #gl3 tr:hover::after, #gl4 tr:hover::after{
+#gl1 tr:hover::after, #gl2 tr:hover::after, #gl3 tr:hover::after, #gl4 tr:hover::after, #gl5 tr:hover::after, #gl6 tr:hover{
     opacity: 1;
     bottom: 10px;
     }
     
-#gl1:hover > tr:not(:hover), #gl2:hover > tr:not(:hover), #gl3:hover > tr:not(:hover), #gl4:hover > tr:not(:hover){
+#gl1:hover > tr:not(:hover), #gl2:hover > tr:not(:hover), #gl3:hover > tr:not(:hover), #gl4:hover > tr:not(:hover), #gl5:hover > tr:not(:hover), #gl6:hover > tr:not(:hover){
     filter: blur(0.8px);
     transform: scale(0.9);
     }
 body {
     overflow-x: hidden;
 }
-#gl1 a, #gl2 a, #gl3 a, #gl4 a {
+#gl1 a, #gl2 a, #gl3 a, #gl4 a, #gl5 a, #gl6 a {
     display: block; 
     text-decoration: none;
     color: #F9F9F9;
@@ -82,16 +84,13 @@ body {
     padding: 6px 20px; 
 }
 
-#e2 a, #e3 a, #e4 a, #e5 a{
 
-    color:#E94560
-}
 
 #linki {
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
-    color:#F9F9F9;
+    color:#E94560;
     background: none;
     transition: color 0.3s ease;
 }
@@ -101,76 +100,9 @@ body {
     color: #E94560;
 }
 
+img {max-width: 70%; height:auto;display: block;margin: auto;}
 
-
-/*--------------------HEADER----------------------*/
-header {
-    background-color: var(--navy-blue);
-    padding: 10px 20px;
-    
-    width:100%;
-    position: fixed;
-   
-    width: 100%;
-    
-    top: 0;
-    z-index: 1000;
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-}
-
-.navbar{
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-   
-    background-color: var(--navy-blue);
-    
-}
-
-.logo{
-    height: 50px;
-    width: auto;
-}
-
-.brand{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-header h1 {
-    color: var(--light-gray);
-    font-size: 23px;
-
-}
-nav {
-    position: relative;
-}
-nav ul{
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    padding: 0;
-}
-nav ul li {
-    padding: 0 15px;
-    margin: 0 0;
-    display: inline-block;
-    position: relative;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: var(--light-gray);
-    font-size: 18px;
-    padding: 10px 15px;
-    position: relative;
-    transition: color 0.3s;
-    z-index: 2;
-}
+article a{color:#E94560}
 
 .nav-highlight {
     position: absolute;
