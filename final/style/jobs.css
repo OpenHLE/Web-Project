@@ -59,7 +59,8 @@ body{
     padding: 20px;
     padding-top: 140px;
     text-align: center;
-    
+    flex: 1;
+    min-height: 490px;
 }
   
 .careers h2 {
@@ -111,8 +112,8 @@ body{
     
 }
 
-/**** Category Filter Logic (Checkbox Hack) ****/
-/*With the help of chatGPT*/
+/**** Category Filter Logic ****/
+
 /* If #filter-frontend is NOT checked, hide .frontend rows */
 #filter-frontend:not(:checked) ~ .jobs-table .frontend {
     display: none;
