@@ -1,46 +1,16 @@
+/* Credits:
+- Flipcard and some other animations: W3Schools
+- Table styling: DEV Community
+*/
 
-/*-----------------------------NAVBAR---------------------------------*/
-.nav-highlight{
-    position: absolute;
-    top: 0;
-    left: 9px;
-    width: 85px;
-    height: 100%;
-    background-color: var(--accent-red);
-    border-radius: 8px;
-    transition: 0.3s ease-in-out;
-    z-index: 1;
+/* CSS Variables */
+:root {
+    --dark-blue: #1A1A2E;
+    --navy-blue: #16213E;
+    --medium-blue: #0F3460;
+    --accent-red: #E94560;
+    --light-gray: #F9F9F9;
 }
-
-nav ul li:nth-child(1):hover ~ .nav-highlight {
-    transform: translateX(0px);
-    width: 85px; 
-}
-nav ul li:nth-child(2):hover ~ .nav-highlight {
-    transform: translateX(107px);
-    width: 85px;
-}
-nav ul li:nth-child(3):hover ~ .nav-highlight {
-    transform: translateX(210px);
-    width: 85px;
-}
-
-nav ul li:nth-child(4):hover ~ .nav-highlight {
-    transform: translateX(317px);
-    width: 80px;
-}
-
-nav ul li:nth-child(5):hover ~ .nav-highlight {
-    transform: translateX(427px);
-    width: 85px;
-}
-
-/* Initial position for the active page */
-nav ul li  ~ .nav-highlight {
-    transform: translateX(317px);
-    width: 80px;
-}
-
 
 /* Main Layout */
 main {
@@ -251,52 +221,63 @@ body::before {
     justify-content: center;
 }
 
+/* Flip Card Core Styles */
 .member-flip-card {
+    /* Basic card setup */
     background-color: transparent;
     width: 200px;
     height: 200px;
-    aspect-ratio: 1/1;
-    height: auto;
+    /* Creats 3D space for flip animation */
     perspective: 1000px;
-    max-width: 200px; 
+    position: relative;
+    /* Initial state - invisible */
     opacity: 0;
+    /* Animation properties */
     animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
 }
 
+/* Container that handles the flip animation */
 .member-flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
     text-align: center;
+    /* Smooth transition for the flip effect */
     transition: transform 0.6s;
+    /* Enables 3D transformation */
     transform-style: preserve-3d;
 }
 
+/* Trigger flip animation on hover */
 .member-flip-card:hover .member-flip-card-inner {
+    /* Rotates card 180 degrees around Y axis */
     transform: rotateY(180deg);
 }
 
+/* Front and back faces shared styles */
 .member-flip-card-front, .member-flip-card-back {
     position: absolute;
+    /* Added to ensure proper positioning */
+    top: 0;          
+    left: 0;
+
     width: 100%;
     height: 100%;
+    /* Hides the back face during flip */
     backface-visibility: hidden;
     border-radius: 10px;
+    overflow: hidden; /* Prevent content from spilling out */
 }
 
+/* Front face specific styles */
 .member-flip-card-front {
-    background-color: var(--navy-blue);
+    background-color: var(--navy-blue); 
+    transform: rotateY(0deg);
 }
 
-.member-flip-card-front img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
+/* Back face is rotated 180 degrees by default */
 .member-flip-card-back {
     background-color: var(--navy-blue);
     color: var(--light-gray);
@@ -317,6 +298,15 @@ body::before {
 .member-flip-card-back p {
     font-size: 16px;
     line-height: 1.4;
+}
+
+/* Add these styles to constrain images within flip cards */
+.member-flip-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the image covers the area without distortion */
+    object-position: center; /* Center the image */
+    border-radius: 10px; /* Match the card's border radius */
 }
 
 /* Remove the original members dl styles (kept just in case) */
