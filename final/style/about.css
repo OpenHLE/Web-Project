@@ -109,7 +109,7 @@ body::before {
 
 }
 
-.info-list figcaption {
+.info-list p {
     opacity: 0;
     animation: fadeIn 1.5s ease-in forwards;
     animation-delay: 1.2s;
@@ -314,7 +314,7 @@ body::before {
     display: none;
 }
 
-.members figcaption {
+.members p {
     text-align: center;
     opacity: 0;
     animation: fadeIn 0.8s ease-in forwards;
@@ -332,7 +332,7 @@ body::before {
     margin-bottom: 20px;
 }
 
-.timetable figcaption {
+.timetable p {
     text-align: center;
     margin-top: 10px;
 }
