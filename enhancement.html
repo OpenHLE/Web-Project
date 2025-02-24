@@ -14,7 +14,7 @@
 <body>
     <header class="navbar">   
         <div class="brand">
-            <img class="logo" src="media/logo.png" alt="logo">
+            <img class="logo" src="images/logo.png" alt="logo">
             <h1>TECHYA</h1>            
         </div>
             
@@ -45,17 +45,17 @@
 
 <section id="e2">
 <h2 >Header: Navigation Bar</h2>
-<img src="media/Navbar.png" alt="Navbar">
+<img src="images/Navbar.png" alt="Navbar">
 <article>
     <h3>How It Functions:</h3>
 <p>The Header, other than the Company title and image, includes 5 words/tags called "Home", "Career", "Apply", "About", "Enhance" representing the 5 main pages/htmls. There will be a red rounded rectangular boxes that indicates which page the user is on by default, and when the user hover to other tags, the box will follow the mouse and highlight it. If the user didn't click on any tags and unhover(the mouse leaving the area of the tags), the box will naturally return to its default position (based on the page the user is on). On the other hand, if the user did click on any other tags, the box will be affixed to the tag as it transitions to that page.</p>
     <h3>How It Enhances:</h3>
 <p>Greattly improve user's experience by clearly indicating which page they are currently on. Not only that, smooth transitions when hovering over each tab really soothe people's eyes.</p>
     <h3>Code:</h3>
-    <img src="media/NavbarCode1.png" alt="Navbar code">
-    <p>The HTML empty span tag is used for colouring the background under an element in the list.</p>
-    <img src="media/NavbarCode2.png" alt="Navbar code">
-    <p>When a list's child is hovered, it's direct sibling (the span tag id nav-highlight) will move accordingly. The last part of the code diverses between each page because it is used to determined the position of the highlight.</p>
+    <img src="images/NavbarCode1.png" alt="Navbar code">
+    <p>The HTML empty li tag is used for colouring the background under an element in the list.</p>
+    <img src="images/NavbarCode2.png" alt="Navbar code">
+    <p>When a list's child is hovered, it's direct sibling (the li tag id nav-highlight) will move accordingly. The last part of the code diverses between each page because it is used to determined the position of the highlight.</p>
     <h3>Key Usages:</h3>
     <p> Hovering; combinators (~) for subsequent-sibling; and animations</p>
     <h3>Link: <a id="linki" href="index.html">Here</a></h3>
@@ -68,9 +68,9 @@
 <section id="e3">
     <h2 >Career: Filtering and Page Branching</h2>
     <p>Before filtering:</p>
-    <img src="media/Filter.png" alt="filter pic">
+    <img src="images/Filter.png" alt="filter pic">
     <p>After:</p>
-    <img src="media/Filter1.png" alt="filter pic">
+    <img src="images/Filter1.png" alt="filter pic">
     <article>
         <h3>How It Functions:</h3>
         <p>On The Career Page, there are two functions that we consider as enhancement, called a Filter (For Jobs) and Page Branching (For Info)</p>
@@ -82,14 +82,14 @@
         <h3>Code:</h3>
         <h4>The filter icon:</h4>
         <p>It is actually a checkbox with input box hidden. When clicked, the status of the checkbox is turned to (:checked) and shows their siblings (other checkboxes and labels for categories) through combinator (~) </p>
-        <img src="media/FilterCode1.png" alt="filter code">
+        <img src="images/FilterCode1.png" alt="filter code">
         <h4>The Filtering logic:</h4>
         <p>Each category checkbox and a table row has a unique id (backend, frontend, data,...) When a category is checked/unchecked, its direct sibling (the table) and the table's child (each tagged row) will react accordingly through combinators (susequent siblings and descendant)</p>
-        <img src="media/FilterCode2.png" alt="filter code">
+        <img src="images/FilterCode2.png" alt="filter code">
         <p>Uses of subsequent-sibling combinators for both the fliter button and filtering logic force most of the HTML elements in careers class to be direct siblings (the table, category checkboxes and labels, and filter icon (acheckbox)).</p>
         <h3>Key Usages:</h3>
         <p>CSS :checked and :not Pseudo-class; Descendant combinators (space); subsequent-sibling combinators (~)</p>
-        <h3 >Link: <a href="" id="linki">Here</a></h3>
+        <h3 >Link: <a href="jobs.html" id="linki">Here</a></h3>
         <p>Back to: <a href="#e1">Glossary</a></p>       
     </article>
 </section>
@@ -99,8 +99,8 @@
 <section id="e4">
 <h2 >About: Flip Cards</h2>
 <p>Demonstration:</p>
-<img src="media/hover1.png" alt="flipcard">
-<img src="media/hover2.png" alt="flipcard">
+<img src="images/hover1.png" alt="flipcard">
+<img src="images/hover2.png" alt="flipcard">
 <article>
     <h3>How It Functions:</h3>
     <p>When a flipcard is hovered on, it does a flipping animation and shows information on the rear surface.</p>
@@ -108,11 +108,11 @@
     <p>It makes the webpage more stylish and dynamic, it also saves more spaces so that more elements can be displayed on the webpage.</p>
     <h3>Code:</h3>
     <p>Inspired by W3Schools. Everything about the flipcard animation is explained with comments within the code.</p>
-    <img src="media/flipcard1.png" alt="flipcard">
-    <img src="media/flipcard2.png" alt="flipcard">
+    <img src="images/flipcard1.png" alt="flipcard">
+    <img src="images/flipcard2.png" alt="flipcard">
     <h3>Key Usages:</h3>
     <p>Hover trigger and flipping animation (transform); 3D perspective for flipcard (perspective); 3D smooth animation (transform-style, transition).</p>
-    <h3>Link:  <a href="" id="linki">Here</a></h3>
+    <h3>Link:  <a href="about.html" id="linki">Here</a></h3>
     <p>Back to: <a href="#e1">Glossary</a></p>
 </article>
 </section>
@@ -122,8 +122,8 @@
 <section id="e5">
 <h2>Responsive Design</h2>
 <p>Demonstration:</p>
-<img src="media/resize1.png" alt="flipcard">
-<img src="media/resize2.png" alt="flipcard">
+<img src="images/resize1.png" alt="flipcard">
+<img src="images/resize2.png" alt="flipcard">
 <article>
     <h3>How It Functions:</h3>
     <p>When the web browser window is resized, the webpages automatically resize and re-align their elements themselves to fit in and display on the web browser window properly.</p>
@@ -131,7 +131,7 @@
     <p>It helps the webpages to be more dynamic and better for multi-tasking and compatible with many different devices with diffrent screen size and aspect ratio.</p>
     <h3>Code:</h3>
     <p>CSS rules and properties will change according to the size set in "@media screen and (max/min-width: )"</p>
-    <img src="media/responsive.png" alt="responsive">
+    <img src="images/responsive.png" alt="responsive">
     <h3>Key Usages:</h3>
     <p>Flexible layouts, responive navigation/content.</p>
     <h3>Link:  <a href="" id="linki">Here</a></h3>  
@@ -144,22 +144,21 @@
 <section id="e6">
     <h2 >Glossary</h2>
     <article>
-    <img src="media/Glossary.png" alt="Glossary">
+    <img src="images/Glossary.png" alt="Glossary">
         <h3>How It Functions:</h3>
     <p>As it names implies, this enhancement contains entries' titles of different enhancements that will be reported in the page, each encased in stadium shape box. Upon hover, the box will turn color to indicate hover that when clicked, will teleport the user to the beginning of the entry clicked.</p>
-    <img src="media/GlossaryHover.png" alt="Glossary hover">    
+    <img src="images/GlossaryHover.png" alt="Glossary hover">    
         <h3>How It Enhances:</h3>
     <p>It allows the user to quickly navigate to any entries at the beginning of the page. Additionally, there's also a link back to it at the end of every article to allow user for much easier navigation.</p>
         <h3>Code:</h3>
-    <img src="media/GlossaryCode1.png" alt="Glossary code">
+    <img src="images/GlossaryCode1.png" alt="Glossary code">
     <p>This part allows the letter to be displayed and link with sections using href and sections' ids.</p>
-    <img src="media/GlossaryCode2.png" alt="Glossary code">
+    <img src="images/GlossaryCode2.png" alt="Glossary code">
     <p>These are the settings that help create the stadium (box-radius) boxes that encased the text, alongside settings that makes every part of the box link-able.</p>
-    <img src="media/GlossaryCode3.png" alt="Glossary code">
-    <img src="media/GlossaryCode4.png" alt="Glossary code">
+    <img src="images/GlossaryCode3.png" alt="Glossary code">
+    <img src="images/GlossaryCode4.png" alt="Glossary code">
     <p>These are settings that allow the hover to kickstart animation that indicates the action.</p>
         <h3>Key Usages:</h3>
-        <p>href, hover, hover::after, tr:hover::after, transition</p>
         <h3>Link:  <a href="#e1" id="linki">Here</a></h3>  
         <p>Back to: <a href="#e1">Glossary</a></p>  
     </article>
@@ -170,17 +169,17 @@
 <section id="e7">
     <h2 >Footer: Map</h2>
     <article>
-        <img src="media/Map.png" alt="map pic">
+        <img src="images/Map.png" alt="map pic">
         <h3>How It Functions:</h3>
     <p>It simply shows the map (or location of the campus on Google Map)</p>
         
         <h3>How It Enhances:</h3>
     <p>Shows the physical location of a place, pressed on will direct users to Google Map with this point pinned.</p>
         <h3>Code:</h3>
-        <img src="media/MapCode.png" alt="map code">
+        <img src="images/MapCode.png" alt="map code">
         <h3>Key Usages:</h3>
         <p>HTML iframe tag (not covered in lectures)</p>
-        <h3>Link:  <a href="" id="linki">Here</a></h3>  
+        <h3>Link:  <a href="#footershowcase" id="linki">Here</a></h3>  
         <p>Back to: <a href="#e1">Glossary</a></p>  
     </article>
 </section>
@@ -188,17 +187,17 @@
 
 
 
-<footer>
+<footer id="footershowcase">
     <div class="brandfooter">
-       <img class="logo" src="media/logo.png" alt="logo">
+       <img class="logo" src="images/logo.png" alt="logo">
        <h1>TECHYA</h1>            
    </div>
    
    <p class="contact">Contact us:
        <br>
-       <a href="https://youtube.com/"><img src=media/youtube-logo.png alt="ytb logo"></a>
-       <a href="https://github.com/OpenHLE/Web-Project"><img src=media/github-logo.png alt="github logo"></a>
-       <a href="mailto:105550542@student.swin.edu.au"><img src=media/mail-logo.png alt="mail logo"></a>
+       <a href="https://youtube.com/"><img src=images/youtube-logo.png alt="ytb logo"></a>
+       <a href="https://github.com/OpenHLE/Web-Project"><img src=images/github-logo.png alt="github logo"></a>
+       <a href="mailto:105550542@student.swin.edu.au"><img src=images/mail-logo.png alt="mail logo"></a>
    </p>
    <div class="location">
        <p>Our location:</p>
