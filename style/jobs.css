@@ -1,3 +1,4 @@
+
 /*-----------------------------NAVBAR---------------------------------*/
     .nav-highlight{
         position: absolute;
@@ -43,14 +44,15 @@
 /*--------------------------CARREERS----------------------------*/
 
 
-body {
+body{
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     display: flex;
+    position: relative;
     min-height: 100vh;
-    margin: 0;
 }
+
 
 
 .careers {
@@ -61,8 +63,7 @@ body {
     padding-top: 140px;
     text-align: center;
     flex: 1;
-    width: 100%;
-    min-height: auto;
+    min-height: 490px;
 }
   
 .careers h2 {
@@ -167,7 +168,7 @@ body {
 }
   
 .jobs-table td a {
-    color: var(--accent-red);
+    color: #F28899;
     text-decoration: none;
 }
   
@@ -214,12 +215,4 @@ body {
 .jobs-table tbody:hover > tr:not(:hover){
     filter: blur(0.8px);
     transform: scale(0.9);
-}
-
-/* Add styles for the footer */
-footer {
-    width: 100%;
-    padding: 20px 0;
-    margin-top: auto;
-    background-color: var(--navy-blue);
 }

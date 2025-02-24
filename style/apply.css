@@ -43,7 +43,7 @@ nav ul li  ~ .nav-highlight {
 
 /*---------body---------*/
 body {
-    background-image: url(../media/hero-bg.jpg);
+    background-image: url(images/hero-bg.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
