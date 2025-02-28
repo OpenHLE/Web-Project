@@ -9,7 +9,7 @@
     --navy-blue: #16213E;
     --medium-blue: #0F3460;
     --accent-red: #E94560;
-    --light-gray: #F9F9F9;
+    --light-gray: #FFFFFF; /* Changed from #F9F9F9 to pure white for better contrast */
 }
 
 /* Main Layout */
@@ -49,7 +49,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(26, 26, 46, 0.85);
+    background-color: rgba(26, 26, 46, 0.95); /* Increased opacity from 0.85 to 0.95 */
     z-index: -1;
 }
 
@@ -269,17 +269,16 @@ body::before {
     backface-visibility: hidden;
     border-radius: 10px;
     overflow: hidden; /* Prevent content from spilling out */
+    background-color: #0A0F1F; /* Darker than var(--navy-blue) */
 }
 
 /* Front face specific styles */
 .member-flip-card-front {
-    background-color: var(--navy-blue); 
     transform: rotateY(0deg);
 }
 
 /* Back face is rotated 180 degrees by default */
 .member-flip-card-back {
-    background-color: var(--navy-blue);
     color: var(--light-gray);
     transform: rotateY(180deg);
     padding: 15px;
@@ -349,8 +348,8 @@ table {
 }
 
 th {
-    background-color: var(--accent-red);
-    color: white;
+    background-color: #D13850; /* Darker shade of accent-red */
+    color: #FFFFFF;
     padding: 15px;
     text-align: left;
     font-size: 1.2em;
@@ -361,6 +360,7 @@ td {
     padding: 15px;
     text-align: left;
     border: none;
+    color: #000000; /* Ensure black text on light backgrounds */
 }
 
 /* Remove existing border styles (old design, kept just in case) */
@@ -370,11 +370,11 @@ th, td {
 
 /* Alternating row colors */
 tr:nth-child(odd) {
-    background-color: #BBDEFB; 
+    background-color: #9EC3E6; /* Darker shade for better contrast */
 }
 
 tr:nth-child(even) {
-    background-color: #90CAF9;  
+    background-color: #6BA4E5; /* Darker shade for better contrast */
 }
 
 /* Make sure the cells fill the entire row width */
@@ -402,7 +402,7 @@ td:not(:last-child) {
 footer {
     margin-top: 30px;
     padding: 5px;
-    background-color: var(--navy-blue);
+    background-color: #0A0F1F; /* Darker than var(--navy-blue) */
     text-align: right;
 }
 
@@ -413,7 +413,7 @@ footer h2 {
 
 /* Header and Navigation */
 header {
-    background-color: var(--navy-blue);
+    background-color: #0A0F1F; /* Darker than var(--navy-blue) */
     padding: 10px 20px;
     max-width: 2000px;
     position: fixed;
@@ -428,7 +428,7 @@ header {
     justify-content: space-between;
     display: flex;
     align-items: center;
-    background-color: var(--navy-blue);
+    background-color: #0A0F1F; /* Darker than var(--navy-blue) */
 }
 
 .logo {
@@ -489,6 +489,7 @@ nav ul li a {
     z-index: 1;
 }
 
+/* Update hover positions */
 nav ul li:nth-child(1):hover ~ .nav-highlight {
     transform: translateX(0px);
     width: 85px;
@@ -510,10 +511,16 @@ nav ul li:nth-child(5):hover ~ .nav-highlight {
     width: 85px;
 }
 
-/* Initial position for the active page */
-nav ul li .active ~ .nav-highlight {
-    transform: translateX(317px);    /* Position for About page */
+/* Initial position for About page */
+.nav-highlight {
+    transform: translateX(317px);
     width: 80px;
+}
+
+/* Keep highlight position when active */
+nav ul li a.active ~ .nav-highlight {
+    transform: translateX(317px) !important;
+    width: 80px !important;
 }
 
 /* Animation for elements sliding in from the left side */
