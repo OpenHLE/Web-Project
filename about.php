@@ -1,9 +1,12 @@
+<?php
+// PHP version of the about page
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="About Us" />
-    <meta name="keywords" content="HTML, CSS" />
+    <meta name="keywords" content="HTML, CSS, PHP" />
     <meta name="author" content="Le Tuan Huy" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style/about.css">
@@ -20,11 +23,11 @@
             
         <nav>
             <ul>
-                <li id="home"><a href="index.html">Home</a></li>
-                <li id="jobs"><a href="jobs.html">Career</a></li>
-                <li id="apply"><a href="apply.html">Apply</a></li>
+                <li id="home"><a href="index.php">Home</a></li>
+                <li id="jobs"><a href="jobs.php">Career</a></li>
+                <li id="apply"><a href="apply.php">Apply</a></li>
                 <li id="abt"><a href="#" class="active">About</a></li>
-                <li id="enhancement"><a href="enhancement.html">Enhance</a></li>
+                <li id="enhancement"><a href="enhancement.php">Enhance</a></li>
             </ul>
             <span class="nav-highlight"></span>
         </nav>   
@@ -80,54 +83,69 @@
         <!-- Members Contribution Section -->
         <section class="members">
             <h2>Members Contribution</h2>
+            <?php
+            // Define members data array
+            $members = [
+                [
+                    'name' => 'Trần Minh Hải',
+                    'image' => 'images/tmh.jpg',
+                    'contributions' => [
+                        'Home page (index.php)',
+                        'Position Descriptions page (jobs.php)',
+                        'Backend Integration',
+                        'Database Design'
+                    ]
+                ],
+                [
+                    'name' => 'Vũ Huy Chris',
+                    'image' => 'images/vhc.jpg',
+                    'contributions' => [
+                        'Position Descriptions page (jobs.php)',
+                        'PHP Form Handling',
+                        'User Authentication',
+                        'Security Implementation'
+                    ]
+                ],
+                [
+                    'name' => 'Nguyễn Đăng Nhật Minh',
+                    'image' => 'images/ndnm.jpg',
+                    'contributions' => [
+                        'Job application page (apply.php)',
+                        'Database Connection',
+                        'Application Processing',
+                        'Email Notifications'
+                    ]
+                ],
+                [
+                    'name' => 'Lê Tuấn Huy',
+                    'image' => 'images/lth.jpg',
+                    'contributions' => [
+                        'About page (about.php)',
+                        'Responsive Design',
+                        'PHP Implementation',
+                        'Data Visualization'
+                    ]
+                ]
+            ];
+            ?>
             <div class="member-cards">
+                <?php foreach ($members as $member): ?>
                 <div class="member-flip-card">
                     <div class="member-flip-card-inner">
                         <div class="member-flip-card-front">
-                            <img src="images/tmh.jpg" alt="Trần Minh Hải">
+                            <img src="<?php echo $member['image']; ?>" alt="<?php echo $member['name']; ?>">
                         </div>
                         <div class="member-flip-card-back">
-                            <h3>Trần Minh Hải</h3>
-                            <p><b>Home page</b> (index.html), <b>Position Descriptions page</b> (jobs.html), <b>Enhancement</b></p>
+                            <h3><?php echo $member['name']; ?></h3>
+                            <p>
+                                <?php foreach ($member['contributions'] as $contribution): ?>
+                                    <b><?php echo $contribution; ?></b><br>
+                                <?php endforeach; ?>
+                            </p>
                         </div>
                     </div>
                 </div>
-
-                <div class="member-flip-card">
-                    <div class="member-flip-card-inner">
-                        <div class="member-flip-card-front">
-                            <img src="images/vhc.jpg" alt="Vũ Huy Chris">
-                        </div>
-                        <div class="member-flip-card-back">
-                            <h3>Vũ Huy Chris</h3>
-                            <p><b>Position Descriptions page</b> (jobs.html), <b>Enhancement</b></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="member-flip-card">
-                    <div class="member-flip-card-inner">
-                        <div class="member-flip-card-front">
-                            <img src="images/ndnm.jpg" alt="Nguyễn Đăng Nhật Minh">
-                        </div>
-                        <div class="member-flip-card-back">
-                            <h3>Nguyễn Đăng Nhật Minh</h3>
-                            <p><b>Job application page</b> (apply.html)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="member-flip-card">
-                    <div class="member-flip-card-inner">
-                        <div class="member-flip-card-front">
-                            <img src="images/lth.jpg" alt="Lê Tuấn Huy">
-                        </div>
-                        <div class="member-flip-card-back">
-                            <h3>Lê Tuấn Huy</h3>
-                            <p><b>A page about your group</b> (about.html), <b>Responsive Design</b></p>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
             <p>Hover on the images to view more info</p>
         </section>
@@ -135,63 +153,44 @@
         <!-- Timetable Section -->
         <section class="timetable">
             <h2>Project Timetable</h2>
+            <?php
+            // Define timetable data
+            $timeSlots = ['Morning', 'Afternoon', 'Evening', 'Night'];
+            $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            
+            // Define project activities
+            $activities = [
+                // Format: [day_index][time_slot_index] => activity
+                0 => [0 => 'Team Meeting', 1 => 'Backend Dev', 2 => 'Database Design', 3 => 'Code Review'],
+                1 => [0 => 'UI Design', 1 => 'Frontend Dev', 2 => 'Testing', 3 => 'Documentation'],
+                2 => [0 => 'API Integration', 1 => 'Bug Fixing', 2 => 'Feature Dev', 3 => 'Security Check'],
+                3 => [0 => 'Client Meeting', 1 => 'Backend Dev', 2 => 'Database Optimization', 3 => 'Deployment'],
+                4 => [0 => 'Sprint Planning', 1 => 'Frontend Dev', 2 => 'Testing', 3 => 'Performance Tuning'],
+                5 => [0 => 'Code Review', 1 => 'Bug Fixing', 2 => 'Feature Dev', 3 => 'Security Update'],
+                6 => [0 => 'Team Meeting', 1 => 'Integration', 2 => 'Testing', 3 => 'Deployment']
+            ];
+            ?>
             <table>
                 <thead>
                     <tr>
                         <th>Time</th>
-                        <th>Sunday</th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th>Wednesday</th>
-                        <th>Thursday</th>
-                        <th>Friday</th>
-                        <th>Saturday</th>
+                        <?php foreach ($daysOfWeek as $day): ?>
+                            <th><?php echo $day; ?></th>
+                        <?php endforeach; ?>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Day</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                    </tr>
-                    <tr>
-                        <td>Afternoon</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                    </tr>
-                    <tr>
-                        <td>Evening</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                    </tr>
-                    <tr>
-                        <td>Night</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                        <td>Work</td>
-                    </tr>
+                    <?php foreach ($timeSlots as $index => $timeSlot): ?>
+                        <tr>
+                            <td><?php echo $timeSlot; ?></td>
+                            <?php foreach ($daysOfWeek as $dayIndex => $day): ?>
+                                <td><?php echo $activities[$dayIndex][$index]; ?></td>
+                            <?php endforeach; ?>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
-            <p>Yes we are very hard-working.</p>
+            <p>Our team's weekly development schedule</p>
         </section>
     </main>
 
@@ -213,7 +212,7 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.042153278479!2d105.78157517829588!3d21.03099928045221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135bfa667a7dee9%3A0x2ac9ba5f99e4f389!2sSwinburne%20Innovation%20Space!5e0!3m2!1svi!2s!4v1740037300397!5m2!1svi!2s" width="200" height="150" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
-        <p class="copyright">&copy; 2025 TECHYA. All rights reserved.</p>
+        <p class="copyright">&copy; <?php echo date('Y'); ?> TECHYA. All rights reserved.</p>
     </footer>
 
     <script>
