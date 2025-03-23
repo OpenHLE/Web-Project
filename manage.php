@@ -183,7 +183,7 @@ function changeEOIStatus($conn, $eoi_id, $new_status) {
     <meta charset="utf-8">
     <meta name="description" content="EOI Management System">
     <meta name="keywords" content="EOI, Management, PHP, MySQL">
-    <meta name="author" content="Manager">
+    <meta name="author" content="Le Tuan Huy">
     <link href="style/style.css" rel="stylesheet">
     <link href="style/manage.css" rel="stylesheet">
     <title>EOI Management</title>
