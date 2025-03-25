@@ -74,40 +74,35 @@
                     'name' => 'Trần Minh Hải',
                     'image' => 'images/tmh.jpg',
                     'contributions' => [
-                        'Home page (index.php)',
-                        'Position Descriptions page (jobs.php)',
-                        'Backend Integration',
-                        'Database Design'
+                        '- Home page (index.php)',
+                        '- Position Descriptions page (jobs.php)',
+                        '- Enhancement Page',
                     ]
                 ],
                 [
                     'name' => 'Vũ Huy Chris',
                     'image' => 'images/vhc.jpg',
                     'contributions' => [
-                        'Position Descriptions page (jobs.php)',
-                        'PHP Form Handling',
-                        'User Authentication',
-                        'Security Implementation'
+                        '- Position Descriptions page (jobs.php)',
+                        '- Enhancement Page',
                     ]
                 ],
                 [
                     'name' => 'Nguyễn Đăng Nhật Minh',
                     'image' => 'images/ndnm.jpg',
                     'contributions' => [
-                        'Job application page (apply.php)',
-                        'Database Connection',
-                        'Application Processing',
-                        'Email Notifications'
+                        '- Job application page (apply.php)',
+                        '- Improved Header and Footer',
                     ]
                 ],
                 [
                     'name' => 'Lê Tuấn Huy',
                     'image' => 'images/lth.jpg',
                     'contributions' => [
-                        'About page (about.php)',
-                        'Responsive Design',
-                        'PHP Implementation',
-                        'Data Visualization'
+                        '- About page (about.php)',
+                        '- Responsive Design',
+                        '- Data Management (manage.php)',
+                        '- PHP Enhancement'
                     ]
                 ]
             ];

@@ -1,3 +1,4 @@
+/* management interface */
 .container {
     width: 90%;
     margin: 0 auto;
@@ -18,24 +19,39 @@
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
+    margin-top: 15px;
+    background-color: #E3F2FD;
+    color: black;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #E94560;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-size: 1.2em;
+    font-weight: normal;
+}
+
+td {
+    padding: 15px;
+    text-align: left;
+    border: none;
+}
+
+/* Remove border styles */
+th, td {
+    border: none;
+}
+
+tr:nth-child(odd) {
+    background-color: #BBDEFB; 
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #90CAF9;  
 }
 
 .message {
@@ -70,5 +86,21 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #C73450;
+}
+
+/* Style for sort buttons */
+.sort-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    font-weight: normal;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.sort-button:hover {
+    text-decoration: underline;
 }
