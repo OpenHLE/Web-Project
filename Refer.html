@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Demonstrates some basic HTML form elements" />
+  <meta name="keywords" content="HTML, CSS, tags" />
+  <meta name="author" content="A Referral"  />
+  <title>HTML Form Example</title>
+ <link href="style/description.css" rel="stylesheet"/>
+ <link href="style/style.css" rel="stylesheet"/>
+ <link href="style/refer.css" rel="stylesheet"/>
+ 
+</head>
+<body>
+	<header class="navbar">   
+        <div class="brand">
+            <img class="logo" src="images/logo.png" alt="logo">
+            <h1>COMPNAME</h1>            
+        </div>
+            
+        <nav>
+            
+                <ul>
+                    <li id="home"><a href="index.html">Home</a></li>
+                    <li id="jobs"><a href="jobs.html">Career</a></li>
+                    <li id="apply"><a href="apply.html">Apply</a></li>
+                    <li id="abt"><a href="about.html">About</a></li>
+                    <li id="enhancement"><a href="enhancement.html">Enhance</a></li>
+                    <li class="nav-highlight"></li>   <!--responsive  -> display:none-->
+                </ul>
+                
+        </nav>   
+    </header>
+<hr>
+<h1 id="r0">Refer a Friend<a class="image1" href="jobs.html" title="Return"><img src="images/images-removebg-preview.png" alt="Return arrow"/></a></h1>
+	<p id="r1">Happen to know a friend who fit the criteria?</p>
+	<p id="r2">Fill out the form and earn your keep!</p>
+<form method="post" action="http://mercury.swin.edu.au/it000000/formtest.php">
+<div class="form">
+	<fieldset>
+		<legend>Your details</legend>
+		<p><label for="refername">Full Name</label> 
+			<input id="refername" type="text" name= "refername" class="studentid" maxlength="20" size="10" required="required"/>
+		</p>
+		<br><label for="referemail">Your Email</label> 
+			<input id= "referemail" type="email" name= "referemail" class="givenname" maxlength="20" size="10" required="required"/>
+		
+		
+
+		
+		<label class="phone" for="referphone">Your Phone Number</label>
+		<select id="referphone" class="countrycode" name="countrycode">
+				
+			<option value="+84 vn">+84</option>			
+			<option value="+1 usa">+1</option>
+			<option value="+61 au">+61</option>
+			<option value="+65 sg">+65</option>
+
+		</select>
+		<input type="tel" name="referphone" pattern="[0-9]{10}">
+	
+	
+	</fieldset>
+	<fieldset>
+		<legend>Your Friend details</legend>
+		<p id="r4">Note: Make sure your friend fits the minimum requirements and is consulted about this. Refer to our policy.</p>
+		<br><label for="friendname">Full Name</label> 
+			<input id="friendname" type="text" name= "friendname" class="studentid" maxlength="20" size="10" required="required"/>
+	
+		<br><label for="friendemail">Their Email</label> 
+			<input  id="friendemail" type="email" name= "friendemail" class="givenname" maxlength="20" size="10" required="required"/>
+		
+		
+
+		
+		<label class="phone" for="friendphone">Their Phone Number</label>
+		<select id="friendphone" class="countrycode" name="countrycode">
+				
+			<option value="+84 vn">+84</option>			
+			<option value="+1 usa">+1</option>
+			<option value="+61 au">+61</option>
+			<option value="+65 sg">+65</option>
+
+		</select>
+		<input  type="tel" name="friendphone" pattern="[0-9]{10}">
+	
+
+		
+	</fieldset>
+	
+		
+
+			
+				
+			
+	
+	 <div class="re">
+	<input  type= "submit" value="Refer"/>
+	<input  type= "reset" value="Reset Form"/>
+	</div> 
+</div>		
+</form>
+<footer>
+    <div class="brandfooter">
+       <img class="logo" src="images/logo.png" alt="logo">
+       <h1>TECHYA</h1>            
+   </div>
+   
+   <p class="contact">Contact us:
+       <br>
+       <a href="https://youtu.be/ud92lexIitA"><img src=images/youtube-logo.png alt="ytb logo"></a>
+       <a href="https://github.com/OpenHLE/Web-Project"><img src=images/github-logo.png alt="github logo"></a>
+       <a href="mailto:105550542@student.swin.edu.au"><img src=images/mail-logo.png alt="mail logo"></a>
+   </p>
+   <div class="location">
+       <p>Our location:</p>
+       
+       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.042153278479!2d105.78157517829588!3d21.03099928045221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135bfa667a7dee9%3A0x2ac9ba5f99e4f389!2sSwinburne%20Innovation%20Space!5e0!3m2!1svi!2s!4v1740037300397!5m2!1svi!2s" width="200" height="150" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+   </div>
+
+   <p class="copyright">&copy; 2025 Our Education Company. All rights reserved.</p>
+</footer>
+
+
+</body>
+</html>
