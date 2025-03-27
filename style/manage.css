@@ -105,3 +105,96 @@ input[type="submit"]:hover {
 .sort-button:hover {
     text-decoration: underline;
 }
+
+/* Position the edit EOI form */
+.results-header {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.edit-eoi-form {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.edit-eoi-form form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Table input styles */
+table input[type="text"],
+table input[type="email"],
+table select {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    font-size: inherit;
+}
+
+table input[type="text"]:focus,
+table input[type="email"]:focus,
+table select:focus {
+    background-color: white;
+    outline: 2px solid #E94560;
+}
+
+table input[type="submit"] {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+table input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.table-container {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.save-button-container {
+    position: absolute;
+    bottom: -40px;
+    right: 0;
+}
+
+.save-button-container form {
+    display: inline-block;
+}
+
+.save-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.save-button:hover {
+    background-color: #45a049;
+}
+
+.cancel-button {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-left: 10px;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
