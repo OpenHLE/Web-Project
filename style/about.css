@@ -2,14 +2,54 @@
 - Flipcard and some other animations: W3Schools
 - Table styling: DEV Community
 */
+/*-----------------------------NAVBAR---------------------------------*/
+.nav-highlight{
+    position: absolute;
+    top: 0;
+    left: 9px;
+    width: 85px;
+    height: 100%;
+    background-color: var(--accent-red);
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    z-index: 1;
+}
 
+nav ul li:nth-child(1):hover ~ .nav-highlight {
+    transform: translateX(0px);
+    width: 85px; 
+}
+nav ul li:nth-child(2):hover ~ .nav-highlight {
+    transform: translateX(107px);
+    width: 85px;
+}
+nav ul li:nth-child(3):hover ~ .nav-highlight {
+    transform: translateX(210px);
+    width: 85px;
+}
+
+nav ul li:nth-child(4):hover ~ .nav-highlight {
+    transform: translateX(317px);
+    width: 80px;
+}
+
+nav ul li:nth-child(5):hover ~ .nav-highlight {
+    transform: translateX(427px);
+    width: 85px;
+}
+
+/* Initial position for the active page */
+nav ul li  ~ .nav-highlight {
+    transform: translateX(317px);
+    width: 80px;
+}
 /* CSS Variables */
 :root {
     --dark-blue: #1A1A2E;
     --navy-blue: #16213E;
     --medium-blue: #0F3460;
     --accent-red: #E94560;
-    --light-gray: #FFFFFF; /* Changed from #F9F9F9 to pure white for better contrast */
+    --light-gray: #F9F9F9;
 }
 
 /* Main Layout */
@@ -31,13 +71,13 @@ main {
 
 /* Background + styling */
 body {
-    background-image: url('../media/ultra-hd.jpg');
+    background-image: url('images/ultra-hd.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
     position: relative;
-    color: var(--light-gray);
+    color: #FFFFFF;
     line-height: 1.6;
 }
 
@@ -49,7 +89,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(26, 26, 46, 0.95); /* Increased opacity from 0.85 to 0.95 */
+    background-color: rgba(26, 26, 46, 0.95);
     z-index: -1;
 }
 
@@ -201,11 +241,8 @@ body::before {
     color: var(--accent-red);
     margin-bottom: 30px;
     opacity: 0;
-    transition: opacity 0.8s ease-in;
-}
-
-.members h2.animate {
-    opacity: 1;
+    animation: fadeIn 0.8s ease-in forwards;
+    animation-delay: 3.5s;
 }
 
 .members {
@@ -235,13 +272,10 @@ body::before {
     position: relative;
     /* Initial state - invisible */
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-}
-
-.member-flip-card.animate {
-    opacity: 1;
-    transform: translateY(0);
+    /* Animation properties */
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
 }
 
 /* Container that handles the flip animation */
@@ -275,17 +309,18 @@ body::before {
     backface-visibility: hidden;
     border-radius: 10px;
     overflow: hidden; /* Prevent content from spilling out */
-    background-color: #0A0F1F; /* Darker than var(--navy-blue) */
 }
 
 /* Front face specific styles */
 .member-flip-card-front {
+    background-color: var(--navy-blue); 
     transform: rotateY(0deg);
 }
 
 /* Back face is rotated 180 degrees by default */
 .member-flip-card-back {
-    color: var(--light-gray);
+    background-color: #0F1A2E;
+    color: #FFFFFF;
     transform: rotateY(180deg);
     padding: 15px;
     display: flex;
@@ -295,7 +330,7 @@ body::before {
 }
 
 .member-flip-card-back h3 {
-    color: var(--accent-red);
+    color: #FF4D6D;
     margin-bottom: 15px;
     font-size: 20px;
 }
@@ -354,8 +389,8 @@ table {
 }
 
 th {
-    background-color: #D13850; /* Darker shade of accent-red */
-    color: #FFFFFF;
+    background-color:#D01F3C;
+    color: white;
     padding: 15px;
     text-align: left;
     font-size: 1.2em;
@@ -366,7 +401,7 @@ td {
     padding: 15px;
     text-align: left;
     border: none;
-    color: #000000; /* Ensure black text on light backgrounds */
+    color: #000000;
 }
 
 /* Remove existing border styles (old design, kept just in case) */
@@ -376,11 +411,11 @@ th, td {
 
 /* Alternating row colors */
 tr:nth-child(odd) {
-    background-color: #9EC3E6; /* Darker shade for better contrast */
+    background-color: #9FC3E7; 
 }
 
 tr:nth-child(even) {
-    background-color: #6BA4E5; /* Darker shade for better contrast */
+    background-color: #6BA4D7;  
 }
 
 /* Make sure the cells fill the entire row width */
@@ -408,7 +443,7 @@ td:not(:last-child) {
 footer {
     margin-top: 30px;
     padding: 5px;
-    background-color: #0A0F1F; /* Darker than var(--navy-blue) */
+    background-color: var(--navy-blue);
     text-align: right;
 }
 
@@ -419,7 +454,7 @@ footer h2 {
 
 /* Header and Navigation */
 header {
-    background-color: #0A0F1F; /* Darker than var(--navy-blue) */
+    background-color: var(--navy-blue);
     padding: 10px 20px;
     max-width: 2000px;
     position: fixed;
@@ -434,7 +469,7 @@ header {
     justify-content: space-between;
     display: flex;
     align-items: center;
-    background-color: #0A0F1F; /* Darker than var(--navy-blue) */
+    background-color: var(--navy-blue);
 }
 
 .logo {
@@ -482,52 +517,7 @@ nav ul li a {
     z-index: 2;
 }
 
-/* Navigation Highlight Effect */
-.nav-highlight {
-    position: absolute;
-    top: 0;
-    left: 9px;
-    width: 85px;
-    height: 100%;
-    background-color: var(--accent-red);
-    border-radius: 5px;
-    transition: 0.3s ease-in-out, width 0.3s ease-in-out;
-    z-index: 1;
-}
 
-/* Update hover positions */
-nav ul li:nth-child(1):hover ~ .nav-highlight {
-    transform: translateX(0px);
-    width: 85px;
-}
-nav ul li:nth-child(2):hover ~ .nav-highlight {
-    transform: translateX(107px);
-    width: 85px;
-}
-nav ul li:nth-child(3):hover ~ .nav-highlight {
-    transform: translateX(210px);
-    width: 85px;
-}
-nav ul li:nth-child(4):hover ~ .nav-highlight {
-    transform: translateX(317px);
-    width: 80px;
-}
-nav ul li:nth-child(5):hover ~ .nav-highlight {
-    transform: translateX(427px);
-    width: 85px;
-}
-
-/* Initial position for About page */
-.nav-highlight {
-    transform: translateX(317px);
-    width: 80px;
-}
-
-/* Keep highlight position when active */
-nav ul li a.active ~ .nav-highlight {
-    transform: translateX(317px) !important;
-    width: 80px !important;
-}
 
 /* Animation for elements sliding in from the left side */
 @keyframes slideFromLeft {
@@ -633,11 +623,24 @@ nav ul li a.active ~ .nav-highlight {
 
 /* flip-card animation */
 /* slide down animation sequence */
-.member-cards > .member-flip-card:nth-child(1),
-.member-cards > .member-flip-card:nth-child(2),
-.member-cards > .member-flip-card:nth-child(3),
+.member-cards > .member-flip-card:nth-child(1) {
+    animation-name: slideDown;
+    animation-delay: 4s;
+}
+
+.member-cards > .member-flip-card:nth-child(2) {
+    animation-name: slideDown;
+    animation-delay: 4.2s;
+}
+
+.member-cards > .member-flip-card:nth-child(3) {
+    animation-name: slideDown;
+    animation-delay: 4.4s;
+}
+
 .member-cards > .member-flip-card:nth-child(4) {
-    animation: none;
+    animation-name: slideDown;
+    animation-delay: 4.6s;
 }
 
 /* Arrow animation */
