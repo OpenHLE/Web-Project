@@ -15,9 +15,9 @@ if (!$conn) {
 // Initialize variables
 $message = "";
 $results = [];
-$action = $_POST["action"] ?? "";
-$sort_field = $_POST["sort_field"] ?? "id";  // Default sort by EOI number
-$sort_order = $_POST["sort_order"] ?? "ASC"; // Default ascending order
+$action = isset($_POST["action"]) ? $_POST["action"] : "";
+$sort_field = isset($_POST["sort_field"]) ? $_POST["sort_field"] : "id";  // Default sort by EOI number
+$sort_order = isset($_POST["sort_order"]) ? $_POST["sort_order"] : "ASC"; // Default ascending order
 $editing = false;
 $edit_eoi = null;
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // List EOIs for a specific job reference
     elseif ($action == "list_by_job") {
-        $job_ref = $_POST["job_ref"] ?? "";
+        $job_ref = isset($_POST["job_ref"]) ? $_POST["job_ref"] : "";
         if (!empty($job_ref)) {
             $results = listEOIsByJobRef($conn, $job_ref, $sort_field, $sort_order);
         } else {
@@ -40,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // List EOIs for a specific applicant
     elseif ($action == "list_by_applicant") {
-        $first_name = $_POST["first_name"] ?? "";
-        $last_name = $_POST["last_name"] ?? "";
+        $first_name = isset($_POST["first_name"]) ? $_POST["first_name"] : "";
+        $last_name = isset($_POST["last_name"]) ? $_POST["last_name"] : "";
         if (!empty($first_name) || !empty($last_name)) {
             $results = listEOIsByApplicant($conn, $first_name, $last_name, $sort_field, $sort_order);
         } else {
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Delete EOIs for a specific job reference
     elseif ($action == "delete_by_job") {
-        $job_ref = $_POST["job_ref"] ?? "";
+        $job_ref = isset($_POST["job_ref"]) ? $_POST["job_ref"] : "";
         if (!empty($job_ref)) {
             $message = deleteEOIsByJobRef($conn, $job_ref);
         } else {
@@ -61,8 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Change status of an EOI
     elseif ($action == "change_status") {
-        $eoi_id = $_POST["eoi_id"] ?? "";
-        $new_status = $_POST["new_status"] ?? "";
+        $eoi_id = isset($_POST["eoi_id"]) ? $_POST["eoi_id"] : "";
+        $new_status = isset($_POST["new_status"]) ? $_POST["new_status"] : "";
         if (!empty($eoi_id) && !empty($new_status)) {
             $message = changeEOIStatus($conn, $eoi_id, $new_status);
         } else {
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Edit EOI data
     elseif ($action == "edit_eoi") {
-        $eoi_id = $_POST["eoi_id"] ?? "";
+        $eoi_id = isset($_POST["eoi_id"]) ? $_POST["eoi_id"] : "";
         if (!empty($eoi_id)) {
             // Get EOI data for editing
             $edit_eoi = getEOIById($conn, $eoi_id);
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Update EOI data
     elseif ($action == "update_eoi") {
-        $eoi_id = $_POST["eoi_id"] ?? "";
+        $eoi_id = isset($_POST["eoi_id"]) ? $_POST["eoi_id"] : "";
         if (!empty($eoi_id)) {
             $message = updateEOIData($conn, $_POST);
             $results = listAllEOIs($conn, $sort_field, $sort_order);
@@ -124,9 +124,17 @@ function listAllEOIs($conn, $sort_field = "id", $sort_order = "ASC") {
             }
             
             // Add skills to row
+            $skill1 = '';
+            if (isset($skills[0])) {
+                $skill1 = $skills[0];
+            }
+            $skill2 = '';
+            if (isset($skills[1])) {
+                $skill2 = $skills[1];
+            }
             if (!empty($skills)) {
-                $row['skill1'] = $skills[0] ?? '';
-                $row['skill2'] = $skills[1] ?? '';
+                $row['skill1'] = $skill1;
+                $row['skill2'] = $skill2;
             }
             
             $eois[] = $row;
@@ -167,9 +175,17 @@ function listEOIsByJobRef($conn, $job_ref, $sort_field = "id", $sort_order = "AS
             }
             
             // Add skills to row
+            $skill1 = '';
+            if (isset($skills[0])) {
+                $skill1 = $skills[0];
+            }
+            $skill2 = '';
+            if (isset($skills[1])) {
+                $skill2 = $skills[1];
+            }
             if (!empty($skills)) {
-                $row['skill1'] = $skills[0] ?? '';
-                $row['skill2'] = $skills[1] ?? '';
+                $row['skill1'] = $skill1;
+                $row['skill2'] = $skill2;
             }
             
             $eois[] = $row;
@@ -209,7 +225,12 @@ function listEOIsByApplicant($conn, $first_name, $last_name, $sort_field = "id",
     $stmt = mysqli_prepare($conn, $sql);
     
     if (!empty($params)) {
-        mysqli_stmt_bind_param($stmt, $types, ...$params);
+        // Replace argument unpacking (...$params) with call_user_func_array
+        $ref_array = array(&$stmt, &$types);
+        foreach($params as &$param) {
+            $ref_array[] = &$param;
+        }
+        call_user_func_array('mysqli_stmt_bind_param', $ref_array);
     }
     
     mysqli_stmt_execute($stmt);
@@ -230,9 +251,17 @@ function listEOIsByApplicant($conn, $first_name, $last_name, $sort_field = "id",
             }
             
             // Add skills to row
+            $skill1 = '';
+            if (isset($skills[0])) {
+                $skill1 = $skills[0];
+            }
+            $skill2 = '';
+            if (isset($skills[1])) {
+                $skill2 = $skills[1];
+            }
             if (!empty($skills)) {
-                $row['skill1'] = $skills[0] ?? '';
-                $row['skill2'] = $skills[1] ?? '';
+                $row['skill1'] = $skill1;
+                $row['skill2'] = $skill2;
             }
             
             $eois[] = $row;
@@ -326,9 +355,17 @@ function getEOIById($conn, $eoi_id) {
         }
         
         // Add skills to row
+        $skill1 = '';
+        if (isset($skills[0])) {
+            $skill1 = $skills[0];
+        }
+        $skill2 = '';
+        if (isset($skills[1])) {
+            $skill2 = $skills[1];
+        }
         if (!empty($skills)) {
-            $eoi['skill1'] = $skills[0] ?? '';
-            $eoi['skill2'] = $skills[1] ?? '';
+            $eoi['skill1'] = $skill1;
+            $eoi['skill2'] = $skill2;
         }
         
         return $eoi;
@@ -339,23 +376,23 @@ function getEOIById($conn, $eoi_id) {
 
 // Function to update EOI data
 function updateEOIData($conn, $data) {
-    $eoi_id = $data['eoi_id'];
-    $job_reference = $data['job_reference'];
-    $first_name = $data['first_name'];
-    $last_name = $data['last_name'];
-    $street_address = $data['street_address'];
-    $suburb = $data['suburb'];
-    $state = $data['state'];
-    $postcode = $data['postcode'];
-    $email = $data['email'];
-    $phone = $data['phone'];
-    $status = $data['status'];
-    $other_skills = $data['other_skills'];
-    $skill1 = $data['skill1'] ?? '';
-    $skill2 = $data['skill2'] ?? '';
+    $eoi_id = isset($data['eoi_id']) ? $data['eoi_id'] : '';
+    $job_reference = isset($data['job_reference']) ? $data['job_reference'] : '';
+    $first_name = isset($data['first_name']) ? $data['first_name'] : '';
+    $last_name = isset($data['last_name']) ? $data['last_name'] : '';
+    $street_address = isset($data['street_address']) ? $data['street_address'] : '';
+    $suburb = isset($data['suburb']) ? $data['suburb'] : '';
+    $state = isset($data['state']) ? $data['state'] : '';
+    $postcode = isset($data['postcode']) ? $data['postcode'] : '';
+    $email = isset($data['email']) ? $data['email'] : '';
+    $phone = isset($data['phone']) ? $data['phone'] : '';
+    $status = isset($data['status']) ? $data['status'] : '';
+    $other_skills = isset($data['other_skills']) ? $data['other_skills'] : '';
+    $skill1 = isset($data['skill1']) ? $data['skill1'] : '';
+    $skill2 = isset($data['skill2']) ? $data['skill2'] : '';
     
     // Start transaction
-    mysqli_begin_transaction($conn);
+    mysqli_autocommit($conn, FALSE);
     
     try {
         // Update EOI table
@@ -400,29 +437,44 @@ function updateEOIData($conn, $data) {
         $delete_sql = "DELETE FROM EOI_Skills WHERE EOInumber = ?";
         $stmt = mysqli_prepare($conn, $delete_sql);
         mysqli_stmt_bind_param($stmt, "i", $eoi_id);
-        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_execute($stmt);
+        
+        if (!$result) {
+            throw new Exception("Failed to delete existing skills");
+        }
         
         // Insert new skills
         if (!empty($skill1)) {
             $insert_sql = "INSERT INTO EOI_Skills (EOInumber, Skills) VALUES (?, ?)";
             $stmt = mysqli_prepare($conn, $insert_sql);
             mysqli_stmt_bind_param($stmt, "is", $eoi_id, $skill1);
-            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_execute($stmt);
+            
+            if (!$result) {
+                throw new Exception("Failed to insert skill1");
+            }
         }
         
         if (!empty($skill2)) {
             $insert_sql = "INSERT INTO EOI_Skills (EOInumber, Skills) VALUES (?, ?)";
             $stmt = mysqli_prepare($conn, $insert_sql);
             mysqli_stmt_bind_param($stmt, "is", $eoi_id, $skill2);
-            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_execute($stmt);
+            
+            if (!$result) {
+                throw new Exception("Failed to insert skill2");
+            }
         }
         
         // Commit transaction
         mysqli_commit($conn);
+        mysqli_autocommit($conn, TRUE);
         return "EOI data updated successfully.";
+        
     } catch (Exception $e) {
         // Rollback transaction on error
         mysqli_rollback($conn);
+        mysqli_autocommit($conn, TRUE);
         return "Error updating EOI data: " . $e->getMessage();
     }
 }
@@ -531,8 +583,8 @@ function updateEOIData($conn, $data) {
                                 if ($action == 'list_by_job' && !empty($_POST['job_ref'])) {
                                     $params['job_ref'] = $_POST['job_ref'];
                                 } elseif ($action == 'list_by_applicant') {
-                                    $params['first_name'] = $_POST['first_name'] ?? '';
-                                    $params['last_name'] = $_POST['last_name'] ?? '';
+                                    $params['first_name'] = isset($_POST['first_name']) ? $_POST['first_name'] : '';
+                                    $params['last_name'] = isset($_POST['last_name']) ? $_POST['last_name'] : '';
                                 }
                                 echo getSortableHeaderLink('id', 'EOI Number', $sort_field, $sort_order, $action, $params); 
                             ?></th>
@@ -573,8 +625,8 @@ function updateEOIData($conn, $data) {
                     <td><input type="text" name="postcode" value="<?php echo htmlspecialchars($eoi['postcode']); ?>" pattern="[0-9]{4}" required></td>
                     <td><input type="email" name="email" value="<?php echo htmlspecialchars($eoi['email']); ?>" required></td>
                     <td><input type="text" name="phone" value="<?php echo htmlspecialchars($eoi['phone']); ?>" required></td>
-                    <td><input type="text" name="skill1" value="<?php echo htmlspecialchars($eoi['skill1'] ?? ''); ?>"></td>
-                    <td><input type="text" name="skill2" value="<?php echo htmlspecialchars($eoi['skill2'] ?? ''); ?>"></td>
+                    <td><input type="text" name="skill1" value="<?php echo htmlspecialchars(isset($eoi['skill1']) ? $eoi['skill1'] : ''); ?>"></td>
+                    <td><input type="text" name="skill2" value="<?php echo htmlspecialchars(isset($eoi['skill2']) ? $eoi['skill2'] : ''); ?>"></td>
                     <td><input type="text" name="other_skills" value="<?php echo htmlspecialchars($eoi['other_skills']); ?>"></td>
                     <td>
                         <select name="status" required>
@@ -602,8 +654,20 @@ function updateEOIData($conn, $data) {
                 <td><?php echo htmlspecialchars($eoi['postcode']); ?></td>
                 <td><?php echo htmlspecialchars($eoi['email']); ?></td>
                 <td><?php echo htmlspecialchars($eoi['phone']); ?></td>
-                <td><?php echo htmlspecialchars($eoi['skill1'] ?? ''); ?></td>
-                <td><?php echo htmlspecialchars($eoi['skill2'] ?? ''); ?></td>
+                <td><?php 
+                    $skill_value = '';
+                    if (isset($eoi['skill1'])) {
+                        $skill_value = $eoi['skill1'];
+                    }
+                    echo htmlspecialchars($skill_value); 
+                ?></td>
+                <td><?php 
+                    $skill_value = '';
+                    if (isset($eoi['skill2'])) {
+                        $skill_value = $eoi['skill2'];
+                    }
+                    echo htmlspecialchars($skill_value); 
+                ?></td>
                 <td><?php echo htmlspecialchars($eoi['other_skills']); ?></td>
                 <td><?php echo htmlspecialchars($eoi['status']); ?></td>
             </tr>
