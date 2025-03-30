@@ -5,3 +5,4 @@ $user = "s105550047";
 $pwd = "team20assign2";     
 $sql_db = "s105550047_db"; // Database name
 ?> 
+

@@ -31,7 +31,7 @@ main {
 
 /* Background + styling */
 body {
-    background-image: url('../images/ultra-hd.jpg');
+    background-image: url('../style/images/ultra-hd.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

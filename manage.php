@@ -675,18 +675,18 @@ function updateEOIData($conn, $data) {
     <?php endforeach; ?>
 </tbody>
                 </table>
-                <?php if ($editing && $edit_eoi): ?>
-                    <div class="save-button-container">
-                        <input type="submit" form="edit-form" value="Save Changes" class="save-button">
-                        <form method="post" action="" style="display: inline;">
-                            <input type="hidden" name="action" value="list_all">
-                            <input type="hidden" name="sort_field" value="<?php echo $sort_field; ?>">
-                            <input type="hidden" name="sort_order" value="<?php echo $sort_order; ?>">
-                            <input type="submit" value="Cancel" class="cancel-button">
-                        </form>
-                    </div>
-                <?php endif; ?>
             </div>
+            <?php if ($editing && $edit_eoi): ?>
+                <div class="save-button-container">
+                    <input type="submit" form="edit-form" value="Save Changes" class="save-button">
+                    <form method="post" action="" style="display: inline;">
+                        <input type="hidden" name="action" value="list_all">
+                        <input type="hidden" name="sort_field" value="<?php echo $sort_field; ?>">
+                        <input type="hidden" name="sort_order" value="<?php echo $sort_order; ?>">
+                        <input type="submit" value="Cancel" class="cancel-button">
+                    </form>
+                </div>
+            <?php endif; ?>
         <?php elseif ($action && empty($message)): ?>
             <p>No results found.</p>
         <?php endif; ?>

@@ -19,11 +19,31 @@
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
-    background-color: #E3F2FD;
-    color: black;
-    border-radius: 8px;
-    overflow: hidden;
+    white-space: nowrap;
+    background-color: white;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #f8f9fa;
+}
+
+thead th {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    background-color: #E94560;
+}
+
+tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
 }
 
 th {
@@ -39,6 +59,7 @@ td {
     padding: 15px;
     text-align: left;
     border: none;
+    color: black;
 }
 
 /* Search result table */
@@ -110,18 +131,46 @@ input[type="submit"]:hover {
 .results-header {
     position: relative;
     margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.results-header h2 {
+    margin: 0;
 }
 
 .edit-eoi-form {
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: relative;
 }
 
 .edit-eoi-form form {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+/* Media query for small screens */
+@media screen and (max-width: 768px) {
+    .results-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .edit-eoi-form {
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    .edit-eoi-form form {
+        width: 100%;
+    }
+    
+    .edit-eoi-form input[type="text"] {
+        flex-grow: 1;
+    }
 }
 
 /* Table input styles */
@@ -155,15 +204,47 @@ table input[type="submit"]:hover {
     background-color: #45a049;
 }
 
+/* scroller */
 .table-container {
-    position: relative;
-    margin-bottom: 40px;
+    width: 100%;
+    max-height: 500px;
+    overflow: auto;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
+.table-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Make table responsive on smaller screens */
+@media screen and (max-width: 1024px) {
+    .table-container {
+        max-height: 400px;
+    }
+}
+
+/* save and cancel buttons */
 .save-button-container {
-    position: absolute;
-    bottom: -40px;
-    right: 0;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
 }
 
 .save-button-container form {

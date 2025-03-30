@@ -77,6 +77,7 @@
                         '- Home page (index.php)',
                         '- Position Descriptions page (jobs.php)',
                         '- Enhancement Page',
+                        '- SQL Database',
                     ]
                 ],
                 [
@@ -85,6 +86,7 @@
                     'contributions' => [
                         '- Position Descriptions page (jobs.php)',
                         '- Enhancement Page',
+                        '- SQL Database',
                     ]
                 ],
                 [
