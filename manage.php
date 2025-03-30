@@ -498,17 +498,6 @@ function updateEOIData($conn, $data) {
     <meta name="author" content="Le Tuan Huy">
     <link href="style/style.css" rel="stylesheet">
     <link href="style/manage.css" rel="stylesheet">
-    <style>
-        .highlight-row {
-            background-color: #4CAF50;
-            transition: background-color 0.5s ease;
-            animation: highlight 2s ease;
-        }
-        @keyframes highlight {
-            0% { background-color: #45a049; }
-            100% { background-color: #4CAF50; }
-        }
-    </style>
     <title>EOI Management</title>
 </head>
 <body>
