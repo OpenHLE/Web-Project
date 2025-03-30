@@ -20,6 +20,7 @@ $sort_field = isset($_POST["sort_field"]) ? $_POST["sort_field"] : "id";  // Def
 $sort_order = isset($_POST["sort_order"]) ? $_POST["sort_order"] : "ASC"; // Default ascending order
 $editing = false;
 $edit_eoi = null;
+$updated_status_id = null; // To track the ID of recently updated EOI
 
 // Process form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -65,6 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $new_status = isset($_POST["new_status"]) ? $_POST["new_status"] : "";
         if (!empty($eoi_id) && !empty($new_status)) {
             $message = changeEOIStatus($conn, $eoi_id, $new_status);
+            // Load all EOIs after changing status to keep the table visible
+            $results = listAllEOIs($conn, $sort_field, $sort_order);
+            // Store the updated EOI ID to highlight it in the table
+            $updated_status_id = $eoi_id;
         } else {
             $message = "Please enter an EOI ID and select a new status.";
         }
@@ -77,8 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Get EOI data for editing
             $edit_eoi = getEOIById($conn, $eoi_id);
             $editing = true;
-            // Load all EOIs again for the background list
-            $results = listAllEOIs($conn, $sort_field, $sort_order);
+            // Jút load current EOI selected for editing
+            // $results = listAllEOIs($conn, $sort_field, $sort_order);
+            $results = []; // Empty results to avoid displaying all rows
         } else {
             $message = "Invalid EOI ID.";
         }
@@ -492,6 +498,17 @@ function updateEOIData($conn, $data) {
     <meta name="author" content="Le Tuan Huy">
     <link href="style/style.css" rel="stylesheet">
     <link href="style/manage.css" rel="stylesheet">
+    <style>
+        .highlight-row {
+            background-color: #4CAF50;
+            transition: background-color 0.5s ease;
+            animation: highlight 2s ease;
+        }
+        @keyframes highlight {
+            0% { background-color: #45a049; }
+            100% { background-color: #4CAF50; }
+        }
+    </style>
     <title>EOI Management</title>
 </head>
 <body>
@@ -513,7 +530,7 @@ function updateEOIData($conn, $data) {
             <h2>List EOIs by Job Reference Number</h2>
             <form method="post" action="">
                 <input type="hidden" name="action" value="list_by_job">
-                <input type="text" name="job_ref" placeholder="Job Reference Number" pattern="[A-Z]{2}[0-9]{3}" title="2 uppercase letters followed by 3 digits, e.g., AB123">
+                <input type="text" name="job_ref" placeholder="Job Reference Number" pattern="[A-Za-z]{2}[0-9]{2,3}" title="2 letters followed by 2-3 digits (e.g., DB01, AB123)">
                 <?php echo getSortFormInputs($sort_field, $sort_order); ?>
                 <input type="submit" value="Search">
             </form>
@@ -534,14 +551,14 @@ function updateEOIData($conn, $data) {
             <h2>Delete EOIs by Job Reference Number</h2>
             <form method="post" action="" onsubmit="return confirm('Are you sure you want to delete all EOIs with this job reference number?');">
                 <input type="hidden" name="action" value="delete_by_job">
-                <input type="text" name="job_ref" placeholder="Job Reference Number" pattern="[A-Z]{2}[0-9]{3}" title="2 uppercase letters followed by 3 digits, e.g., AB123" required>
+                <input type="text" name="job_ref" placeholder="Job Reference Number" pattern="[A-Za-z]{2}[0-9]{2,3}" title="2 letters followed by 2-3 digits (e.g., DB01, AB123)" required>
                 <input type="submit" value="Delete">
             </form>
         </div>
         
         <div class="form-section">
             <h2>Change EOI Status</h2>
-            <form method="post" action="">
+            <form method="post" action="#results-section">
                 <input type="hidden" name="action" value="change_status">
                 <input type="text" name="eoi_id" placeholder="EOI ID" required>
                 <select name="new_status" required>
@@ -549,20 +566,20 @@ function updateEOIData($conn, $data) {
                     <option value="New">New</option>
                     <option value="Current">Current</option>
                     <option value="Final">Final</option>
-                    <option value="Rejected">Rejected</option>
                 </select>
                 <input type="submit" value="Update Status">
             </form>
         </div>
         
-        <?php if (!empty($results)): ?>
-            <div class="results-header">
-                <h2 id="results">Search Results (Click on the titles in the table to sort in order)</h2>
+        <?php if (!empty($results) || ($editing && $edit_eoi)): ?>
+            <div class="results-header" id="results-section">
+                <h2 id="results"><?php echo $editing ? "Edit EOI #" . $edit_eoi['id'] : "Search Results (Click on the titles in the table to sort in order)"; ?></h2>
                 <?php if (!empty($message)): ?>
                     <div class="message <?php echo strpos($message, 'successfully') !== false ? 'success' : 'error'; ?>">
                         <?php echo $message; ?>
                     </div>
                 <?php endif; ?>
+                <?php if (!$editing): ?>
                 <div class="edit-eoi-form">
                     <form method="post" action="">
                         <input type="hidden" name="action" value="edit_eoi">
@@ -572,6 +589,7 @@ function updateEOIData($conn, $data) {
                         <input type="submit" value="Edit">
                     </form>
                 </div>
+                <?php endif; ?>
             </div>
             <div class="table-container">
                 <table>
@@ -604,75 +622,88 @@ function updateEOIData($conn, $data) {
                         </tr>
                     </thead>
                     <tbody>
-    <?php foreach ($results as $eoi): ?>
-        <?php if ($editing && $edit_eoi && $eoi['id'] == $edit_eoi['id']): ?>
-            <tr>
-                <form method="post" action="#results" id="edit-form">
-                    <td><?php echo htmlspecialchars($eoi['id']); ?></td>
-                    <td><input type="text" name="job_reference" value="<?php echo htmlspecialchars($eoi['job_reference']); ?>" pattern="[A-Z]{2}[0-9]{3}" required></td>
-                    <td><input type="text" name="first_name" value="<?php echo htmlspecialchars($eoi['first_name']); ?>" required></td>
-                    <td><input type="text" name="last_name" value="<?php echo htmlspecialchars($eoi['last_name']); ?>" required></td>
-                    <td><input type="text" name="street_address" value="<?php echo htmlspecialchars($eoi['street_address']); ?>" required></td>
-                    <td><input type="text" name="suburb" value="<?php echo htmlspecialchars($eoi['suburb']); ?>" required></td>
-                    <td>
-                        <select name="state" required>
-                            <?php $states = ['VIC', 'NSW', 'QLD', 'NT', 'WA', 'SA', 'TAS', 'ACT'];
-                            foreach ($states as $state): ?>
-                                <option value="<?php echo $state; ?>" <?php echo $eoi['state'] == $state ? 'selected' : ''; ?>><?php echo $state; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </td>
-                    <td><input type="text" name="postcode" value="<?php echo htmlspecialchars($eoi['postcode']); ?>" pattern="[0-9]{4}" required></td>
-                    <td><input type="email" name="email" value="<?php echo htmlspecialchars($eoi['email']); ?>" required></td>
-                    <td><input type="text" name="phone" value="<?php echo htmlspecialchars($eoi['phone']); ?>" required></td>
-                    <td><input type="text" name="skill1" value="<?php echo htmlspecialchars(isset($eoi['skill1']) ? $eoi['skill1'] : ''); ?>"></td>
-                    <td><input type="text" name="skill2" value="<?php echo htmlspecialchars(isset($eoi['skill2']) ? $eoi['skill2'] : ''); ?>"></td>
-                    <td><input type="text" name="other_skills" value="<?php echo htmlspecialchars($eoi['other_skills']); ?>"></td>
-                    <td>
-                        <select name="status" required>
-                            <?php $statuses = ['New', 'Current', 'Final', 'Rejected'];
-                            foreach ($statuses as $status): ?>
-                                <option value="<?php echo $status; ?>" <?php echo $eoi['status'] == $status ? 'selected' : ''; ?>><?php echo $status; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </td>
-                    <input type="hidden" name="action" value="update_eoi">
-                    <input type="hidden" name="eoi_id" value="<?php echo htmlspecialchars($eoi['id']); ?>">
-                    <input type="hidden" name="sort_field" value="<?php echo $sort_field; ?>">
-                    <input type="hidden" name="sort_order" value="<?php echo $sort_order; ?>">
-                </form>
-            </tr>
-        <?php else: ?>
-            <tr>
+    <?php 
+    if ($editing && $edit_eoi) {
+        // Only show the row being edited
+        $eoi = $edit_eoi;
+    ?>
+        <tr>
+            <form method="post" action="#results-section" id="edit-form">
                 <td><?php echo htmlspecialchars($eoi['id']); ?></td>
-                <td><?php echo htmlspecialchars($eoi['job_reference']); ?></td>
-                <td><?php echo htmlspecialchars($eoi['first_name']); ?></td>
-                <td><?php echo htmlspecialchars($eoi['last_name']); ?></td>
-                <td><?php echo htmlspecialchars($eoi['street_address']); ?></td>
-                <td><?php echo htmlspecialchars($eoi['suburb']); ?></td>
-                <td><?php echo htmlspecialchars($eoi['state']); ?></td>
-                <td><?php echo htmlspecialchars($eoi['postcode']); ?></td>
-                <td><?php echo htmlspecialchars($eoi['email']); ?></td>
-                <td><?php echo htmlspecialchars($eoi['phone']); ?></td>
-                <td><?php 
-                    $skill_value = '';
-                    if (isset($eoi['skill1'])) {
-                        $skill_value = $eoi['skill1'];
-                    }
-                    echo htmlspecialchars($skill_value); 
-                ?></td>
-                <td><?php 
-                    $skill_value = '';
-                    if (isset($eoi['skill2'])) {
-                        $skill_value = $eoi['skill2'];
-                    }
-                    echo htmlspecialchars($skill_value); 
-                ?></td>
-                <td><?php echo htmlspecialchars($eoi['other_skills']); ?></td>
-                <td><?php echo htmlspecialchars($eoi['status']); ?></td>
-            </tr>
-        <?php endif; ?>
-    <?php endforeach; ?>
+                <td><input type="text" name="job_reference" 
+value="<?php echo htmlspecialchars($eoi['job_reference']); ?>" 
+pattern="[A-Za-z]{2}[0-9]{2,3}" 
+title="2 letters followed by 2-3 digits (e.g., DB01, AB123)"
+required></td>
+                <td><input type="text" name="first_name" value="<?php echo htmlspecialchars($eoi['first_name']); ?>" required></td>
+                <td><input type="text" name="last_name" value="<?php echo htmlspecialchars($eoi['last_name']); ?>" required></td>
+                <td><input type="text" name="street_address" value="<?php echo htmlspecialchars($eoi['street_address']); ?>" required></td>
+                <td><input type="text" name="suburb" value="<?php echo htmlspecialchars($eoi['suburb']); ?>" required></td>
+                <td>
+                    <select name="state" required>
+                        <?php $states = ['VIC', 'NSW', 'QLD', 'NT', 'WA', 'SA', 'TAS', 'ACT'];
+                        foreach ($states as $state): ?>
+                            <option value="<?php echo $state; ?>" <?php echo $eoi['state'] == $state ? 'selected' : ''; ?>><?php echo $state; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+                <td><input type="text" name="postcode" value="<?php echo htmlspecialchars($eoi['postcode']); ?>" pattern="[0-9]{4}" required></td>
+                <td><input type="email" name="email" value="<?php echo htmlspecialchars($eoi['email']); ?>" required></td>
+                <td><input type="text" name="phone" value="<?php echo htmlspecialchars($eoi['phone']); ?>" required></td>
+                <td><input type="text" name="skill1" value="<?php echo htmlspecialchars(isset($eoi['skill1']) ? $eoi['skill1'] : ''); ?>"></td>
+                <td><input type="text" name="skill2" value="<?php echo htmlspecialchars(isset($eoi['skill2']) ? $eoi['skill2'] : ''); ?>"></td>
+                <td><input type="text" name="other_skills" value="<?php echo htmlspecialchars($eoi['other_skills']); ?>"></td>
+                <td>
+                    <select name="status" required>
+                        <?php $statuses = ['New', 'Current', 'Final'];
+                        foreach ($statuses as $status): ?>
+                            <option value="<?php echo $status; ?>" <?php echo $eoi['status'] == $status ? 'selected' : ''; ?>><?php echo $status; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+                <input type="hidden" name="action" value="update_eoi">
+                <input type="hidden" name="eoi_id" value="<?php echo htmlspecialchars($eoi['id']); ?>">
+                <input type="hidden" name="sort_field" value="<?php echo $sort_field; ?>">
+                <input type="hidden" name="sort_order" value="<?php echo $sort_order; ?>">
+            </form>
+        </tr>
+    <?php 
+    } else {
+        // Show all results
+        foreach ($results as $eoi):
+    ?>
+        <tr <?php echo $updated_status_id && $eoi['id'] == $updated_status_id ? 'class="highlight-row"' : ''; ?>>
+            <td><?php echo htmlspecialchars($eoi['id']); ?></td>
+            <td><?php echo htmlspecialchars($eoi['job_reference']); ?></td>
+            <td><?php echo htmlspecialchars($eoi['first_name']); ?></td>
+            <td><?php echo htmlspecialchars($eoi['last_name']); ?></td>
+            <td><?php echo htmlspecialchars($eoi['street_address']); ?></td>
+            <td><?php echo htmlspecialchars($eoi['suburb']); ?></td>
+            <td><?php echo htmlspecialchars($eoi['state']); ?></td>
+            <td><?php echo htmlspecialchars($eoi['postcode']); ?></td>
+            <td><?php echo htmlspecialchars($eoi['email']); ?></td>
+            <td><?php echo htmlspecialchars($eoi['phone']); ?></td>
+            <td><?php 
+                $skill_value = '';
+                if (isset($eoi['skill1'])) {
+                    $skill_value = $eoi['skill1'];
+                }
+                echo htmlspecialchars($skill_value); 
+            ?></td>
+            <td><?php 
+                $skill_value = '';
+                if (isset($eoi['skill2'])) {
+                    $skill_value = $eoi['skill2'];
+                }
+                echo htmlspecialchars($skill_value); 
+            ?></td>
+            <td><?php echo htmlspecialchars($eoi['other_skills']); ?></td>
+            <td><?php echo htmlspecialchars($eoi['status']); ?></td>
+        </tr>
+    <?php 
+        endforeach;
+    }
+    ?>
 </tbody>
                 </table>
             </div>
@@ -687,7 +718,7 @@ function updateEOIData($conn, $data) {
                     </form>
                 </div>
             <?php endif; ?>
-        <?php elseif ($action && empty($message)): ?>
+        <?php elseif ($action && empty($message) && !($editing && $edit_eoi)): ?>
             <p>No results found.</p>
         <?php endif; ?>
     </div>

@@ -1,54 +1,51 @@
--- ENTER ALL OF THIS INTO THE SQL TAB IN PHPMYADMIN
--- Create the EOI table
-CREATE TABLE IF NOT EXISTS EOI (
+-- Create table
+CREATE TABLE EOI (
     EOInumber INT AUTO_INCREMENT PRIMARY KEY,
-    JobReferenceNumber VARCHAR(10) NOT NULL,
-    FirstName VARCHAR(50) NOT NULL,
-    LastName VARCHAR(50) NOT NULL,
-    BirthDate VARCHAR(2) NOT NULL,
-    BirthMonth VARCHAR(2) NOT NULL,
-    BirthYear VARCHAR(4) NOT NULL,
-    Gender VARCHAR(10) NOT NULL,
-    StreetAddress VARCHAR(100) NOT NULL,
-    TownOrSuburbs VARCHAR(50) NOT NULL,
-    State VARCHAR(3) NOT NULL,
-    Postcode VARCHAR(4) NOT NULL,
-    Email VARCHAR(100) NOT NULL,
-    PhoneNumber VARCHAR(20) NOT NULL,
+    JobReferenceNumber varchar(5),
+    FirstName varchar(20),
+    LastName varchar(20),
+    BirthDate varchar(2),
+    BirthMonth varchar(2),
+    BirthYear varchar(4),
+    Gender ENUM('Male', 'Female', 'Other'),
+    StreetAddress varchar(40),
+    TownOrSuburbs varchar(40),
+    State varchar(20),
+    Postcode varchar(4),
+    Email varchar(255),
+    PhoneNumber varchar(12),
     OtherSkills TEXT,
-    Status VARCHAR(20) DEFAULT 'New' NOT NULL
+    Status ENUM('New', 'Current', 'Final') DEFAULT 'New'
 );
 
--- Create the EOI_Skills table
-CREATE TABLE IF NOT EXISTS EOI_Skills (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    EOInumber INT NOT NULL,
-    Skills VARCHAR(50) NOT NULL,
-    FOREIGN KEY (EOInumber) REFERENCES EOI(EOInumber)
+
+-- Sample data for local testing, only put in after create table
+CREATE TABLE EOI_Skills (
+    EOInumber INT,
+    Skills VARCHAR(50),
+    FOREIGN KEY (EOInumber) REFERENCES EOI (EOInumber) ON DELETE CASCADE
 );
 
--- Insert sample data for testing
-INSERT INTO EOI (JobReferenceNumber, FirstName, LastName, BirthDate, BirthMonth, BirthYear, Gender, StreetAddress, TownOrSuburbs, State, Postcode, Email, PhoneNumber, OtherSkills, Status)
-VALUES
-('AB123', 'John', 'Doe', '15', '05', '1985', 'Male', '123 Main St', 'Brisbane', 'QLD', '4000', 'john@example.com', '0400123456', 'Leadership, Communication', 'New'),
-('CD456', 'Jane', 'Smith', '21', '08', '1990', 'Female', '456 Park Ave', 'Sydney', 'NSW', '2000', 'jane@example.com', '0400654321', 'Project Management', 'Current'),
-('EF789', 'Bob', 'Johnson', '03', '12', '1988', 'Male', '789 Beach Rd', 'Melbourne', 'VIC', '3000', 'bob@example.com', '0401234567', 'Problem Solving', 'Final'),
-('AB123', 'Alice', 'Wilson', '27', '04', '1992', 'Female', '321 Hill St', 'Adelaide', 'SA', '5000', 'alice@example.com', '0412345678', 'Time Management', 'New'),
-('CD456', 'Michael', 'Brown', '10', '11', '1980', 'Male', '654 Lake Dr', 'Perth', 'WA', '6000', 'michael@example.com', '0423456789', 'Teamwork', 'Rejected'),
-('EF789', 'Sarah', 'Davis', '19', '02', '1993', 'Female', '987 River Rd', 'Hobart', 'TAS', '7000', 'sarah@example.com', '0434567890', 'Critical Thinking', 'Current');
+INSERT INTO EOI (JobReferenceNumber, FirstName, LastName, BirthDate, BirthMonth, BirthYear, Gender, 
+    StreetAddress, TownOrSuburbs, State, Postcode, Email, PhoneNumber, OtherSkills, Status) 
+VALUES 
+    ('DB01', 'John', 'Smith', '15', '03', '1990', 'Male', '123 Main Street', 'Melbourne', 'VIC', '3000', 
+    'john.smith@email.com', '0412345678', 'Project Management, Leadership', 'New'),
+    
+    ('DB02', 'Sarah', 'Johnson', '22', '07', '1995', 'Female', '456 High Street', 'Sydney', 'NSW', '2000',
+    'sarah.j@email.com', '0423456789', 'Communication, Problem Solving', 'Current'),
+    
+    ('DB03', 'Alex', 'Wong', '30', '11', '1988', 'Other', '789 Park Road', 'Brisbane', 'QLD', '4000',
+    'alex.w@email.com', '0434567890', 'Team Building, Agile Methodologies', 'Final');
 
--- Insert skills for sample data
-INSERT INTO EOI_Skills (EOInumber, Skills)
-VALUES
-(1, 'PHP'),
-(1, 'JavaScript'),
-(2, 'Python'),
-(2, 'Java'),
-(3, 'C#'),
-(3, 'SQL'),
-(4, 'HTML'),
-(4, 'CSS'),
-(5, 'React'),
-(5, 'Angular'),
-(6, 'Node.js'),
-(6, 'MongoDB'); 
+INSERT INTO EOI_Skills (EOInumber, Skills) 
+VALUES 
+    (1, 'Java'),
+    (1, 'Python'),
+    (1, 'SQL'),
+    (2, 'JavaScript'),
+    (2, 'HTML'),
+    (2, 'CSS'),
+    (3, 'PHP'),
+    (3, 'MySQL'),
+    (3, 'React');

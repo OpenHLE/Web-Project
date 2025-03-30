@@ -279,3 +279,14 @@ table input[type="submit"]:hover {
 .cancel-button:hover {
     background-color: #c82333;
 }
+
+/* Save changed successfully highlight */
+.highlight-row {
+    background-color: #4CAF50;
+    transition: background-color 0.5s ease;
+    animation: highlight 2s ease;
+}
+@keyframes highlight {
+    0% { background-color: #45a049; }
+    100% { background-color: #4CAF50; }
+}
