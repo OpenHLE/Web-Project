@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Update EOI data
     elseif ($action == "update_eoi") {
-        $eoi_id = isset($data['eoi_id']) ? $data['eoi_id'] : '';
+        $eoi_id = isset($_POST["eoi_id"]) ? $_POST["eoi_id"] : "";
         if (!empty($eoi_id)) {
             $message = updateEOIData($conn, $_POST);
             $results = listAllEOIs($conn, $sort_field, $sort_order);
@@ -525,7 +525,7 @@ function updateEOIData($conn, $data) {
                 <?php endif; ?>
                 <?php if (!$editing): ?>
                 <div class="edit-eoi-form">
-                    <form method="post" action="">
+                    <form method="post" action="#results-section">
                         <input type="hidden" name="action" value="edit_eoi">
                         <input type="hidden" name="sort_field" value="<?php echo $sort_field; ?>">
                         <input type="hidden" name="sort_order" value="<?php echo $sort_order; ?>">
@@ -593,12 +593,12 @@ required></td>
                 <td><input type="email" name="email" value="<?php echo htmlspecialchars($eoi['email']); ?>" required></td>
                 <td><input type="text" name="phone" value="<?php echo htmlspecialchars($eoi['phone']); ?>" required></td>
                 <td>
-                    <textarea name="skills" rows="4" cols="30" placeholder="Enter skills separated by commas"><?php 
+                    <input type="text" name="skills" value="<?php 
                         // Convert skills array to comma-separated string
                         if (!empty($eoi['skills'])) {
                             echo htmlspecialchars(implode(', ', $eoi['skills']));
                         }
-                    ?></textarea>
+                    ?>" placeholder="Skills (comma separated)">
                     <br>
                     <input type="text" name="other_skills" value="<?php echo htmlspecialchars($eoi['other_skills']); ?>" placeholder="Other Skills">
                 </td>
