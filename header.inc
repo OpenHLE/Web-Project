@@ -11,6 +11,7 @@
             <li id="jobs"><a href="jobs.php">Career</a></li>
             <li id="apply"><a href="apply.php">Apply</a></li>
             <li id="abt"><a href="about.php">About</a></li>
+            <li id="mng"><a href="manage.php">Manage</a></li>
             <li id="enhancement"><a href="enhancement.php">Enhance</a></li>
             <span class="nav-highlight"></span>
         </ul>
