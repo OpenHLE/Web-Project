@@ -1,112 +1,119 @@
-
+/*pseudo-class for <html> tag*/
+:root {
+    --dark-blue: #1A1A2E;
+    --navy-blue: #16213E;
+    --medium-blue: #0F3460;
+    --accent-red: #E94560;
+    --light-gray: #F9F9F9;
+}
 /*-----------------------------NAVBAR---------------------------------*/
-    .nav-highlight{
-        position: absolute;
-        top: 0;
-        left: 9px;
-        width: 85px;
-        height: 100%;
-        background-color: var(--accent-red);
-        border-radius: 8px;
-        transition: 0.3s ease-in-out;
-        z-index: 1;
-    }
-    
-    nav ul li:nth-child(1):hover ~ .nav-highlight {
-    transform: translateX(-5px);
-    width: 75px; 
+.nav-highlight{
+    position: absolute;
+    top: 0;
+    left: 9px;
+    width: 85px;
+    height: 100%;
+    background-color: var(--accent-red);
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    z-index: 1;
+}
+
+nav ul li:nth-child(1):hover ~ .nav-highlight {
+transform: translateX(-5px);
+width: 75px; 
 }
 nav ul li:nth-child(2):hover ~ .nav-highlight {
-    transform: translateX(82px);
-    width: 75px;
+transform: translateX(82px);
+width: 75px;
 }
 nav ul li:nth-child(3):hover ~ .nav-highlight {
-    transform: translateX(167px);
-    width: 75px;
+transform: translateX(167px);
+width: 75px;
 }
 
 nav ul li:nth-child(4):hover ~ .nav-highlight {
-    transform: translateX(247px);
-    width: 80px;
+transform: translateX(247px);
+width: 80px;
 }
 
 nav ul li:nth-child(5):hover ~ .nav-highlight {
-    transform: translateX(337px);
-    width: 85px;
+transform: translateX(337px);
+width: 85px;
 }
 
 nav ul li:nth-child(6):hover ~ .nav-highlight {
-    transform: translateX(437px);
-    width: 85px;
+transform: translateX(437px);
+width: 85px;
 }
 
 
 /* Initial position for the active page */
-    nav ul li  ~ .nav-highlight {
-        transform: translateX(82px);
-        width: 75px;
-    }
+nav ul li  ~ .nav-highlight {
+    transform: translateX(82px);
+    width: 75px;
+}
 
 /*--------------------------CARREERS----------------------------*/
 
 
 body{
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    position: relative;
-    min-height: 100vh;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+display: flex;
+position: relative;
+min-height: 100vh;
 }
 
 
 
 .careers {
-    justify-content: center;
-    margin: 10px auto 0 auto; 
-    max-width: 1200px;
-    padding: 20px;
-    padding-top: 140px;
-    text-align: center;
-    flex: 1;
-    min-height: 490px;
+justify-content: center;
+margin: 10px auto 0 auto; 
+max-width: 1200px;
+padding: 20px;
+padding-top: 140px;
+text-align: center;
+flex: 1;
+min-height: 490px;
 }
-  
+
 .careers h2 {
-    font-size: 40px;
-    margin-bottom: 20px;
-    color: var(--light-gray);
+font-size: 40px;
+margin-bottom: 20px;
+color: var(--light-gray);
 }
 
 /*-----------------------------Filter icon----------------------*/
 .filter-toggle {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 10px;
+position: relative;
+display: inline-block;
+margin-bottom: 10px;
 }
-  
+
 #toggle-filters {
-    display: none;
+display: none;
 }
 
 .filter-icon img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    
-    transition: transform 0.2s ease;
+width: 30px;
+height: 30px;
+cursor: pointer;
+
+transition: transform 0.2s ease;
 }
-  
+
 .filter-icon img:hover {
-    transform: scale(1.2);
+transform: scale(1.2);
 }
-  
+
 #filter-frontend, label[for="filter-frontend"],
 #filter-backend, label[for="filter-backend"],
 #filter-data, label[for="filter-data"],
 #filter-support, label[for="filter-support"] {
-    display: none;  /* Hidden initially */
-    margin: 0;
+display: none;  /* Hidden initially */
+margin: 0;
 }
 
 #toggle-filters:checked ~ #filter-frontend,
@@ -117,108 +124,172 @@ body{
 #toggle-filters:checked ~ label[for="filter-data"],
 #toggle-filters:checked ~ #filter-support,
 #toggle-filters:checked ~ label[for="filter-support"] {
-    display: inline-block; 
-    
+display: inline-block; 
+
 }
 
 /**** Category Filter Logic ****/
 
 /* If #filter-frontend is NOT checked, hide .frontend rows */
 #filter-frontend:not(:checked) ~ .jobs-table .frontend {
-    display: none;
+display: none;
 }
-  
-  /* If #filter-backend is NOT checked, hide .backend rows */
+
+/* If #filter-backend is NOT checked, hide .backend rows */
 #filter-backend:not(:checked) ~ .jobs-table .backend {
-    display: none;
+display: none;
 }
-  
-  /* If #filter-data is NOT checked, hide .data rows */
+
+/* If #filter-data is NOT checked, hide .data rows */
 #filter-data:not(:checked) ~ .jobs-table .data {
-    display: none;
+display: none;
 }
 #filter-support:not(:checked) ~ .jobs-table .support {
-    display: none;
+display: none;
 }
 
 .jobslist{
-    padding-right: 10%;
-    padding-left: 10%;
-    /*border: 2px solid ;*/
-    justify-items: flex-start;
-    align-content: center;
+padding-right: 10%;
+padding-left: 10%;
+/*border: 2px solid ;*/
+justify-items: flex-start;
+align-content: center;
 }
 
 .jobs-table {
-    width: 100%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    overflow-x: auto;
+width: 100%;
+margin: 0 auto;
+border-collapse: collapse;
+overflow-x: auto;
 }
-  
+
 .jobs-table thead tr {
-    background-color: var(--navy-blue);
+background-color: var(--navy-blue);
 }
-  
+
 .jobs-table th {
-    color: var(--light-gray);
-    text-transform: uppercase;
-    padding: 12px;
-    border: 1px solid var(--dark-blue);
+color: var(--light-gray);
+text-transform: uppercase;
+padding: 12px;
+border: 1px solid var(--dark-blue);
 }
-  
+
 .jobs-table td {
-    padding: 12px;
-    border: 1px solid var(--dark-blue);
-    color: var(--light-gray);
+padding: 12px;
+border: 1px solid var(--dark-blue);
+color: var(--light-gray);
 }
-  
+
 .jobs-table td a {
-    color: #F28899;
-    text-decoration: none;
+color: #F28899;
+text-decoration: none;
 }
-  
+
 .jobs-table td a:hover {
-    text-decoration: underline;
+text-decoration: underline;
 }
 
 /*--row animations--*/
 
 .jobs-table tbody tr{
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: relative;
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+position: relative;
 }
 
 .jobs-table tbody tr:hover{
-    transform: scale(1.15);
-    box-shadow: 0px 4px 10px rgba(135, 124, 240, 0.2);
-    background-color: rgba(206, 230, 235, 0);
+transform: scale(1.15);
+box-shadow: 0px 4px 10px rgba(135, 124, 240, 0.2);
+background-color: rgba(206, 230, 235, 0);
 }
 
 .jobs-table tbody tr::after{
-    content: attr(data-info);   /* Uses data-info attribute from HTML */
-    display: block;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    font-size: 12px;
-    padding: 5px;
-    position: absolute;
-    bottom: 50px;
-    left: 103%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    border-radius: 4px;
-    opacity: 0;
-    transition: opacity 0.2s ease, bottom 0.2s ease;
-    pointer-events: none;
+content: attr(data-info);   /* Uses data-info attribute from HTML */
+display: block;
+background-color: rgba(0, 0, 0, 0.8);
+color: white;
+font-size: 12px;
+padding: 5px;
+position: absolute;
+bottom: 50px;
+left: 103%;
+transform: translateX(-50%);
+white-space: nowrap;
+border-radius: 4px;
+opacity: 0;
+transition: opacity 0.2s ease, bottom 0.2s ease;
+pointer-events: none;
 }
 
 .jobs-table tbody tr:hover::after{
-    opacity: 1;
-    bottom: 10px;
+opacity: 1;
+bottom: 10px;
 }
 
 .jobs-table tbody:hover > tr:not(:hover){
-    filter: blur(0.8px);
-    transform: scale(0.9);
+filter: blur(0.8px);
+transform: scale(0.9);
 }
+/*Search Bar Styling*/
+.search {
+    width: fit-content; 
+    display: flex;
+    margin: 3% auto; 
+    align-items: center;
+    padding: 10px 15px; 
+    background: #F9F9F9;
+    border-radius: 28px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1; 
+}
+
+.search-input {
+    font-size: 16px;
+    color: #000; 
+    outline: none;
+    border: none;
+    background: transparent;
+    padding: 5px 10px;
+    width: 200px;
+    z-index: 1;
+}
+
+.search-input::placeholder,
+.search-icon {
+    color: rgba(0, 0, 0, 0.5);
+}
+.search-btn, .clear-btn {
+    font-size: 16px;
+    padding: 8px 15px; 
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.search-btn {
+    background: #007BFF;
+    color: white;
+    margin-left: 8px;
+}
+
+.search-btn:hover {
+    background: #0056b3;
+}
+
+.clear-btn {
+    background: #FF4C4C;
+    color: white;
+    margin-left: 5px;
+}
+
+.clear-btn:hover {
+    background: #c0392b;
+}
+/*Unavailable*/
+.unv{ color: #808080;  
+     
+    opacity: 0.3;  
+    
+    cursor: not-allowed;}
+.unv1{color: #808080;  opacity: 0.3;}    
