@@ -604,9 +604,7 @@ function updateEOIData($conn, $data) {
                             <th>Postcode</th>
                             <th><?php echo getSortableHeaderLink('email', 'Email', $sort_field, $sort_order, $action, $params); ?></th>
                             <th>Phone</th>
-                            <th>Skill 1</th>
-                            <th>Skill 2</th>
-                            <th>Other Skills</th>
+                            <th>Skills</th>
                             <th><?php echo getSortableHeaderLink('status', 'Status', $sort_field, $sort_order, $action, $params); ?></th>
                         </tr>
                     </thead>
@@ -639,9 +637,11 @@ required></td>
                 <td><input type="text" name="postcode" value="<?php echo htmlspecialchars($eoi['postcode']); ?>" pattern="[0-9]{4}" required></td>
                 <td><input type="email" name="email" value="<?php echo htmlspecialchars($eoi['email']); ?>" required></td>
                 <td><input type="text" name="phone" value="<?php echo htmlspecialchars($eoi['phone']); ?>" required></td>
-                <td><input type="text" name="skill1" value="<?php echo htmlspecialchars(isset($eoi['skill1']) ? $eoi['skill1'] : ''); ?>"></td>
-                <td><input type="text" name="skill2" value="<?php echo htmlspecialchars(isset($eoi['skill2']) ? $eoi['skill2'] : ''); ?>"></td>
-                <td><input type="text" name="other_skills" value="<?php echo htmlspecialchars($eoi['other_skills']); ?>"></td>
+                <td>
+                    <input type="text" name="skill1" value="<?php echo htmlspecialchars(isset($eoi['skill1']) ? $eoi['skill1'] : ''); ?>" placeholder="Skill 1"><br>
+                    <input type="text" name="skill2" value="<?php echo htmlspecialchars(isset($eoi['skill2']) ? $eoi['skill2'] : ''); ?>" placeholder="Skill 2"><br>
+                    <input type="text" name="other_skills" value="<?php echo htmlspecialchars($eoi['other_skills']); ?>" placeholder="Other Skills">
+                </td>
                 <td>
                     <select name="status" required>
                         <?php $statuses = ['New', 'Current', 'Final'];
@@ -673,20 +673,18 @@ required></td>
             <td><?php echo htmlspecialchars($eoi['email']); ?></td>
             <td><?php echo htmlspecialchars($eoi['phone']); ?></td>
             <td><?php 
-                $skill_value = '';
-                if (isset($eoi['skill1'])) {
-                    $skill_value = $eoi['skill1'];
+                $skills = [];
+                if (!empty($eoi['skill1'])) {
+                    $skills[] = $eoi['skill1'];
                 }
-                echo htmlspecialchars($skill_value); 
-            ?></td>
-            <td><?php 
-                $skill_value = '';
-                if (isset($eoi['skill2'])) {
-                    $skill_value = $eoi['skill2'];
+                if (!empty($eoi['skill2'])) {
+                    $skills[] = $eoi['skill2'];
                 }
-                echo htmlspecialchars($skill_value); 
+                if (!empty($eoi['other_skills'])) {
+                    $skills[] = $eoi['other_skills'];
+                }
+                echo htmlspecialchars(implode(', ', $skills)); 
             ?></td>
-            <td><?php echo htmlspecialchars($eoi['other_skills']); ?></td>
             <td><?php echo htmlspecialchars($eoi['status']); ?></td>
         </tr>
     <?php 

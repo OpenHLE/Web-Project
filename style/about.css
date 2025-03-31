@@ -495,7 +495,7 @@ body.about-page .nav-highlight {
     width: 80px;
 }
 
-/* Individual hover effects for each nav item */
+/* Individual hover effects for each nav item (navbar fix) */
 body.about-page nav ul li:nth-child(1):hover ~ .nav-highlight {
     transform: translateX(0);
     width: 85px;
@@ -517,6 +517,27 @@ body.about-page nav ul li:nth-child(4):hover ~ .nav-highlight {
 }
 
 body.about-page nav ul li:nth-child(5):hover ~ .nav-highlight {
+    transform: translateX(427px);
+    width: 85px;
+}
+
+/* Dynamic highlight positions based on current page */
+body.home-page .nav-highlight {
+    transform: translateX(0);
+    width: 85px;
+}
+
+body.career-page .nav-highlight {
+    transform: translateX(107px);
+    width: 85px;
+}
+
+body.apply-page .nav-highlight {
+    transform: translateX(210px);
+    width: 85px;
+}
+
+body.enhance-page .nav-highlight {
     transform: translateX(427px);
     width: 85px;
 }

@@ -1,5 +1,7 @@
 <?php
 // PHP version of the about page
+// Set current page for navbar highlighting
+$currentPage = "about";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +16,7 @@
 
     <title>About Us</title>
 </head>
-<body class="about-page">
+<body class="<?php echo $currentPage; ?>-page">
     <?php include("header.inc") ?>
 
     <main>
@@ -176,56 +178,5 @@
     </main>
 
     <?php include("footer.inc")?>
-
-    <script>
-        // Fix for navbar highlight
-        document.addEventListener("DOMContentLoaded", function() {
-            const navItems = document.querySelectorAll('nav ul li');
-            const highlight = document.querySelector('.nav-highlight');
-            
-            // Set initial position for About page
-            highlight.style.transform = "translateX(317px)";
-            highlight.style.width = "80px";
-            
-            // Add hover event listeners
-            navItems.forEach((item, index) => {
-                item.addEventListener('mouseenter', function() {
-                    switch(index) {
-                        case 0: // Home
-                            highlight.style.transform = "translateX(0)";
-                            highlight.style.width = "85px";
-                            break;
-                        case 1: // Career
-                            highlight.style.transform = "translateX(107px)";
-                            highlight.style.width = "85px";
-                            break;
-                        case 2: // Apply
-                            highlight.style.transform = "translateX(210px)";
-                            highlight.style.width = "85px";
-                            break;
-                        case 3: // About
-                            highlight.style.transform = "translateX(317px)";
-                            highlight.style.width = "80px";
-                            break;
-                        case 4: // Enhance
-                            highlight.style.transform = "translateX(427px)";
-                            highlight.style.width = "85px";
-                            break;
-                    }
-                });
-                
-                // Return to default position when mouse leaves the navbar
-                item.addEventListener('mouseleave', function() {
-                    // Small delay to prevent flickering during transitions between items
-                    setTimeout(() => {
-                        if (!navItems.some(li => li.matches(':hover'))) {
-                            highlight.style.transform = "translateX(317px)";
-                            highlight.style.width = "80px";
-                        }
-                    }, 50);
-                });
-            });
-        });
-    </script>
 </body>
 </html>
