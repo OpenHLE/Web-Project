@@ -7,6 +7,53 @@
     --light-gray: #F9F9F9;
 }
 
+/*-----------------------------NAVBAR---------------------------------*/
+.nav-highlight{
+    position: absolute;
+    top: 0;
+    left: 9px;
+    width: 85px;
+    height: 100%;
+    background-color: var(--accent-red);
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    z-index: 1;
+}
+
+nav ul li:nth-child(1):hover ~ .nav-highlight {
+    transform: translateX(-5px);
+    width: 75px; 
+}
+nav ul li:nth-child(2):hover ~ .nav-highlight {
+    transform: translateX(82px);
+    width: 75px;
+}
+nav ul li:nth-child(3):hover ~ .nav-highlight {
+    transform: translateX(167px);
+    width: 75px;
+}
+
+nav ul li:nth-child(4):hover ~ .nav-highlight {
+    transform: translateX(247px);
+    width: 80px;
+}
+
+nav ul li:nth-child(5):hover ~ .nav-highlight {
+    transform: translateX(337px);
+    width: 85px;
+}
+
+nav ul li:nth-child(6):hover ~ .nav-highlight {
+    transform: translateX(437px);
+    width: 85px;
+}
+
+/* Initial position for the active page */
+nav ul li  ~ .nav-highlight {
+    transform: translateX(167px);
+    width: 75px;
+}
+
 /*Box Style*/
 
 .title{font-size: clamp(1rem, 3vw, 2rem);}
