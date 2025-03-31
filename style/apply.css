@@ -13,32 +13,38 @@
 }
 
 nav ul li:nth-child(1):hover ~ .nav-highlight {
-    transform: translateX(0px);
-    width: 85px; 
+    transform: translateX(-5px);
+    width: 75px; 
 }
 nav ul li:nth-child(2):hover ~ .nav-highlight {
-    transform: translateX(107px);
-    width: 85px;
+    transform: translateX(82px);
+    width: 75px;
 }
 nav ul li:nth-child(3):hover ~ .nav-highlight {
-    transform: translateX(210px);
-    width: 85px;
+    transform: translateX(167px);
+    width: 75px;
 }
 
 nav ul li:nth-child(4):hover ~ .nav-highlight {
-    transform: translateX(317px);
+    transform: translateX(247px);
     width: 80px;
 }
 
 nav ul li:nth-child(5):hover ~ .nav-highlight {
-    transform: translateX(427px);
+    transform: translateX(337px);
     width: 85px;
 }
 
+nav ul li:nth-child(6):hover ~ .nav-highlight {
+    transform: translateX(437px);
+    width: 85px;
+}
+
+
 /* Initial position for the active page */
 nav ul li  ~ .nav-highlight {
-    transform: translateX(210px);
-    width: 85px;
+    transform: translateX(167px);
+    width: 75px;
 }
 
 /*---------body---------*/
