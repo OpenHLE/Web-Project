@@ -484,7 +484,7 @@ nav ul li a {
     width: 80px;
     height: 100%;
     background-color: var(--accent-red);
-    border-radius: 5px;
+    border-radius: 8px;
     transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
     z-index: 1;
 }
@@ -495,9 +495,9 @@ body.about-page .nav-highlight {
     width: 80px;
 }
 
-/* Individual hover effects for each nav item (navbar fix) */
+/* Individual hover effects for each nav item */
 body.about-page nav ul li:nth-child(1):hover ~ .nav-highlight {
-    transform: translateX(-5);
+    transform: translateX(-5px);
     width: 75px;
 }
 
@@ -523,27 +523,6 @@ body.about-page nav ul li:nth-child(5):hover ~ .nav-highlight {
 
 body.about-page nav ul li:nth-child(6):hover ~ .nav-highlight {
     transform: translateX(437px);
-    width: 85px;
-}
-
-/* Dynamic highlight positions based on current page */
-body.home-page .nav-highlight {
-    transform: translateX(0);
-    width: 85px;
-}
-
-body.career-page .nav-highlight {
-    transform: translateX(107px);
-    width: 85px;
-}
-
-body.apply-page .nav-highlight {
-    transform: translateX(210px);
-    width: 85px;
-}
-
-body.enhance-page .nav-highlight {
-    transform: translateX(427px);
     width: 85px;
 }
 
@@ -676,6 +655,3 @@ body.enhance-page .nav-highlight {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(10px); }
 }
-
-
-
