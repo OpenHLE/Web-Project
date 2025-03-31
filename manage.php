@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Update EOI data
     elseif ($action == "update_eoi") {
-        $eoi_id = isset($_POST["eoi_id"]) ? $_POST["eoi_id"] : "";
+        $eoi_id = isset($data['eoi_id']) ? $data['eoi_id'] : '';
         if (!empty($eoi_id)) {
             $message = updateEOIData($conn, $_POST);
             $results = listAllEOIs($conn, $sort_field, $sort_order);
@@ -129,19 +129,8 @@ function listAllEOIs($conn, $sort_field = "id", $sort_order = "ASC") {
                 }
             }
             
-            // Add skills to row
-            $skill1 = '';
-            if (isset($skills[0])) {
-                $skill1 = $skills[0];
-            }
-            $skill2 = '';
-            if (isset($skills[1])) {
-                $skill2 = $skills[1];
-            }
-            if (!empty($skills)) {
-                $row['skill1'] = $skill1;
-                $row['skill2'] = $skill2;
-            }
+            // Add skills to row as array
+            $row['skills'] = $skills;
             
             $eois[] = $row;
         }
@@ -180,19 +169,8 @@ function listEOIsByJobRef($conn, $job_ref, $sort_field = "id", $sort_order = "AS
                 }
             }
             
-            // Add skills to row
-            $skill1 = '';
-            if (isset($skills[0])) {
-                $skill1 = $skills[0];
-            }
-            $skill2 = '';
-            if (isset($skills[1])) {
-                $skill2 = $skills[1];
-            }
-            if (!empty($skills)) {
-                $row['skill1'] = $skill1;
-                $row['skill2'] = $skill2;
-            }
+            // Add skills to row as array
+            $row['skills'] = $skills;
             
             $eois[] = $row;
         }
@@ -256,19 +234,8 @@ function listEOIsByApplicant($conn, $first_name, $last_name, $sort_field = "id",
                 }
             }
             
-            // Add skills to row
-            $skill1 = '';
-            if (isset($skills[0])) {
-                $skill1 = $skills[0];
-            }
-            $skill2 = '';
-            if (isset($skills[1])) {
-                $skill2 = $skills[1];
-            }
-            if (!empty($skills)) {
-                $row['skill1'] = $skill1;
-                $row['skill2'] = $skill2;
-            }
+            // Add skills to row as array
+            $row['skills'] = $skills;
             
             $eois[] = $row;
         }
@@ -361,18 +328,7 @@ function getEOIById($conn, $eoi_id) {
         }
         
         // Add skills to row
-        $skill1 = '';
-        if (isset($skills[0])) {
-            $skill1 = $skills[0];
-        }
-        $skill2 = '';
-        if (isset($skills[1])) {
-            $skill2 = $skills[1];
-        }
-        if (!empty($skills)) {
-            $eoi['skill1'] = $skill1;
-            $eoi['skill2'] = $skill2;
-        }
+        $eoi['skills'] = $skills;
         
         return $eoi;
     }
@@ -394,8 +350,7 @@ function updateEOIData($conn, $data) {
     $phone = isset($data['phone']) ? $data['phone'] : '';
     $status = isset($data['status']) ? $data['status'] : '';
     $other_skills = isset($data['other_skills']) ? $data['other_skills'] : '';
-    $skill1 = isset($data['skill1']) ? $data['skill1'] : '';
-    $skill2 = isset($data['skill2']) ? $data['skill2'] : '';
+    $skills = isset($data['skills']) ? $data['skills'] : '';
     
     // Start transaction
     mysqli_autocommit($conn, FALSE);
@@ -450,25 +405,25 @@ function updateEOIData($conn, $data) {
         }
         
         // Insert new skills
-        if (!empty($skill1)) {
-            $insert_sql = "INSERT INTO EOI_Skills (EOInumber, Skills) VALUES (?, ?)";
-            $stmt = mysqli_prepare($conn, $insert_sql);
-            mysqli_stmt_bind_param($stmt, "is", $eoi_id, $skill1);
-            $result = mysqli_stmt_execute($stmt);
-            
-            if (!$result) {
-                throw new Exception("Failed to insert skill1");
+        if (!empty($skills)) {
+            // Skills might be submitted as a comma-separated string
+            if (is_string($skills)) {
+                $skills_array = array_map('trim', explode(',', $skills));
+            } else {
+                $skills_array = $skills;
             }
-        }
-        
-        if (!empty($skill2)) {
-            $insert_sql = "INSERT INTO EOI_Skills (EOInumber, Skills) VALUES (?, ?)";
-            $stmt = mysqli_prepare($conn, $insert_sql);
-            mysqli_stmt_bind_param($stmt, "is", $eoi_id, $skill2);
-            $result = mysqli_stmt_execute($stmt);
             
-            if (!$result) {
-                throw new Exception("Failed to insert skill2");
+            foreach ($skills_array as $skill) {
+                if (!empty($skill)) {
+                    $insert_sql = "INSERT INTO EOI_Skills (EOInumber, Skills) VALUES (?, ?)";
+                    $stmt = mysqli_prepare($conn, $insert_sql);
+                    mysqli_stmt_bind_param($stmt, "is", $eoi_id, $skill);
+                    $result = mysqli_stmt_execute($stmt);
+                    
+                    if (!$result) {
+                        throw new Exception("Failed to insert skill: " . $skill);
+                    }
+                }
             }
         }
         
@@ -638,8 +593,13 @@ required></td>
                 <td><input type="email" name="email" value="<?php echo htmlspecialchars($eoi['email']); ?>" required></td>
                 <td><input type="text" name="phone" value="<?php echo htmlspecialchars($eoi['phone']); ?>" required></td>
                 <td>
-                    <input type="text" name="skill1" value="<?php echo htmlspecialchars(isset($eoi['skill1']) ? $eoi['skill1'] : ''); ?>" placeholder="Skill 1"><br>
-                    <input type="text" name="skill2" value="<?php echo htmlspecialchars(isset($eoi['skill2']) ? $eoi['skill2'] : ''); ?>" placeholder="Skill 2"><br>
+                    <textarea name="skills" rows="4" cols="30" placeholder="Enter skills separated by commas"><?php 
+                        // Convert skills array to comma-separated string
+                        if (!empty($eoi['skills'])) {
+                            echo htmlspecialchars(implode(', ', $eoi['skills']));
+                        }
+                    ?></textarea>
+                    <br>
                     <input type="text" name="other_skills" value="<?php echo htmlspecialchars($eoi['other_skills']); ?>" placeholder="Other Skills">
                 </td>
                 <td>
@@ -673,17 +633,19 @@ required></td>
             <td><?php echo htmlspecialchars($eoi['email']); ?></td>
             <td><?php echo htmlspecialchars($eoi['phone']); ?></td>
             <td><?php 
-                $skills = [];
-                if (!empty($eoi['skill1'])) {
-                    $skills[] = $eoi['skill1'];
+                $all_skills = [];
+                
+                // Add skills from EOI_Skills table
+                if (!empty($eoi['skills'])) {
+                    $all_skills = $eoi['skills'];
                 }
-                if (!empty($eoi['skill2'])) {
-                    $skills[] = $eoi['skill2'];
-                }
+                
+                // Add other skills if present
                 if (!empty($eoi['other_skills'])) {
-                    $skills[] = $eoi['other_skills'];
+                    $all_skills[] = $eoi['other_skills'];
                 }
-                echo htmlspecialchars(implode(', ', $skills)); 
+                
+                echo htmlspecialchars(implode(', ', $all_skills)); 
             ?></td>
             <td><?php echo htmlspecialchars($eoi['status']); ?></td>
         </tr>
