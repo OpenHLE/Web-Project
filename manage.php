@@ -95,6 +95,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $eoi_id = isset($_POST["eoi_id"]) ? $_POST["eoi_id"] : "";
         if (!empty($eoi_id)) {
             $message = updateEOIData($conn, $_POST);
+            // Set the action to list_all for redisplay after update
+            $action = "list_all";
             $results = listAllEOIs($conn, $sort_field, $sort_order);
         } else {
             $message = "Invalid EOI ID.";

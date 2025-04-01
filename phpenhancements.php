@@ -53,7 +53,10 @@ function getSortableHeaderLink($field, $display_name, $current_sort_field, $curr
     $new_sort_order = ($field == $current_sort_field && $current_sort_order == 'ASC') ? 'DESC' : 'ASC';
     
     // Start building form with the anchor for scrolling to results
-    $link = '<form method="post" action="#results" style="display:inline; margin:0; padding:0;">';
+    $link = '<form method="post" action="#results-section" style="display:inline; margin:0; padding:0;">';
+    
+    // Always set action to list_all when sorting to ensure table is displayed
+    $action = !empty($action) ? $action : 'list_all';
     $link .= '<input type="hidden" name="action" value="' . htmlspecialchars($action) . '">';
     $link .= '<input type="hidden" name="sort_field" value="' . htmlspecialchars($field) . '">';
     $link .= '<input type="hidden" name="sort_order" value="' . htmlspecialchars($new_sort_order) . '">';
