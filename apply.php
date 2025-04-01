@@ -1,15 +1,13 @@
 <?php
 session_start();
 $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
-$input_data = isset($_SESSION['input_data']) ? $_SESSION['input_data'] : []; // PHP 5.4 compatible syntax
-if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_SESSION['from_process'])) {
+$input_data = isset($_SESSION['input_data']) ? $_SESSION['input_data'] : []; // PHP 5.4 
+if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_SESSION['from_process']) && !isset($_SESSION['from_jobs1'])) {
     session_unset();
     session_destroy();
-} else {
-    unset($_SESSION['from_process']); // Remove the flag after redirect
-}
+} 
 //echo "<pre>";
-///print_r($_SESSION);
+//print_r($_SESSION);
 //echo "</pre>";
 ?>
 <!DOCTYPE HTML>
@@ -49,7 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_SESSION['from_process'])) {
                 <tr>
                     <td class="title"><label for="job_mun">Job reference number:</label></td>
                     <td class="inputarea"><input type="text" name="job_num" id="job_mun" pattern="[A-Z0-9]{5}" required="required" placeholder="Please enter Job Reference number. E.g: AB123"
-                    value="<?php echo htmlspecialchars(isset($input_data['jobnum']) ? $input_data['jobnum'] : ''); ?>"></td>
+                    value="<?php echo htmlspecialchars(
+						isset($input_data['jobnum']) ? $input_data['jobnum'] : 
+						(isset($_SESSION['from_jobs1']) && isset($_SESSION['job_ref_num']) ? $_SESSION['job_ref_num'] : '')
+						); ?>"></td>
                 </tr>
                 <tr>
                     <td class="title"><label for="fname">First name:</label></td>
@@ -218,7 +219,11 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_SESSION['from_process'])) {
     </section>
 
 
-	<?php session_unset();?>
+	<?php 
+	if (isset($_SESSION['from_process'])) {
+		unset($_SESSION['from_process']);
+		session_unset();}
+		?>
 	
 
 	<?php include("footer.inc")?>
