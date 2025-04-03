@@ -22,6 +22,9 @@
 <p id="gl4"><a href="#e5">Responsive Design</a></p>
 <p id="gl5"><a href="#e6">Glossary</a></p>
 <p id="gl6"><a href="#e7">Map</a></p>
+<p id="gl7"><a href="#e8">Jobs Search</a></p>
+<p id="gl8"><a href="#e9">Autofill, Auto Refill and Error Messages</a></p>
+<p id="gl9"><a href="#e10">Table Sorting and Update</a></p>
 <br><hr><br>
 <!------------------------------------------------------------------------->
 
@@ -165,6 +168,97 @@
         <p>Back to: <a href="#e1">Glossary</a></p>  
     </article>
 </section>
+
+<!-------------------------------------------------------------------------------->
+
+<section id="e8">
+    <h2 >Jobs Search</h2>
+    <article>
+        <img src="images/" alt="Search Job pic">
+        <h3>How It Functions:</h3>
+    <p>...</p>
+    <!---May enter more details on the code part-->
+        <h3>How It Enhances:</h3>
+    <p>...</p>
+        <h3>Code:</h3>
+        <img src="images/" alt="">
+    <p>...</p>
+        <h3>Key Usages:</h3>
+    <p>...</p>
+        <h3>Link:  <a href="" id="linki">Here</a></h3>  
+        <p>Back to: <a href="#e1">Glossary</a></p>  
+    </article>
+</section>
+
+<!-------------------------------------------------------------------------------->
+
+<section id="e9">
+    <h2>Autofill, Auto Refill and Error Messages</h2>
+    <article>
+        <img src="images/" alt="applyfeature">
+        <h3>How It Functions:</h3>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+        
+        <h3>How It Enhances:</h3>
+    <p>...</p>
+        <h3>Code:</h3>
+        <img src="images/" alt="">
+    <p>...</p>
+        <h3>Key Usages:</h3>
+    <p>...</p>
+        <h3>Link:  <a href="" id="linki">Here</a></h3>  
+    <p>Back to: <a href="#e1">Glossary</a></p>  
+    </article>
+</section>
+
+<!-------------------------------------------------------------------------------->
+
+<section id="e10">
+    <h2>Table Sorting and Inline Editing</h2>
+    <article>
+        <h1 style="text-align: center;">Before Sorting</h1>
+        <img margin-bottom: 50px; src="images/sort1.png" alt="sort1">
+        <h1 style="text-align: center; margin-top: 70px;">After Sorting</h1>
+        <img src="images/sort2.png" alt="sort2">
+        <h1 style="text-align: center; margin-top: 70px; margin-bottom: -40px;">Inline Editing Function</h1>
+        <video width="960" height="640" controls style="display: block; margin: 0 auto;">
+            <source src="images/update.mp4" type="video/mp4" alt="update">
+        </video>
+
+        <h3>How It Functions:</h3>
+    <p>- Table Sorting:</p>  
+    <p>+ When clicked on a field, the table will sort the data in an particular order.</p>
+    <p>+ Additionally there are also arrows to indicate the order and which field is being sorted </p>
+
+    <p>- Inline Editing Function:</p>  
+    <p>+ Enter EOI number so select which field to edit, then change any info within the table with the right format.</p>
+    <p>+ After clicking Save Changes, the data will be automatically updated both in the table and the MySQL database.</p>    
+        <h3>How It Enhances:</h3>
+    <p>- Table Sorting:</p>  
+    <p>+ Sorting data in order will make it easier for the user to view and find data.</p>
+
+    <p>- Inline Editing Function:</p>  
+    <p>+ Creates a more user-friendly and simple UI.</p>    
+        <h3>Code:</h3>
+        <h1 style="text-align: center;">Sorting Code</h1>
+        <img src="images/sortcode.png" alt="sortcode">
+        <h1 style="text-align: center; margin-top: 70px;">Inline Editing Code</h1>
+        <img src="images/inlinecode.png" alt="inlinecode">
+  
+        <h3>Key Usages:</h3>
+    <p>- Table Sorting:</p>  
+    <p>+ Click on different titles to sort data in order.</p>
+
+    <p>- Inline Editing Function:</p>  
+    <p>+ Enter EOI number to edit specific data, saved changes will also affect the MySQL database</p>
+    
+        <h3>Link:  <a href="" id="linki">Here</a></h3>  
+        <p>Back to: <a href="#e1">Glossary</a></p>  
+    </article>
+</section>
+
 <br><hr><br>
 
     <?php include("footer.inc")?>
