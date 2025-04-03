@@ -465,7 +465,7 @@ function updateEOIData($conn, $data) {
         
         <div class="form-section">
             <h2>List All EOIs</h2>
-            <form method="post" action="">
+            <form method="post" action="#results-section">
                 <input type="hidden" name="action" value="list_all">
                 <?php echo getSortFormInputs($sort_field, $sort_order); ?>
                 <input type="submit" value="List All EOIs">
@@ -474,7 +474,7 @@ function updateEOIData($conn, $data) {
         
         <div class="form-section">
             <h2>List EOIs by Job Reference Number</h2>
-            <form method="post" action="">
+            <form method="post" action="#results-section">
                 <input type="hidden" name="action" value="list_by_job">
                 <input type="text" name="job_ref" placeholder="Job Reference Number" pattern="[A-Za-z]{2}[0-9]{2,3}" title="2 letters followed by 2-3 digits (e.g., DB01, AB123)">
                 <?php echo getSortFormInputs($sort_field, $sort_order); ?>
@@ -484,7 +484,7 @@ function updateEOIData($conn, $data) {
         
         <div class="form-section">
             <h2>List EOIs by Applicant Name</h2>
-            <form method="post" action="">
+            <form method="post" action="#results-section">
                 <input type="hidden" name="action" value="list_by_applicant">
                 <input type="text" name="first_name" placeholder="First Name">
                 <input type="text" name="last_name" placeholder="Last Name">
@@ -495,7 +495,7 @@ function updateEOIData($conn, $data) {
         
         <div class="form-section">
             <h2>Delete EOIs by Job Reference Number</h2>
-            <form method="post" action="" onsubmit="return confirm('Are you sure you want to delete all EOIs with this job reference number?');">
+            <form method="post" action="#results-section" onsubmit="return confirm('Are you sure you want to delete all EOIs with this job reference number?');">
                 <input type="hidden" name="action" value="delete_by_job">
                 <input type="text" name="job_ref" placeholder="Job Reference Number" pattern="[A-Za-z]{2}[0-9]{2,3}" title="2 letters followed by 2-3 digits (e.g., DB01, AB123)" required>
                 <input type="submit" value="Delete">
@@ -661,7 +661,7 @@ required></td>
             <?php if ($editing && $edit_eoi): ?>
                 <div class="save-button-container">
                     <input type="submit" form="edit-form" value="Save Changes" class="save-button">
-                    <form method="post" action="" style="display: inline;">
+                    <form method="post" action="#results-section" style="display: inline;">
                         <input type="hidden" name="action" value="list_all">
                         <input type="hidden" name="sort_field" value="<?php echo $sort_field; ?>">
                         <input type="hidden" name="sort_order" value="<?php echo $sort_order; ?>">
