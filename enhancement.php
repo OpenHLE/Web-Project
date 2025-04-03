@@ -218,12 +218,12 @@
 <section id="e10">
     <h2>Table Sorting and Inline Editing</h2>
     <article>
-        <h1 style="text-align: center;">Before Sorting</h1>
-        <img margin-bottom: 50px; src="images/sort1.png" alt="sort1">
-        <h1 style="text-align: center; margin-top: 70px;">After Sorting</h1>
+        <h1 class="sort-title">Before Sorting</h1>
+        <img src="images/sort1.png" alt="sort1" class="sort-image">
+        <h1 class="sort-title">After Sorting</h1>
         <img src="images/sort2.png" alt="sort2">
-        <h1 style="text-align: center; margin-top: 70px; margin-bottom: -40px;">Inline Editing Function</h1>
-        <video width="960" height="640" controls style="display: block; margin: 0 auto;">
+        <h1 class="sort-title inline-title">Inline Editing Function</h1>
+        <video class="demo-video" controls>
             <source src="images/update.mp4" type="video/mp4" alt="update">
         </video>
 
@@ -242,9 +242,9 @@
     <p>- Inline Editing Function:</p>  
     <p>+ Creates a more user-friendly and simple UI.</p>    
         <h3>Code:</h3>
-        <h1 style="text-align: center;">Sorting Code</h1>
+        <h1 class="code-title">Sorting Code</h1>
         <img src="images/sortcode.png" alt="sortcode">
-        <h1 style="text-align: center; margin-top: 70px;">Inline Editing Code</h1>
+        <h1 class="code-title">Inline Editing Code</h1>
         <img src="images/inlinecode.png" alt="inlinecode">
   
         <h3>Key Usages:</h3>
