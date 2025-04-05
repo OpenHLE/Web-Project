@@ -40,7 +40,6 @@ nav ul li:nth-child(6):hover ~ .nav-highlight {
     width: 85px;
 }
 
-
 /* Initial position for the active page */
 nav ul li  ~ .nav-highlight {
     transform: translateX(167px);

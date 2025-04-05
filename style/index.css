@@ -169,6 +169,23 @@ nav ul li  ~ .nav-highlight {
     margin: 5px 0;
     border-radius: 5px;
 }
+
+#featuresbox a {
+    text-decoration: none;
+    color: inherit;
+    display: block; 
+    padding: 10px;
+    background-color: var(--dark-blue); 
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect */
+#featuresbox a:hover {
+    background-color: var(--light-blue); 
+    color: #fff; }
+
 /*--------------------------ANIMATIONS----------------------*/
 
 @keyframes fadein{

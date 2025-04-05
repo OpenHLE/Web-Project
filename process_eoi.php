@@ -30,10 +30,7 @@ function var_input($formdata){
     } else {
         $errmsg[] .= "You must fill out the whole form";
         $_SESSION['errors'] = $errmsg;
-        
-        //echo "<pre>";
-        //print_r($errmsg);
-        //echo "</pre>";
+        $_SESSION['from_process'] = true;
         header("location: apply.php");
         exit();
     }
@@ -122,12 +119,13 @@ if (!preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $dob)) {
                 $max_age = 80;
 
                 // Handle people turning 15 today or in the next few days
-                if ($age < $min_age || ($age == $min_age && $dob_this_year > $today)) {
-                    $errmsg[] .= "You must be at least 15 years old.";
+                
+                if ($age < $min_age || ($age == 14 && $dob_this_year > $today && $dob_this_year->format('m-d') != $today->format('m-d'))) {
+                    $errmsg[] .= "You must be 15 years old or older to apply.";
                 }
                 // Handle people turning 81 tomorrow or in the next few days
-                elseif ($age > $max_age || ($age == $max_age && $dob_this_year < $today)) {
-                    $errmsg[] .= "You must be younger than 80 years old.";
+                elseif ($age > $max_age || ($age == 81 && $dob_this_year < $today && $dob_this_year->format('m-d') != $today->format('m-d'))) {
+                    $errmsg[] .= "You must be 80 years old or younger to apply.";
                 }  else {$input_data['dob'] ="$dob_day/$dob_month/$dob_year";}
             }
         }
@@ -204,7 +202,7 @@ if (!empty($errmsg)) {
 } else {
     $_SESSION['success'] = "Your application has been submitted successfully!";
     echo "<p style='color:green;'>Form submitted successfully!</p>";}
-    header("Location: applyconfirm.php");
+    
 //////////////////////////////////////////////////////////////////
 
 
@@ -271,11 +269,12 @@ if ($dbconn){
     // Get the auto-generated EOI id for the inserted record
     $eoi_id = mysqli_insert_id($dbconn);
     mysqli_stmt_close($statementEOI);
-
+    $_SESSION['eoi_id']=$eoi_id;
+    header("Location: applyconfirm.php");
     if (!$eoi_id) {
         die("Error: Could not retrieve EOInumber.");
     }
-    echo "Newly inserted EOInumber: $eoi_id<br>";
+    //echo "Newly inserted EOInumber: $eoi_id<br>";
 
     $insertSkill = "INSERT INTO EOI_Skills (EOInumber, Skills)
                     VALUES (?, ?)";
@@ -296,7 +295,7 @@ if ($dbconn){
         if (!mysqli_stmt_execute($stmtSkill)) {
             die("Execution failed for skill ($skill): " . mysqli_stmt_error($stmtSkill));
         }
-        echo "Inserted skill: $skill<br>"; // Debugging
+        //echo "Inserted skill: $skill<br>"; // Debugging
     }
 
 } else {die("Connection failed: " );}

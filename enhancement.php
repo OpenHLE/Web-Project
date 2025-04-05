@@ -16,15 +16,115 @@
 
 <h2 id="e1">Glossary</h2>
 
+<p id="gl7"><a href="#e8">Jobs Search (Project part 2)</a></p>
+<p id="gl8"><a href="#e9">Autofill, Auto Refill and Error Messages (Project part 2)</a></p>
+<p id="gl9"><a href="#e10">Table Sorting and Update (Project part 2)</a></p>
 <p id="gl1"><a href="#e2">Header: Navigation Bar</a></p>
 <p id="gl2"><a href="#e3">Career: Filtering and Page Branching</a> </p>
 <p id="gl3"><a href="#e4">About: Flip Cards</a> </p>
 <p id="gl4"><a href="#e5">Responsive Design</a></p>
 <p id="gl5"><a href="#e6">Glossary</a></p>
 <p id="gl6"><a href="#e7">Map</a></p>
-<p id="gl7"><a href="#e8">Jobs Search</a></p>
-<p id="gl8"><a href="#e9">Autofill, Auto Refill and Error Messages</a></p>
-<p id="gl9"><a href="#e10">Table Sorting and Update</a></p>
+
+<br><hr><br>
+
+<!-------------------------------------------------------------------------------->
+<section id="e10">
+    <h2>Table Sorting and Inline Editing</h2>
+    <article>
+        <h1 class="sort-title">Before Sorting</h1>
+        <img src="images/sort1.png" alt="sort1" class="sort-image">
+        <h1 class="sort-title">After Sorting</h1>
+        <img src="images/sort2.png" alt="sort2">
+        <h1 class="sort-title inline-title">Inline Editing Function</h1>
+        <video class="demo-video" controls>
+            <source src="images/update.mp4" type="video/mp4" alt="update">
+        </video>
+
+        <h3>How It Functions:</h3>
+    <p>- Table Sorting:</p>  
+    <p>+ When clicked on a field, the table will sort the data in an particular order.</p>
+    <p>+ Additionally there are also arrows to indicate the order and which field is being sorted </p>
+
+    <p>- Inline Editing Function:</p>  
+    <p>+ Enter EOI number so select which field to edit, then change any info within the table with the right format.</p>
+    <p>+ After clicking Save Changes, the data will be automatically updated both in the table and the MySQL database.</p>    
+        <h3>How It Enhances:</h3>
+    <p>- Table Sorting:</p>  
+    <p>+ Sorting data in order will make it easier for the user to view and find data.</p>
+
+    <p>- Inline Editing Function:</p>  
+    <p>+ Creates a more user-friendly and simple UI.</p>    
+        <h3>Code:</h3>
+        <h1 class="code-title">Sorting Code</h1>
+        <img src="images/sortcode.png" alt="sortcode">
+        <h1 class="code-title">Inline Editing Code</h1>
+        <img src="images/inlinecode.png" alt="inlinecode">
+  
+        <h3>Key Usages:</h3>
+    <p>- Table Sorting:</p>  
+    <p>+ Click on different titles to sort data in order.</p>
+
+    <p>- Inline Editing Function:</p>  
+    <p>+ Enter EOI number to edit specific data, saved changes will also affect the MySQL database</p>
+    
+        <h3>Link:  <a href="" id="linki">Here</a></h3>  
+        <p>Back to: <a href="#e1">Glossary</a></p>  
+    </article>
+</section>
+<br><hr><br>
+
+
+<!-------------------------------------------------------------------------------->
+
+<section id="e9">
+    <h2>Autofill, Auto Refill and Error Messages</h2>
+    <article>
+        <img src="images/refill.png" alt="applyfeature">
+        <h3>How It Functions:</h3>
+        <p>When visiting the jobs description page, its ID and a flag that means "come from Jobs description" is set and stored in Session.</p>
+    <p>When validating data, error messages and valid data are stored in 2 different arrays. Before redirecting to other pages (apply if there is error, apply confirm if there is none), these arrays are stored into session to be carried to their intended pages. Also a flag coming from this page is set.</p>
+    
+    <p>Upon arriving to the apply page, it checks to see if flags are set and displayed accordingly. After pulling out data from session, arrays are cleared to ensure the page can properly refresh (without keeping data from session)</p>
+        
+        <h3>How It Enhances:</h3>
+    <p>First, we auto-fill the Job Reference Number when a user clicks 'Apply' on a job listing. This is done using session storage.</p>
+    <p>Next, we use auto-refill for valid user inputs. If an applicant makes an error, only the incorrect fields are cleared—valid inputs stay, saving them time.</p>
+    <p>In the same time, error messages are displayed on top of the apply page (if there is any)</p>
+        <h3>Code:</h3>
+        <p>Code from process_eoi to store error messages and valid data to session.</p>
+        <img src="images/refillcode1.png" alt="code">
+    <p>Code from Apply page to take data from session and clear it (partially), ensuring that the form is refilled once per access (otherwise, refreshing the page would keep displaying filled data and error messages and this is annoying)</p>
+    <img src="images/refillcode2.png" alt="code">
+        <h3>Key Usages:</h3>
+    <p>Use Session() to store data across pages and only clear specific Session elements to avoid interering unrelated pages</p>
+        <h3>Link:  <a href="" id="linki">Here</a></h3>  
+    <p>Back to: <a href="#e1">Glossary</a></p>  
+    </article>
+</section>
+<br><hr><br>
+
+<!-------------------------------------------------------------------------------->
+
+<section id="e8">
+    <h2 >Jobs Search</h2>
+    <article>
+        <img src="images/search.png" alt="Search Job pic">
+        <h3>How It Functions:</h3>
+    <p>The searching function compair the string user enter to jobs' title and print out the jobs that have their title matched.</p>
+    <!---May enter more details on the code part-->
+        <h3>How It Enhances:</h3>
+    <p>When user visit or reload career page, it queries and takes all information about jobs in database and store them as associative array in another array. Whenever we need to search for jobs, the string user enter will be compaired to the data that was stored in the array. This can avoid unnecessary access to database.</p>
+        <h3>Code:</h3>
+        <img src="images/store.png" alt="code">
+    <p>Code from career page to store data.</p>
+        <h3>Key Usages:</h3>
+    <p>Using array to store data instead of querying every time user search.</p>
+        <h3>Link:  <a href="" id="linki">Here</a></h3>  
+        <p>Back to: <a href="#e1">Glossary</a></p>  
+    </article>
+</section>
+
 <br><hr><br>
 <!------------------------------------------------------------------------->
 
@@ -169,97 +269,7 @@
     </article>
 </section>
 
-<!-------------------------------------------------------------------------------->
 
-<section id="e8">
-    <h2 >Jobs Search</h2>
-    <article>
-        <img src="images/" alt="Search Job pic">
-        <h3>How It Functions:</h3>
-    <p>...</p>
-    <!---May enter more details on the code part-->
-        <h3>How It Enhances:</h3>
-    <p>...</p>
-        <h3>Code:</h3>
-        <img src="images/" alt="">
-    <p>...</p>
-        <h3>Key Usages:</h3>
-    <p>...</p>
-        <h3>Link:  <a href="" id="linki">Here</a></h3>  
-        <p>Back to: <a href="#e1">Glossary</a></p>  
-    </article>
-</section>
-
-<!-------------------------------------------------------------------------------->
-
-<section id="e9">
-    <h2>Autofill, Auto Refill and Error Messages</h2>
-    <article>
-        <img src="images/" alt="applyfeature">
-        <h3>How It Functions:</h3>
-    <p>...</p>
-    <p>...</p>
-    <p>...</p>
-        
-        <h3>How It Enhances:</h3>
-    <p>...</p>
-        <h3>Code:</h3>
-        <img src="images/" alt="">
-    <p>...</p>
-        <h3>Key Usages:</h3>
-    <p>...</p>
-        <h3>Link:  <a href="" id="linki">Here</a></h3>  
-    <p>Back to: <a href="#e1">Glossary</a></p>  
-    </article>
-</section>
-
-<!-------------------------------------------------------------------------------->
-
-<section id="e10">
-    <h2>Table Sorting and Inline Editing</h2>
-    <article>
-        <h1 class="sort-title">Before Sorting</h1>
-        <img src="images/sort1.png" alt="sort1" class="sort-image">
-        <h1 class="sort-title">After Sorting</h1>
-        <img src="images/sort2.png" alt="sort2">
-        <h1 class="sort-title inline-title">Inline Editing Function</h1>
-        <video class="demo-video" controls>
-            <source src="images/update.mp4" type="video/mp4" alt="update">
-        </video>
-
-        <h3>How It Functions:</h3>
-    <p>- Table Sorting:</p>  
-    <p>+ When clicked on a field, the table will sort the data in an particular order.</p>
-    <p>+ Additionally there are also arrows to indicate the order and which field is being sorted </p>
-
-    <p>- Inline Editing Function:</p>  
-    <p>+ Enter EOI number so select which field to edit, then change any info within the table with the right format.</p>
-    <p>+ After clicking Save Changes, the data will be automatically updated both in the table and the MySQL database.</p>    
-        <h3>How It Enhances:</h3>
-    <p>- Table Sorting:</p>  
-    <p>+ Sorting data in order will make it easier for the user to view and find data.</p>
-
-    <p>- Inline Editing Function:</p>  
-    <p>+ Creates a more user-friendly and simple UI.</p>    
-        <h3>Code:</h3>
-        <h1 class="code-title">Sorting Code</h1>
-        <img src="images/sortcode.png" alt="sortcode">
-        <h1 class="code-title">Inline Editing Code</h1>
-        <img src="images/inlinecode.png" alt="inlinecode">
-  
-        <h3>Key Usages:</h3>
-    <p>- Table Sorting:</p>  
-    <p>+ Click on different titles to sort data in order.</p>
-
-    <p>- Inline Editing Function:</p>  
-    <p>+ Enter EOI number to edit specific data, saved changes will also affect the MySQL database</p>
-    
-        <h3>Link:  <a href="" id="linki">Here</a></h3>  
-        <p>Back to: <a href="#e1">Glossary</a></p>  
-    </article>
-</section>
-
-<br><hr><br>
 
     <?php include("footer.inc")?>
 

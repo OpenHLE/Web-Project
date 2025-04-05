@@ -1,80 +1,5 @@
 /*pseudo-class for <html> tag*/
-:root {
-    --dark-blue: #1A1A2E;
-    --navy-blue: #16213E;
-    --medium-blue: #0F3460;
-    --accent-red: #E94560;
-    --light-gray: #F9F9F9;
-}
 
-/*--------------------HEADER----------------------*/
-header {
-    background-color: var(--navy-blue);
-    padding: 10px 20px;
-    
-    width:100%;
-    position: fixed;
-   
-    width: 100%;
-    
-    top: 0;
-    z-index: 1000;
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-}
-
-.navbar{
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-   
-    background-color: var(--navy-blue);
-    
-}
-
-.logo{
-    height: 50px;
-    width: auto;
-}
-
-.brand{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-header h1 {
-    color: var(--light-gray);
-    font-size: 23px;
-
-}
-nav {
-    position: relative;
-}
-nav ul{
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    padding: 0;
-}
-nav ul li {
-    padding: 0 15px;
-    margin: 0 0;
-    display: inline-block;
-    position: relative;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: var(--light-gray);
-    font-size: 18px;
-    padding: 10px 15px;
-    position: relative;
-    transition: color 0.3s;
-    z-index: 2;
-}
 
 .nav-highlight{
     position: absolute;
@@ -218,13 +143,23 @@ body {
 .Refer:hover {
     cursor: pointer;
 }
+
+#otherscontainer {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+}
+
+
 .others{color: white;
     font-size: 18px;
     text-decoration: none;
     position: relative;
     display: block; /* Ensures full-width alignment */
-    text-align: left;
+    text-align: center;
     padding: 10px 20px;
+  
 }
 
 
@@ -330,8 +265,13 @@ aside h2 {
     font-size: 33px;
     font-family: "SegoeU";
 }
- #othertitle{margin-left:10px;padding-top:10%}
-.job{padding-top:4.5%;padding-left:1%}
+ #othertitle{margin: 0 auto;
+    padding-top: 10%;
+    text-align: center;
+    width: fit-content; }
+
+.job{padding-top:4.5%;
+    padding-left:1%}
 
 #m1,#m2,#m3,#m4{color:#F9F9F9}
 

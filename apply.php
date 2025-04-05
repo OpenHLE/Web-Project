@@ -1,14 +1,18 @@
 <?php
 session_start();
-$errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
-$input_data = isset($_SESSION['input_data']) ? $_SESSION['input_data'] : []; // PHP 5.4 
+ // PHP 5.4 
 if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_SESSION['from_process']) && !isset($_SESSION['from_jobs1'])) {
-    session_unset();
-    session_destroy();
+    unset($_SESSION['errors']);
+    unset($_SESSION['input_data']);
+	unset($_SESSION['job_ref_num']);
 } 
-//echo "<pre>";
-//print_r($_SESSION);
-//echo "</pre>";
+
+unset($_SESSION['from_process']);
+#echo "<pre>";
+#print_r($_SESSION);
+#echo "</pre>";
+$errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
+$input_data = isset($_SESSION['input_data']) ? $_SESSION['input_data'] : [];
 ?>
 <!DOCTYPE HTML>
 <HTML lang="en">
@@ -220,9 +224,14 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_SESSION['from_process']) &&
 
 
 	<?php 
-	if (isset($_SESSION['from_process'])) {
-		unset($_SESSION['from_process']);
-		session_unset();}
+	$errors = [];
+	$input_data = [];
+	unset($_SESSION['from_jobs1']);
+	#if (isset($_SESSION['from_process'])) {
+	#	unset($_SESSION['from_process']);
+	#	session_unset();
+	#	session_destroy();
+	#}
 		?>
 	
 

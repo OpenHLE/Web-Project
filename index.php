@@ -41,7 +41,16 @@
                 <h3>Our Mission</h3>
                 <p>We aim to develop the IT job market, create promising future for CS students. And big things can not happen without dedicated learners</p>
             </article>
+            <section class ="box" id="featuresbox" >
+            <h3>Lend Us A Hand</h3>
+                <ul>
+                    <li><a href="jobs.php">Career</a></li>
+                </ul>
+            </section>
         </section>
+
+        
+
         <section class="box" id="featuresbox">
 
                 <h3>Features</h3>
@@ -50,9 +59,13 @@
                     <li>Real-life experience from seniors.</li>
                     <li>Hands-on coding project.</li>
                     <li>Practice tests for every certification.</li>
+                    <li>Flexible curriculum for students.</li>
                 </ul>
             
         </section>
+        
+
+
     </div>
 <!--------------------------------------------------------------------->
     <?php include("footer.inc")?>

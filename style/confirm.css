@@ -57,46 +57,87 @@ nav ul li  ~ .nav-highlight {
 /*Box Style*/
 
 .title{font-size: clamp(1rem, 3vw, 2rem);}
-.cbox{
-    background-color: #0F3460;
-    width: 50%;
-    max-width: 70%;
-    min-width: 30%;
-    padding: 5%;
-    
-    border-radius: 20px; /* Keeps corners fully rounded while ensuring a rectangle */
-    box-shadow: 0 4% 10% rgba(0, 0, 0, 0.2);
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+
+/* Keeps .cbox centered while keeping original styling */
+body {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;}
+    min-height: 100vh; 
+    margin: 0;
+    align-items: center; 
+    justify-content: center; 
+}
 
-#text1{color: #F9F9F9;}
-
-.returnbox{  background-color: #FF6B6B;
-    background-color: #FF6B6B;
-    width: 10%;
-    max-width: 20%;
-   
-    max-height: 5%;
-    padding: 2%;
-    border-radius: 20px;
-    box-shadow: 0 2% 5% rgba(0, 0, 0, 0.2);
+/* Floating window centered in width, positioned above footer */
+.cbox {
+    background-color: #0F3460;
+    width: 50%;
+    max-width: 5500px; 
+    min-width: 300px; 
+    padding: 5%;
+    padding-bottom: 7%;
+    
+    border-radius: 20px; 
+    box-shadow: 0 4% 10% rgba(0, 0, 0, 0.2);
     text-align: center;
-    position: fixed;
-    top: calc(50% + 30%);
-    left: 50%;
-    transform: translate(-50%, 0);
+    
+    position: relative; 
+    margin-bottom: 6%; 
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+}
+
+
+footer {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0px; 
+    left: 0;
+}
+
+
+.returnbox {
+    background-color: #E94560;
+    width: 180px; 
+    padding: 15px; 
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
     display: flex;
     align-items: center;
     justify-content: center;
+    
     cursor: pointer;
     color: white;
-    font-size: clamp(0.1rem, 3vw, 1.2rem); /* Bigger text inside */
-    background-size: clamp(50%,3vw,100%);
-    font-weight: bold;}
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    
+    margin-top: 20px; 
+    
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); 
+}
+
+
+.returnbox:hover {
+    background-color: #E94560;
+    transform: translateX(-50%) scale(1.05); 
+    transition: 0.3s ease-in-out;
+}
+
+#text1{color: #F9F9F9;}
+
+.success{
+    font-size: 24px;
+    color:green;
+
+}
+
+

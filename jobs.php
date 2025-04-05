@@ -1,95 +1,145 @@
+<?php
+session_start();
+//Kết nối database
+include_once("settings.php");
+$conn = mysqli_connect($host, $user, $pwd, $sql_db);
+
+// Kiểm tra kết nối
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Lấy data trong database apppend vào array
+$_SESSION["job_found"] = [];
+
+$sql = "SELECT * FROM Jobs1 ORDER BY Status ASC";
+$result = $conn->query($sql);
+
+while ($row = $result->fetch_assoc()) {
+    array_push($_SESSION["job_found"], $row);
+}
+
+session_write_close();
+$job_found = $_SESSION["job_found"];
+
+
+function print_all() {
+    global $job_found;
+    for ($a = 0; $a < count($job_found); $a++) {
+        $selected = $job_found[$a];
+        if (strtolower($selected["Status"]) == "available") {
+            $title = $selected["Title"];
+            $status = $selected["Status"];
+            $loca = $selected["Locations"];
+            $ref_num = $selected["ReferenceNumber"];
+            echo ("<tr data-info = \"" . $ref_num . "\">
+                    <td>". $title ."</td>
+                    <td>". $loca ."</td>
+                    <td><a href = \"jobs1.php?Title=" . $title . "&Location=" . $loca . "\">INFO</a></td>
+                    <td><a href = \"apply.php?Refnum=" . $ref_num . "\">Apply</a></td>
+                    <td>". $status ."</td>
+                </tr>");
+        }
+    }
+}
+
+function search_job($search) {
+    global $job_found;
+    for ($a = 0; $a < count($job_found); $a++) {
+        $selected = $job_found[$a];
+        if (strpos(strtolower($selected["Title"]), strtolower($search)) !== false) {
+            if (strtolower($selected["Status"]) == "available") {
+             $title = $selected["Title"];
+             $status = $selected["Status"];
+             $loca = $selected["Locations"];
+             $ref_num = $selected["ReferenceNumber"];
+            echo ("<tr data-info = \"" . $ref_num . "\">
+                <td>". $title ."</td>
+                <td>". $loca ."</td>
+                <td><a href = \"jobs1.php?Title=" . $title . "&Location=" . $loca . "\">INFO</a></td>
+                <td><a href = \"apply.php?Refnum=" . $ref_num . "\">Apply</a></td>
+                <td>". $status ."</td>
+            </tr>");   
+            }
+            if (strtolower($selected["Status"]) == "unavailable") {
+                $title = $selected["Title"];
+                $status = $selected["Status"];
+                $loca = $selected["Locations"];
+                echo ("<tr>
+                    <td class=\"unv\">". $title ."</td>
+                    <td class=\"unv\">". $loca ."</td>
+                    <td class=\"unv1\"><a href = \"jobs1.php?Title=" . $title . "&Location=" . $loca . "\">INFO</a></td>
+                    <td class=\"unv\"><a>Apply</a></td>
+                    <td class=\"unv\">". $status ."</td>
+                </tr>");      
+            }
+            
+        }
+        
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="description" content="Job Description" />
-    <meta name="keywords" content="HTML, tags, CSS, Javascript, PHP" />
-    <meta name="author" content="TranMinhHai"  />
     <title>Career</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!--responsive website-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="style/style.css" rel="stylesheet"/>
     <link href="style/jobs.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
 </head>
-
 <body>
     <?php include("header.inc") ?>
 
-    <main>
-        
-        <section class="careers">
-            <h2>CAREERS</h2>
-          
-            <div class="jobslist">
-            
-            <input type="checkbox" id="toggle-filters" />
-            <label for="toggle-filters" class="filter-icon">
-                <img src="images/filter-icon.png" alt="Filter Icon" />
-            </label>
-              
-           
-            <input type="checkbox" id="filter-frontend" checked />
-            <label for="filter-frontend">Frontend</label>
-          
-            <input type="checkbox" id="filter-backend" checked />
-            <label for="filter-backend">Backend</label>
-          
-            <input type="checkbox" id="filter-data" checked />
-            <label for="filter-data">Data</label>
-          
-            <input type="checkbox" id="filter-support" checked />
-            <label for="filter-support">Support</label>
-          
-            <!-- Job Listings Table -->
+    
+    <section class="careers">
+        <h2>CAREERS</h2>
+
+            <form method="GET" action="jobs.php">
+            <div class="search">
+            <span class="search-icon material-symbols-outlined">search</span>
+            <input class = "search-input" type="text" name="search" placeholder="Enter Job Position..."> 
+            <button type="submit" class="search-btn">Search</button>
+            <button type="button" class="clear-btn" onclick="window.location.href='?'">Clear</button>
+            </div>
+            </form>
+
+            <!-- Bảng danh sách công việc -->
             <table class="jobs-table">
                 <thead>
                     <tr>
-                        <th>Available</th>
+                        <th>Position</th>
                         <th>Location</th>
                         <th>Info</th>
                         <th>Apply</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
-                <tbody>
+                <?php
                     
-                    <tr class="frontend" data-info="ID: FD647">
-                        <td>Frontend Developer</td>
-                        <td>Hanoi</td>
-                        <td><a href="jobs3.html">Info</a></td>
-                        <td><a href="apply.html">Apply</a></td>
-                    </tr>
+                    if (isset($_GET['search'])) {
+                        $search = $_GET['search'];
+                    } else {
+                        $search = null;
+                    }
 
-                    <tr class="backend" data-info="ID: BD137">
-                        <td>Backend Developer</td>
-                        <td>Hanoi</td>
-                        <td><a href="jobs4.html">Info</a></td>
-                        <td><a href="apply.html">Apply</a></td>
-                    </tr>
-                
-                    <tr class="data" data-info="ID: DM153">
-                        <td>Database Administrator</td>
-                        <td>Hanoi</td>
-                        <td><a href="jobs1.html">Info</a></td>
-                        <td><a href="apply.html">Apply</a></td>
-                    </tr>
+                    if (!$search) {
+                        print_all();
+                    } else {
+                        search_job($search);
+                    }
 
-                    <tr class="support" data-info="ID: IS765">
-                        <td>IT Support</td>
-                        <td>Hanoi</td>
-                        <td><a href="jobs2.html">Info</a></td>
-                        <td><a href="apply.html">Apply</a></td>
-                    </tr>
-                </tbody>
+                ?>
             </table>
-            </div>
         </section>
-
-    </main>
-
-    <!--------------------------------------------------------------------->
-    <?php include("footer.inc")?>
+    
 </body>
 
+<?php include("footer.inc") ?>
+</html>
 
-
-
+<?php
+$conn->close();
+?>
